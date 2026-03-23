@@ -1,0 +1,24 @@
+[33mcommit c8e5e38a73d2ba14b1de80bf24927e78e6e39f4a[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: 631a819 78ed667
+Author: el1zabethcodes <lizapavlova925@gmail.com>
+Date:   Mon Mar 23 10:39:35 2026 +0200
+
+    Merge branch 'main' of https://github.com/el1zabethcodes/movieposter
+
+[33mcommit 631a8197f703f3c87379f2a431a420aa252f01ac[m
+Author: el1zabethcodes <lizapavlova925@gmail.com>
+Date:   Mon Mar 23 10:39:11 2026 +0200
+
+    feat: ініціалізація проекту ЛР №1 (семантична розмітка)
+
+[33mcommit 78ed667d29c352bb8bc24fcd6ad27eca515ab3b8[m
+Author: elizabethcodes <lizapavlova925@gmail.com>
+Date:   Mon Mar 23 10:37:45 2026 +0200
+
+    Add files via upload
+
+[33mcommit 8d4675cb86ec5cbbd030e4ab19c17d3f8d9c22d3[m
+Author: elizabethcodes <lizapavlova925@gmail.com>
+Date:   Mon Mar 23 10:37:18 2026 +0200
+
+    Initial commit
