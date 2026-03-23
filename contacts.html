@@ -9,12 +9,12 @@
 <body>
 
     <header>
-        <h1>🎬 КіноАфіша</h1>
+        <h1 style="margin-bottom: 10px;">🎬 КіноАфіша</h1>
         <nav aria-label="Основна навігація">
-            <ul>
-                <li><a href="index.html">Головна</a></li>
-                <li><a href="catalog.html">Каталог фільмів</a></li>
-                <li><a href="contacts.html" aria-current="page">Контакти</a></li>
+            <ul style="padding: 0; list-style: none;">
+                <li style="display: inline; margin-right: 15px;"><a href="index.html" style="display: inline-block; padding: 10px; min-width: 44px; min-height: 44px; text-decoration: none;">Головна</a></li>
+                <li style="display: inline; margin-right: 15px;"><a href="catalog.html" style="display: inline-block; padding: 10px; min-width: 44px; min-height: 44px; text-decoration: none;">Каталог фільмів</a></li>
+                <li style="display: inline;"><a href="contacts.html" aria-current="page" style="display: inline-block; padding: 10px; min-width: 44px; min-height: 44px; text-decoration: none;">Контакти</a></li>
             </ul>
         </nav>
     </header>
@@ -30,17 +30,17 @@
                 
                 <p>
                     <label for="user-name">Ім'я:</label>
-                    <input type="text" id="user-name" name="user-name" required placeholder="Марія Іванова">
+                    <input type="text" id="user-name" name="user-name" required placeholder="Марія Іванова" style="padding: 10px; min-height: 44px;">
                 </p>
                 
                 <p>
                     <label for="user-email">Email:</label>
-                    <input type="email" id="user-email" name="user-email" required placeholder="maria@example.com">
+                    <input type="email" id="user-email" name="user-email" required placeholder="maria@example.com" style="padding: 10px; min-height: 44px;">
                 </p>
                 
                 <p>
                     <label for="user-tel">Телефон (у форматі +380...):</label>
-                    <input type="tel" id="user-tel" name="user-tel" pattern="^\+380\d{9}$" required placeholder="+380123456789">
+                    <input type="tel" id="user-tel" name="user-tel" pattern="^\+380\d{9}$" required placeholder="+380123456789" style="padding: 10px; min-height: 44px;">
                 </p>
             </fieldset>
 
@@ -50,7 +50,7 @@
                 
                 <p>
                     <label for="message-subject">Тема звернення:</label>
-                    <select id="message-subject" name="message-subject">
+                    <select id="message-subject" name="message-subject" style="padding: 10px; min-height: 44px;">
                         <optgroup label="Квитки та бронювання">
                             <option value="booking">Проблема з бронюванням</option>
                             <option value="refund">Повернення квитків</option>
@@ -64,26 +64,26 @@
 
                 <p>Бажаний спосіб зв'язку:</p>
                 <p>
-                    <input type="radio" id="contact-email" name="contact-method" value="email" checked>
-                    <label for="contact-email">Email</label>
+                    <input type="radio" id="contact-email" name="contact-method" value="email" checked style="width: 25px; height: 25px; vertical-align: middle;">
+                    <label for="contact-email" style="padding: 10px;">Email</label>
                     
-                    <input type="radio" id="contact-phone" name="contact-method" value="phone">
-                    <label for="contact-phone">Телефон</label>
+                    <input type="radio" id="contact-phone" name="contact-method" value="phone" style="width: 25px; height: 25px; vertical-align: middle;">
+                    <label for="contact-phone" style="padding: 10px;">Телефон</label>
                 </p>
 
                 <p>
                     <label for="user-message">Ваше повідомлення:</label><br>
-                    <textarea id="user-message" name="user-message" rows="5" cols="40" placeholder="Напишіть ваші побажання..."></textarea>
+                    <textarea id="user-message" name="user-message" rows="5" cols="40" placeholder="Напишіть ваші побажання..." style="padding: 10px;"></textarea>
                 </p>
 
                 <p>
-                    <input type="checkbox" id="data-consent" name="data-consent" required>
-                    <label for="data-consent">Я погоджуюся на обробку персональних даних</label>
+                    <input type="checkbox" id="data-consent" name="data-consent" required style="width: 25px; height: 25px; vertical-align: middle;">
+                    <label for="data-consent" style="padding: 10px;">Я погоджуюся на обробку персональних даних</label>
                 </p>
 
                 <p>
-                    <button type="submit">Надіслати повідомлення</button>
-                    <button type="reset">Очистити форму</button>
+                    <button type="submit" style="padding: 12px 24px; min-height: 44px; cursor: pointer;">Надіслати повідомлення</button>
+                    <button type="reset" style="padding: 12px 24px; min-height: 44px; cursor: pointer;">Очистити форму</button>
                 </p>
             </fieldset>
         </form>
