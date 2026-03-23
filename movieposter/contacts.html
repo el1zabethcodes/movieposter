@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Зв'яжіться з нами для бронювання квитків або пропозицій.">
+    <title>КіноАфіша — Контакти</title>
+</head>
+<body>
+
+    <header>
+        <h1>🎬 КіноАфіша</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Головна</a></li>
+                <li><a href="catalog.html">Каталог фільмів</a></li>
+                <li><a href="contacts.html">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Зворотний зв'язок</h2>
+        <p>Маєте запитання? Напишіть нам!</p>
+
+        <form action="#" method="post">
+            <!-- особисті дані -->
+            <fieldset>
+                <legend>Особисті дані</legend>
+                
+                <p>
+                    <label for="user-name">Ім'я:</label>
+                    <input type="text" id="user-name" name="user-name" required placeholder="Марія Іванова">
+                </p>
+                
+                <p>
+                    <label for="user-email">Email:</label>
+                    <input type="email" id="user-email" name="user-email" required placeholder="maria@example.com">
+                </p>
+                
+                <p>
+                    <label for="user-tel">Телефон (у форматі +380...):</label>
+                    <input type="tel" id="user-tel" name="user-tel" pattern="^\+380\d{9}$" required placeholder="+380123456789">
+                </p>
+            </fieldset>
+
+            <!-- повідомлення -->
+            <fieldset>
+                <legend>Повідомлення та запит</legend>
+                
+                <p>
+                    <label for="message-subject">Тема звернення:</label>
+                    <select id="message-subject" name="message-subject">
+                        <optgroup label="Квитки та бронювання">
+                            <option value="booking">Проблема з бронюванням</option>
+                            <option value="refund">Повернення квитків</option>
+                        </optgroup>
+                        <optgroup label="Загальні питання">
+                            <option value="schedule">Уточнити розклад</option>
+                            <option value="cooperation">Співпраця</option>
+                        </optgroup>
+                    </select>
+                </p>
+
+                <p>Бажаний спосіб зв'язку:</p>
+                <p>
+                    <input type="radio" id="contact-email" name="contact-method" value="email" checked>
+                    <label for="contact-email">Email</label>
+                    
+                    <input type="radio" id="contact-phone" name="contact-method" value="phone">
+                    <label for="contact-phone">Телефон</label>
+                </p>
+
+                <p>
+                    <label for="user-message">Ваше повідомлення:</label><br>
+                    <textarea id="user-message" name="user-message" rows="5" cols="40" placeholder="Напишіть ваші побажання..."></textarea>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="data-consent" name="data-consent" required>
+                    <label for="data-consent">Я погоджуюся на обробку персональних даних</label>
+                </p>
+
+                <p>
+                    <button type="submit">Надіслати повідомлення</button>
+                    <button type="reset">Очистити форму</button>
+                </p>
+            </fieldset>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосувань.</p>
+        <p>Студентка групи П-31, Павлова Єлизавета</p>
+    </footer>
+
+</body>
+</html>
