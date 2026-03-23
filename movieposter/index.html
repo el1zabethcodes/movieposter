@@ -6,9 +6,6 @@
     <meta name="description" content="Афіша сучасного кінотеатру: розклад сеансів, новинки прокату та онлайн-бронювання квитків.">
     <title>КіноАфіша — Головна</title>
 
-    <!-- передзавантаження головного зображення для lcp -->
-    <link rel="preload" as="image" href="img/hail-mary.webp" fetchpriority="high">
-
     <!-- мета -->
     <meta property="og:title" content="КіноАфіша — Проєкт «Аве Марія»">
     <meta property="og:description" content="Дивіться головну прем'єру сезону — науково-фантастичний епос за романом Енді Віра.">
@@ -41,14 +38,13 @@
                 <picture>
                     <source srcset="img/hail-mary.webp, img/hail-mary-2x.webp 2x" type="image/webp">
                     <source srcset="img/hail-mary.jpg, img/hail-mary-2x.jpg 2x" type="image/jpeg">
-                    <img src="img/hail-mary.jpg" alt="Постер фільму «Проєкт Аве Марія»" width="600" height="800" fetchpriority="high">
+                    <img src="img/hail-mary.jpg" alt="Постер фільму «Проєкт Аве Марія»" width="600" height="800">
                 </picture>
 
                 <p>Шкільний учитель Райланд Грейс прокидається на космічному кораблі за світлові роки від Землі — без жодних спогадів про себе і свою місію. Пам'ять повертається разом з усвідомленням: він останній шанс людства.</p>
                 
                 <h4>Дивитися трейлер</h4>
-                <!-- додано розміри для відео щоб уникнути layout shift -->
-                <video controls width="1280" height="720" style="max-width: 100%; height: auto;">
+                <video controls width="100%">
                     <source src="video/hail-mary-trailer.mp4" type="video/mp4">
                     Ваш браузер не підтримує вбудоване відео.
                 </video>
@@ -64,7 +60,7 @@
                         <h3>Сезон полювання 2</h3>
                         <p>Режисер: Фредерік Форестьє, Антонін Фурлон</p>
                         <p>Прем'єра: 2 квітня</p>
-                        <img src="img/chasse-gardee-2.jpg" alt="Постер фільму «Сезон полювання 2»" loading="lazy" width="200" height="300">
+                        <img src="img/chasse-gardee-2.jpg" alt="Постер фільму «Сезон полювання 2»" loading="lazy" width="200">
                     </article>
                 </li>
                 <li>
@@ -72,7 +68,7 @@
                         <h3>На Драйві</h3>
                         <p>Режисер: Dream Film, A17</p>
                         <p>Прем'єра: 9 квітня</p>
-                        <img src="img/na-draivi.jpg" alt="Постер фільму «На Драйві»" loading="lazy" width="200" height="300">
+                        <img src="img/na-draivi.jpg" alt="Постер фільму «На Драйві»" loading="lazy" width="200">
                     </article>
                 </li>
                 <li>
@@ -80,7 +76,7 @@
                         <h3>Колючка Голлі</h3>
                         <p>Режисер: Анонс</p>
                         <p>Прем'єра: 23 квітня</p>
-                        <img src="img/hollie-hedgehog.jpg" alt="Постер фільму «Колючка Голлі»" loading="lazy" width="200" height="300">
+                        <img src="img/hollie-hedgehog.jpg" alt="Постер фільму «Колючка Голлі»" loading="lazy" width="200">
                     </article>
                 </li>
             </ul>
