@@ -223,7 +223,9 @@ thead th {
   background-color: var(--ink-soft);
   font-weight: 700;
   border-bottom: 2px solid var(--copper-dim);
-  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.9rem;
 }
 
 tbody tr:nth-child(even) {
