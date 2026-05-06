@@ -169,7 +169,12 @@ ul.movie-grid {
 }
 
 ul.movie-grid li article {
+  background-color: #fff;
+  padding: 1.5em;
   margin: 0;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--copper-dim);
 }
 
 ul.movie-grid li img {
@@ -182,7 +187,9 @@ section > article {
   background-color: #fff;
   padding: 1.5em;
   margin-bottom: 1.5em;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--copper-dim); /* тепла тінь, ефект свічки */
 }
 
 /* таблиця розкладу */
