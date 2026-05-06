@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Зв'яжіться з нами для бронювання квитків або пропозицій.">
+    <title>КіноАфіша — Контакти</title>
+</head>
+<body>
+
+    <header>
+        <h1 style="margin-bottom: 10px;">КіноАфіша</h1>
+        <nav aria-label="Основна навігація">
+            <ul style="padding: 0; list-style: none;">
+                <li style="display: inline; margin-right: 15px;"><a href="index.html" style="display: inline-block; padding: 10px; min-width: 44px; min-height: 44px; text-decoration: none;">Головна</a></li>
+                <li style="display: inline; margin-right: 15px;"><a href="catalog.html" style="display: inline-block; padding: 10px; min-width: 44px; min-height: 44px; text-decoration: none;">Каталог фільмів</a></li>
+                <li style="display: inline;"><a href="contacts.html" aria-current="page" style="display: inline-block; padding: 10px; min-width: 44px; min-height: 44px; text-decoration: none;">Контакти</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Зворотний зв'язок</h2>
+        <p>Маєте запитання? Напишіть нам!</p>
+
+        <form action="#" method="post">
+            <!-- особисті дані -->
+            <fieldset>
+                <legend>Особисті дані</legend>
+                
+                <p>
+                    <label for="user-name">Ім'я:</label>
+                    <input type="text" id="user-name" name="user-name" required placeholder="Марія Іванова" style="padding: 10px; min-height: 44px;">
+                </p>
+                
+                <p>
+                    <label for="user-email">Email:</label>
+                    <input type="email" id="user-email" name="user-email" required placeholder="maria@example.com" style="padding: 10px; min-height: 44px;">
+                </p>
+                
+                <p>
+                    <label for="user-tel">Телефон (у форматі +380...):</label>
+                    <input type="tel" id="user-tel" name="user-tel" pattern="^\+380\d{9}$" required placeholder="+380123456789" style="padding: 10px; min-height: 44px;">
+                </p>
+            </fieldset>
+
+            <!-- повідомлення -->
+            <fieldset>
+                <legend>Повідомлення та запит</legend>
+                
+                <p>
+                    <label for="message-subject">Тема звернення:</label>
+                    <select id="message-subject" name="message-subject" style="padding: 10px; min-height: 44px;">
+                        <optgroup label="Квитки та бронювання">
+                            <option value="booking">Проблема з бронюванням</option>
+                            <option value="refund">Повернення квитків</option>
+                        </optgroup>
+                        <optgroup label="Загальні питання">
+                            <option value="schedule">Уточнити розклад</option>
+                            <option value="cooperation">Співпраця</option>
+                        </optgroup>
+                    </select>
+                </p>
+
+                <p>Бажаний спосіб зв'язку:</p>
+                <p>
+                    <input type="radio" id="contact-email" name="contact-method" value="email" checked style="width: 25px; height: 25px; vertical-align: middle;">
+                    <label for="contact-email" style="padding: 10px;">Email</label>
+                    
+                    <input type="radio" id="contact-phone" name="contact-method" value="phone" style="width: 25px; height: 25px; vertical-align: middle;">
+                    <label for="contact-phone" style="padding: 10px;">Телефон</label>
+                </p>
+
+                <p>
+                    <label for="user-message">Ваше повідомлення:</label><br>
+                    <textarea id="user-message" name="user-message" rows="5" cols="40" placeholder="Напишіть ваші побажання..." style="padding: 10px;"></textarea>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="data-consent" name="data-consent" required style="width: 25px; height: 25px; vertical-align: middle;">
+                    <label for="data-consent" style="padding: 10px;">Я погоджуюся на обробку персональних даних</label>
+                </p>
+
+                <p>
+                    <button type="submit" style="padding: 12px 24px; min-height: 44px; cursor: pointer;">Надіслати повідомлення</button>
+                    <button type="reset" style="padding: 12px 24px; min-height: 44px; cursor: pointer;">Очистити форму</button>
+                </p>
+            </fieldset>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосувань.</p>
+        <p>Студентка групи П-31, Павлова Єлизавета</p>
+    </footer>
+
+</body>
+</html>
