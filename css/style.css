@@ -1,19 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 
 :root {
-  /* палітра — нічна афіша, мідь як світло проектора */
-  --void: #0d0d14;
-  /* --void-soft: #1a1a2e; */
-  --void-soft: #161622;
-  --ember: #c9a45c;
-  --ember-dim: #7a6538;
-  --silver: #c5c5d5;
-  --silver-dim: #6e6e82;
-  --blush: #f0e6d2;
+  /* палітра з завдання 1 */
+  --ink:           #1a0f0a;
+  --ink-soft:      #2d1f17;
+  --copper:        #c4956a;
+  --copper-dim:    #8a6347;
+  --parchment:     #e8d5b7;
+  --cream:         #f2e8d5;
 
-  /* шрифти — спочатку думала Bebas Neue але воно занадто агресивне для лаби */
   --font-display: 'Playfair Display', serif;
-  --font-body: 'Lora', serif;
+  --font-body:    'Lora', serif;
 }
 
 * {
@@ -22,15 +19,16 @@
 
 body {
   font-family: var(--font-body);
-  background-color: var(--void);
-  color: var(--silver);
+  background-color: var(--cream);
+  color: var(--ink);
   line-height: 1.65;
   margin: 0;
 }
 
 /* шапка */
 header {
-  border-bottom: 1px solid var(--ember-dim);
+  background-color: var(--ink);
+  border-bottom: 1px solid var(--copper-dim);
   padding: 28px 0 20px; /* 28 зверху бо логотип має повітря */
 }
 
@@ -42,12 +40,12 @@ header {
 }
 
 header h1 {
-  color: var(--blush);
+  color: var(--copper);
   font-family: var(--font-display);
-  font-size: clamp(2rem, 5vw, 3rem);
+  font-size: 2.8rem;
   font-weight: 900;
-  letter-spacing: 2px;
-  margin: 0 0 12px;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.4em;
   line-height: 1;
 }
 
@@ -61,9 +59,9 @@ nav ul {
 }
 
 nav a {
-  color: var(--silver-dim);
+  color: var(--parchment);
   text-decoration: none;
-  font-size: 0.95rem;
+  font-size: 1rem;
   border-bottom: 2px solid transparent;
   padding-bottom: 4px;
   transition: color 0.25s ease, border-color 0.25s ease;
@@ -71,8 +69,8 @@ nav a {
 
 nav a:hover,
 nav a[aria-current="page"] {
-  color: var(--ember);
-  border-color: var(--ember);
+  color: var(--copper);
+  border-color: var(--copper);
 }
 
 main {
@@ -80,13 +78,14 @@ main {
 }
 
 h2 {
-  color: var(--blush);
+  color: var(--ink-soft);
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  font-size: 2rem;
   font-weight: 700;
-  margin: 0 0 36px;
-  border-left: 3px solid var(--ember);
-  padding-left: 16px;
+  letter-spacing: 0.05em;
+  margin: 1.5em 0 0.8em;
+  border-left: 4px solid var(--copper);
+  padding-left: 0.5em;
   line-height: 1.2;
 }
 
@@ -95,28 +94,27 @@ main > section {
   margin-bottom: 56px;
 }
 
-main > section > h3 {
+h3 {
   font-family: var(--font-display);
-  color: var(--blush);
-  font-size: 1.35rem;
-  font-weight: 700;
-  margin: 0 0 20px;
-  letter-spacing: 0.5px;
+  color: var(--ink-soft);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 1.5em 0 0.6em;
 }
 
-article h3,
 article h4 {
   font-family: var(--font-display);
-  color: var(--blush);
-  font-weight: 700;
+  color: var(--ink-soft);
+  font-weight: 600;
   margin: 0 0 10px;
   font-size: 1.2rem;
 }
 
 article p {
   margin: 0 0 10px;
-  font-size: 0.95rem;
-  color: var(--silver-dim);
+  font-size: 1rem;
+  color: var(--ink);
 }
 
 article img {
@@ -124,7 +122,7 @@ article img {
   width: 100%;
   height: auto;
   max-width: 280px;
-  border: 1px solid var(--void-soft);
+  border: 1px solid var(--copper-dim);
 }
 
 /* головна — прем'єра тижня, асиметрична сітка */
@@ -142,17 +140,17 @@ main > section:first-child picture {
 
 main > section:first-child picture img {
   max-width: 100%;
-  border: 1px solid var(--ember-dim);
-  box-shadow: 6px 6px 0 var(--void-soft); /* різке тіня, не розмиття */
+  border: 1px solid var(--copper-dim);
+  box-shadow: 6px 6px 0 var(--ink-soft); /* різке тіня, не розмиття */
 }
 
 video {
   width: 100%;
   height: auto;
   display: block;
-  background: var(--void-soft);
-  border: 1px solid var(--ember-dim);
-  margin-top: 16px;
+  background: var(--ink-soft);
+  border: 1px solid var(--copper-dim);
+  margin-top: 1em;
 }
 
 /* скоро в кіно — ламана рівномірність через :first-child */
@@ -181,7 +179,10 @@ ul.movie-grid li img {
 
 /* catalog.html — фільми по жанрах */
 section > article {
-  margin-bottom: 28px;
+  background-color: #fff;
+  padding: 1.5em;
+  margin-bottom: 1.5em;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 /* таблиця розкладу */
@@ -189,41 +190,43 @@ table {
   width: 100%;
   border-collapse: collapse;
   font-size: 0.95rem;
-  margin-top: 12px;
-  border: 1px solid var(--void-soft);
+  margin-top: 0.8em;
+  background-color: #fff;
+  border: 1px solid var(--parchment);
 }
 
 caption {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--silver-dim);
+  color: var(--ink-soft);
   text-align: left;
-  margin-bottom: 10px;
+  margin-bottom: 0.6em;
   font-size: 1rem;
 }
 
 th, td {
-  padding: 14px 16px;
+  padding: 1em;
   text-align: left;
-  border-bottom: 1px solid var(--void-soft);
+  border: 1px solid var(--parchment);
 }
 
 thead th {
   font-family: var(--font-display);
-  color: var(--ember);
+  color: var(--cream);
+  background-color: var(--ink-soft);
   font-weight: 700;
-  border-bottom: 2px solid var(--ember-dim);
-  letter-spacing: 0.5px;
+  border-bottom: 2px solid var(--copper-dim);
+  letter-spacing: 0.05em;
 }
 
 tbody tr:nth-child(even) {
-  background: rgba(201, 164, 92, 0.04); /* ледь-ледь мідний відтінок */
+  background: rgba(196, 149, 106, 0.08); /* ледь-ледь мідний відтінок */
 }
 
 tfoot td {
-  color: var(--silver-dim);
+  color: var(--copper-dim);
   font-style: italic;
-  border-top: 2px solid var(--ember-dim);
+  border-top: 2px solid var(--copper-dim);
   border-bottom: none;
 }
 
@@ -233,35 +236,35 @@ form {
 }
 
 fieldset {
-  background: var(--void-soft);
-  border: 1px solid var(--ember-dim);
-  padding: 24px;
-  margin: 0 0 24px;
+  background: var(--cream);
+  border: 2px solid var(--copper);
+  padding: 1.5em;
+  margin: 0 0 1.5em;
 }
 
 legend {
   font-family: var(--font-display);
-  color: var(--blush);
+  color: var(--copper-dim);
   font-weight: 700;
-  padding: 0 10px;
+  padding: 0 1em;
   font-size: 1.1rem;
 }
 
 label {
   display: block;
-  color: var(--blush);
-  font-size: 0.92rem;
-  margin-bottom: 6px;
-  margin-top: 14px;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-bottom: 0.4em;
+  margin-top: 0.9em;
 }
 
 /* інпути — в HTML є inline стилі, не чіпаю padding/min-height щоб не конфліктувати */
 input,
 select,
 textarea {
-  background: var(--void);
-  color: var(--silver);
-  border: 1px solid var(--ember-dim);
+  background: var(--cream);
+  color: var(--ink);
+  border: 1px solid var(--parchment);
   font-family: var(--font-body);
   font-size: 1rem;
   width: 100%;
@@ -273,51 +276,56 @@ input:focus,
 select:focus,
 textarea:focus {
   outline: none;
-  border-color: var(--ember);
+  border-color: var(--copper);
+  box-shadow: 0 0 0 3px rgba(196, 149, 106, 0.2);
 }
 
 input[type="radio"],
 input[type="checkbox"] {
   width: auto;
-  accent-color: var(--ember);
+  accent-color: var(--copper);
   vertical-align: middle;
   margin-right: 8px;
 }
 
 button {
   font-family: var(--font-display);
-  background: transparent;
-  color: var(--ember);
-  border: 1px solid var(--ember);
-  padding: 12px 28px;
-  font-size: 1.05rem;
+  background: var(--copper);
+  color: var(--ink);
+  border: none;
+  padding: 0.8em 2em;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  margin-right: 12px;
-  margin-top: 8px;
+  margin-right: 1em;
+  margin-top: 0.5em;
   transition: background 0.25s ease, color 0.25s ease;
 }
 
 button:hover {
-  background: var(--ember);
-  color: var(--void);
+  background: var(--copper-dim);
+  color: var(--parchment);
 }
 
 button[type="reset"] {
-  border-color: var(--silver-dim);
-  color: var(--silver-dim);
+  background: transparent;
+  border: 2px solid var(--copper);
+  color: var(--copper-dim);
 }
 
 button[type="reset"]:hover {
-  background: var(--silver-dim);
-  color: var(--void);
+  background: var(--parchment);
+  color: var(--ink);
 }
 
 /* футер */
 footer {
-  border-top: 1px solid var(--void-soft);
-  padding: 36px 0 52px; /* 52 внизу бо не люблю коли прилипає */
-  color: var(--silver-dim);
+  background-color: var(--ink);
+  border-top: 1px solid var(--copper-dim);
+  padding: 3em 0; /* 52 внизу бо не люблю коли прилипає */
+  color: var(--parchment);
   font-size: 0.85rem;
+  margin-top: 4em;
 }
 
 footer p {
@@ -326,49 +334,19 @@ footer p {
 
 /* мобілка — все в кінці файлу як і має бути */
 @media (max-width: 768px) {
-  .container {
-    width: 94%;
-  }
-
-  nav ul {
-    gap: 6px 18px;
-  }
-
-  main > section:first-child article {
-    grid-template-columns: 1fr;
-  }
-
-  main > section:first-child picture {
-    order: 0;
-  }
-
-  h2 {
-    font-size: 1.6rem;
-  }
-
-  table {
-    font-size: 0.88rem;
-  }
-
-  th, td {
-    padding: 10px 8px;
-  }
-
-  ul.movie-grid li:first-child {
-    grid-column: auto;
-  }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
+  .container { width: 94%; padding: 1em; }
+  nav ul { gap: 6px 18px; }
+  main > section:first-child article { grid-template-columns: 1fr; }
+  main > section:first-child picture { order: 0; }
+  table { font-size: 0.88rem; }
+  th, td { padding: 10px 8px; }
+  ul.movie-grid li:first-child { grid-column: auto; }
 }
 
 @media (max-width: 480px) {
-  header {
-    padding: 20px 0 14px;
-  }
-
-  main {
-    padding: 28px 0 20px;
-  }
-
-  article img {
-    max-width: 100%;
-  }
+  header { padding: 20px 0 14px; }
+  main { padding: 1.5em 0 1em; }
+  article img { max-width: 100%; }
 }
