@@ -32,7 +32,7 @@ header {
   padding: 28px 0 20px; /* 28 зверху бо логотип має повітря */
 }
 
-/* контейнер — max-width 1200px, центрування, бокові відступи */
+/* контейнер max-width 1200px, центрування, бокові відступи */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -95,7 +95,7 @@ h2 {
   line-height: 1.2;
 }
 
-/* відступи між секціями — на catalog.html головніше */
+/* відступи між секціями на catalog.html головніше */
 main > section {
   margin-bottom: 56px;
 }
@@ -131,7 +131,7 @@ article img {
   border: 1px solid var(--copper-dim);
 }
 
-/* головна — прем'єра тижня, асиметрична сітка */
+/* головна, прем'єра тижня, асиметрична сітка */
 main > section:first-child article {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
@@ -141,7 +141,7 @@ main > section:first-child article {
 }
 
 main > section:first-child picture {
-  order: 2; /* постер справа — злам звичного порядку */
+  order: 2; /* постер справа, злам звичного порядку */
 }
 
 main > section:first-child picture img {
@@ -159,7 +159,7 @@ video {
   margin-top: 1em;
 }
 
-/* скоро в кіно — ламана рівномірність через :first-child */
+/* скоро в кіно, ламана рівномірність через :first-child */
 ul.movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -188,7 +188,7 @@ ul.movie-grid li img {
   margin-bottom: 12px;
 }
 
-/* catalog.html — фільми по жанрах */
+/* catalog.html, фільми по жанрах */
 section > article {
   background-color: #fff;
   padding: 1.5em;
@@ -235,7 +235,7 @@ thead th {
 }
 
 tbody tr:nth-child(even) {
-  background: rgba(196, 149, 106, 0.08); /* ледь-ледь мідний відтінок */
+  background: rgba(196, 149, 106, 0.08); /* ледь ледь мідний відтінок */
 }
 
 tfoot td {
@@ -245,7 +245,7 @@ tfoot td {
   border-bottom: none;
 }
 
-/* контакти — форма */
+/* контакти, форма */
 form {
   max-width: 720px;
 }
@@ -273,7 +273,7 @@ label {
   margin-top: 0.9em;
 }
 
-/* інпути — в HTML є inline стилі, не чіпаю padding/min-height щоб не конфліктувати */
+/* інпути, в HTML є inline стилі, не чіпаю padding/min-height щоб не конфліктувати */
 input,
 select,
 textarea {
@@ -296,7 +296,7 @@ textarea:focus {
   box-shadow: 0 2px 0 0 var(--copper);
 }
 
-/* плейсхолдер курсивом — як у журналі */
+/* плейсхолдер курсивом, як у журналі */
 ::placeholder {
   font-style: italic;
   color: var(--copper-dim);
@@ -356,7 +356,7 @@ footer p {
   margin: 6px 0;
 }
 
-/* мобілка — все в кінці файлу як і має бути */
+/* мобілка, все в кінці файлу як і має бути */
 @media (max-width: 768px) {
   h1 { font-size: 2.2rem; }
   h2 { font-size: 1.6rem; }
