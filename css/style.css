@@ -32,11 +32,11 @@ header {
   padding: 28px 0 20px; /* 28 зверху бо логотип має повітря */
 }
 
-/* тут контейнер не ідеальний, просто щоб не прилипало */
+/* контейнер — max-width 1200px, центрування, бокові відступи */
 .container {
-  width: 92%;
-  max-width: 980px;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 0 1.5em;
 }
 
 header h1 {
