@@ -313,12 +313,13 @@ button {
   cursor: pointer;
   margin-right: 1em;
   margin-top: 0.5em;
-  transition: background 0.25s ease, color 0.25s ease;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 button:hover {
-  background: var(--copper-dim);
-  color: var(--parchment);
+  background: var(--ink-soft);
+  color: var(--cream);
+  transform: translateY(-2px);
 }
 
 button[type="reset"] {
@@ -330,6 +331,7 @@ button[type="reset"] {
 button[type="reset"]:hover {
   background: var(--parchment);
   color: var(--ink);
+  transform: translateY(-2px);
 }
 
 /* футер */
