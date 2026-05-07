@@ -60,20 +60,23 @@ header h1 {
   margin-bottom: 0.5em;
 }
 
-/* навігація мобайл */
+/* навігація флексбокс */
 nav ul {
   list-style: none;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem 1.25rem;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
 }
 
 nav a {
+  display: block;
   color: var(--parchment);
   text-decoration: none;
   font-size: 0.95rem;
   border-bottom: 2px solid transparent;
-  padding-bottom: 2px;
+  padding: 0.5rem 0.25rem;
   transition: color 0.25s ease, border-color 0.25s ease;
 }
 
@@ -296,4 +299,31 @@ footer {
   font-size: 0.85rem;
   margin-top: 2rem;
   text-align: center;
+}
+
+/* медіа планшет */
+@media (min-width: 768px) {
+  .container {
+    max-width: 1200px;
+    padding: 0 2rem;
+  }
+
+  header h1 {
+    font-size: 2.2rem;
+  }
+
+  nav ul {
+    justify-content: flex-start;
+    gap: 2rem;
+  }
+
+  h2 {
+    font-size: 1.75rem;
+  }
+
+  button {
+    width: auto;
+    padding: 0.85em 2em;
+    margin-right: 1em;
+  }
 }
