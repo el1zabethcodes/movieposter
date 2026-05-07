@@ -72,4 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   catalogBody.appendChild(fragment);
+
+  // обробка кліків на кнопки через делегування та перемикання активного класу
+  catalogBody.addEventListener('click', function(event) {
+    if (event.target.tagName === 'BUTTON') {
+      event.target.closest('article').classList.toggle('active');
+    }
+  });
 });
