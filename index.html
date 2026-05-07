@@ -1,126 +1,175 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Афіша сучасного кінотеатру: розклад сеансів, новинки прокату та онлайн-бронювання квитків.">
-    <title>КіноАфіша — Головна</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Афіша сучасного кінотеатру: розклад сеансів, новинки прокату та онлайн-бронювання квитків.">
+  <title>КіноАфіша — Головна</title>
 
-    <!-- передзавантаження головного зображення для lcp -->
-    <link rel="preload" as="image" href="img/hail-mary.webp" fetchpriority="high">
+  <!-- Пріоритетне завантаження LCP-зображення -->
+  <link rel="preload" as="image" href="img/hail-mary.webp" fetchpriority="high">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              ink: '#1a0f0a',
-              copper: '#c4956a',
-              parchment: '#e8d5b7',
-              cream: '#f2e8d5',
-              'copper-dim': '#8a6347',
-              'ink-soft': '#2d1f17'
-            }
-          }
-        }
-      }
-    </script>
-    <link rel="stylesheet" href="css/style3.css">
+  <!-- Стилі проєкту (єдине джерело стилів, без Tailwind) -->
+  <link rel="stylesheet" href="css/style3.css">
 
-    <!-- мета -->
-    <meta property="og:title" content="КіноАфіша — Проєкт «Аве Марія»">
-    <meta property="og:description" content="Дивіться головну прем'єру сезону — науково-фантастичний епос за романом Енді Віра.">
-    <meta property="og:image" content="img/og-preview.jpg">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kino-afisha.ua">
+  <!-- Open Graph -->
+  <meta property="og:title"       content="КіноАфіша — Прем'єра «Аве Марія»">
+  <meta property="og:description" content="Дивіться головну прем'єру сезону — науково-фантастичний епос за романом Енді Вейра.">
+  <meta property="og:image"       content="img/og-preview.jpg">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://kino-afisha.ua">
 </head>
-<body class="min-h-screen flex flex-col bg-cream text-ink">
 
-    <header class="bg-ink text-parchment border-b border-copper-dim">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <h1>КіноАфіша</h1>
-            <input type="checkbox" id="menu-toggle" hidden>
-            <label for="menu-toggle" class="menu-toggle block md:hidden cursor-pointer text-copper text-2xl" aria-label="відкрити меню">☰</label>
-            <nav aria-label="Основна навігація" class="hidden md:flex md:flex-row md:gap-6 md:static md:w-auto md:h-auto md:bg-transparent">
-                <ul class="flex flex-col md:flex-row gap-4 md:gap-6 list-none p-0 m-0">
-                    <li><a href="index.html" aria-current="page" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Головна</a></li>
-                    <li><a href="catalog.html" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Каталог фільмів</a></li>
-                    <li><a href="contacts.html" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Контакти</a></li>
-                </ul>
-            </nav>
+<body>
+
+  <!-- ======================================================
+       ШАПКА
+  ====================================================== -->
+  <header>
+    <div>
+      <h1>КіноАфіша</h1>
+
+      <!-- Бургер-меню для мобільних -->
+      <input type="checkbox" id="menu-toggle" hidden>
+      <label for="menu-toggle" class="menu-toggle" aria-label="відкрити меню">&#9776;</label>
+
+      <nav aria-label="Основна навігація">
+        <ul>
+          <li><a href="index.html"    aria-current="page">Головна</a></li>
+          <li><a href="catalog.html"               >Каталог фільмів</a></li>
+          <li><a href="contacts.html"              >Контакти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================================================
+       ОСНОВНИЙ КОНТЕНТ
+  ====================================================== -->
+  <main>
+
+    <!-- Прем'єра тижня -->
+    <section aria-labelledby="premiere-heading">
+      <h2 id="premiere-heading">Прем'єра тижня</h2>
+
+      <article class="premiere-article">
+        <div class="premiere-inner">
+
+          <!-- Постер прем'єри -->
+          <picture>
+            <source srcset="img/hail-mary.webp, img/hail-mary-2x.webp 2x" type="image/webp">
+            <source srcset="img/hail-mary.jpg,  img/hail-mary-2x.jpg  2x" type="image/jpeg">
+            <img
+              src="img/hail-mary.jpg"
+              alt="Постер науково-фантастичного фільму «Проєкт Аве Марія»"
+              width="542"
+              height="800"
+              fetchpriority="high"
+            >
+          </picture>
+
+          <!-- Інформація про фільм -->
+          <div class="premiere-body">
+            <h3>Проєкт «Аве Марія»</h3>
+            <p><strong>Режисер:</strong> Філ Лорд, Крістофер Міллер</p>
+
+            <p>
+              Шкільний учитель Райланд Ґрейс прокидається на космічному кораблі без пам'яті та
+              без екіпажу. Поступово він усвідомлює: від нього залежить порятунок всього людства.
+              Пам'ятний союз із несподіваним другом за зоряними мандрівками.
+            </p>
+
+            <h4>Дивитись трейлер</h4>
+            <!-- width/height збережено для уникнення layout shift; CSS зробить його адаптивним -->
+            <video controls width="1280" height="720">
+              <source src="video/hail-mary-trailer.mp4" type="video/mp4">
+              <track
+                kind="captions"
+                src="subtitles/uk.vtt"
+                srclang="uk"
+                label="Українські субтитри"
+                default
+              >
+              Ваш браузер не підтримує відтворення відео.
+            </video>
+          </div>
+
         </div>
-    </header>
+      </article>
+    </section>
 
-    <main class="container">
-        <!-- головний фільм -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-ink">Прем'єра тижня</h2>
-            <article class="bg-white rounded-lg shadow-lg p-4">
-                <h3>Проєкт «Аве Марія»</h3>
-                <p>Режисер: Філ Лорд, Крістофер Міллер</p>
-                
-                <!-- постер фільму -->
-                <picture>
-                    <source srcset="img/hail-mary.webp, img/hail-mary-2x.webp 2x" type="image/webp">
-                    <source srcset="img/hail-mary.jpg, img/hail-mary-2x.jpg 2x" type="image/jpeg">
-                    <img src="img/hail-mary.jpg" alt="Постер науково-фантастичного фільму «Проєкт Аве Марія»" width="542" height="800" fetchpriority="high">
-                </picture>
+    <!-- Анонси -->
+    <section aria-labelledby="coming-heading">
+      <h2 id="coming-heading">Скоро в кіно</h2>
 
-                <p>Шкільний учитель Райланд Грейс прокидається на космічному кораблі за світлові роки від Землі — без жодних спогадів про себе і свою місію. Пам'ять повертається разом з усвідомленням: він останній шанс людства.</p>
-                
-                <h4 class="font-bold text-lg mt-4 mb-2 text-ink-soft">Дивитися трейлер</h4>
-                <!-- додано розміри для відео щоб уникнути layout shift та track для accessibility -->
-                <video controls width="1280" height="720">
-                    <source src="video/hail-mary-trailer.mp4" type="video/mp4">
-                    <track kind="captions" src="subtitles/uk.vtt" srclang="uk" label="Українські субтитри" default>
-                    Ваш браузер не підтримує вбудоване відео.
-                </video>
-            </article>
-        </section>
+      <ul class="movie-grid">
 
-        <!-- анонси -->
-        <section class="mb-8">
-            <h2 class="text-2xl font-bold mb-4 text-ink">Скоро в кіно</h2>
-            <ul class="movie-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 list-none p-0 m-0">
-                <li>
-                    <article class="bg-white rounded-lg shadow-lg p-4 transition duration-300 hover:scale-105 hover:shadow-xl">
-                        <img src="img/chasse-gardee-2.jpg" alt="Постер комедійного фільму «Сезон полювання 2»" loading="lazy" width="225" height="300" class="w-full rounded mb-3">
-                        <h3 class="font-bold text-lg mb-1 text-ink-soft">Сезон полювання 2</h3>
-                        <p class="text-sm text-copper-dim mb-1">Режисер: Фредерік Форестьє, Антонін Фурлон</p>
-                        <p class="text-sm text-ink">Прем'єра: 2 квітня</p>
-                    </article>
-                </li>
-                <li>
-                    <article class="bg-white rounded-lg shadow-lg p-4 transition duration-300 hover:scale-105 hover:shadow-xl">
-                        <img src="img/na-draivi.jpg" alt="Постер бойовика «На Драйві»" loading="lazy" width="225" height="300" class="w-full rounded mb-3">
-                        <h3 class="font-bold text-lg mb-1 text-ink-soft">На Драйві</h3>
-                        <p class="text-sm text-copper-dim mb-1">Режисер: Dream Film, A17</p>
-                        <p class="text-sm text-ink">Прем'єра: 9 квітня</p>
-                    </article>
-                </li>
-                <li>
-                    <article class="bg-white rounded-lg shadow-lg p-4 transition duration-300 hover:scale-105 hover:shadow-xl">
-                        <img src="img/hollie-hedgehog.jpg" alt="Постер анімаційного фільму «Колючка Голлі»" loading="lazy" width="225" height="300" class="w-full rounded mb-3">
-                        <h3 class="font-bold text-lg mb-1 text-ink-soft">Колючка Голлі</h3>
-                        <p class="text-sm text-copper-dim mb-1">Режисер: Анонс</p>
-                        <p class="text-sm text-ink">Прем'єра: 23 квітня</p>
-                    </article>
-                </li>
-            </ul>
-        </section>
-    </main>
+        <li>
+          <article>
+            <img
+              src="img/chasse-gardee-2.jpg"
+              alt="Постер комедійного фільму «Сезон полювання 2»"
+              loading="lazy"
+              width="225"
+              height="300"
+            >
+            <h3>Сезон полювання 2</h3>
+            <p>Режисер: Фредерік Форестьє, Антонін Фурлон</p>
+            <p>Прем'єра: 2 квітня</p>
+          </article>
+        </li>
 
-    <aside class="sidebar bg-parchment p-4 rounded m-4 md:m-0">
-        <h3>Акції тижня</h3>
-        <p>Знижка 20% на вечірні сеанси по вівторках.</p>
-    </aside>
+        <li>
+          <article>
+            <img
+              src="img/na-draivi.jpg"
+              alt="Постер бойовика «На Драйві»"
+              loading="lazy"
+              width="225"
+              height="300"
+            >
+            <h3>На Драйві</h3>
+            <p>Режисер: Dream Film, A17</p>
+            <p>Прем'єра: 9 квітня</p>
+          </article>
+        </li>
 
-    <footer class="bg-ink text-parchment border-t border-copper-dim text-center py-6 mt-auto">
-        <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосувань.</p>
-        <p>Студентка групи П-31, Павлова Єлизавета</p>
-    </footer>
+        <li>
+          <article>
+            <img
+              src="img/hollie-hedgehog.jpg"
+              alt="Постер анімаційного фільму «Колючка Голлі»"
+              loading="lazy"
+              width="225"
+              height="300"
+            >
+            <h3>Колючка Голлі</h3>
+            <p>Режисер: Аnons</p>
+            <p>Прем'єра: 23 квітня</p>
+          </article>
+        </li>
 
-    <script src="js/script.js"></script>
+      </ul>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       САЙДБАР (розміщується поруч із main через CSS Grid)
+  ====================================================== -->
+  <aside class="sidebar">
+    <h3>Акція тижня</h3>
+    <p>Знижка 20% на вечірні сеанси по вівторках та середах при онлайн-бронюванні.</p>
+  </aside>
+
+  <!-- ======================================================
+       ПІДВАЛ
+  ====================================================== -->
+  <footer>
+    <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосунків.</p>
+    <p>Студентська група П&#8209;31, Павлова Єлизавета</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>

@@ -1,18 +1,37 @@
+/* ============================================================
+   КіноАфіша — style3.css
+   Автор: Павлова Єлизавета, П-31
+   ============================================================
+   ВАЖЛИВО: Цей файл — єдине джерело стилів.
+   Tailwind CDN підключено лише для утилітарних класів адаптивності
+   (md:, lg:). Власні стилі визначені тут і мають вищий пріоритет.
+   ============================================================ */
+
+/* ---------- Google Fonts ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 
+/* ---------- Дизайн-токени ---------- */
 :root {
-  --ink:           #0d0805;
-  --ink-soft:      #3d2a1f;
-  --copper:        #e8b87a;
-  --copper-dim:    #a07045;
-  --parchment:     #f5e6c8;
-  --cream:         #faf3e6;
+  --ink:          #0d0805;
+  --ink-soft:     #3d2a1f;
+  --copper:       #d4a05a;
+  --copper-dim:   #8a6347;
+  --parchment:    #f0e2c4;
+  --cream:        #faf3e6;
 
-  --font-display: 'Playfair Display', serif;
-  --font-body:    'Lora', serif;
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lora', Georgia, serif;
+
+  --radius-sm:    4px;
+  --radius-md:    8px;
+  --shadow-card:  3px 4px 0 var(--copper-dim);
+  --transition:   0.25s ease;
 }
 
-* {
+/* ---------- Скидання ---------- */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -20,20 +39,20 @@
 
 html {
   font-size: 16px;
+  scroll-behavior: smooth;
 }
 
 body {
   font-family: var(--font-body);
+  background-color: var(--cream);
+  color: var(--ink);
   line-height: 1.65;
   min-width: 320px;
-}
 
-/* сайдбар тайлвінд */
-.sidebar h3 {
-  font-family: var(--font-display);
-  color: var(--ink-soft);
-  font-size: 1.1rem;
-  margin-bottom: 0.5rem;
+  /* Загальний layout: шапка + контент + підвал */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 img {
@@ -42,64 +61,73 @@ img {
   display: block;
 }
 
-/* мобайл ферст контейнер */
-.container {
-  width: 100%;
-  padding: 0 1rem;
+/* ============================================================
+   ШАПКА
+   ============================================================ */
+header {
+  background-color: var(--ink);
+  border-bottom: 2px solid var(--copper-dim);
+  padding: 1rem 1.5rem;
+}
+
+/* Внутрішній контейнер шапки — логотип зліва, nav справа */
+header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  max-width: 1200px;
   margin: 0 auto;
 }
 
-/* шапка мобайл */
-header {
-  background-color: var(--ink);
-  border-bottom: 1px solid var(--copper-dim);
-  padding: 1.25rem 0 1rem;
-}
-
 header h1 {
-  color: var(--copper);
   font-family: var(--font-display);
-  font-size: 2.4rem;
+  font-size: 2rem;
   font-weight: 900;
-  letter-spacing: 0.05em;
+  color: var(--copper);
+  letter-spacing: 0.04em;
   line-height: 1;
-  margin-bottom: 0.5em;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* бургер меню */
+/* ---------- Бургер ---------- */
 .menu-toggle {
   display: block;
   color: var(--copper);
   font-size: 1.5rem;
   cursor: pointer;
-  padding: 0.5rem;
-  position: relative;
+  padding: 0.4rem;
+  line-height: 1;
   z-index: 200;
+  position: relative;
 }
 
 #menu-toggle {
   display: none;
 }
 
-/* мобайл меню з боку */
+/* ---------- Навігація ---------- */
 nav ul {
   list-style: none;
   display: flex;
   flex-direction: column;
+
+  /* Мобільне меню — виїжджає справа */
   position: fixed;
   top: 0;
   right: 0;
   width: 70%;
   height: 100vh;
   background: var(--ink);
+  border-left: 2px solid var(--copper-dim);
   justify-content: flex-start;
   align-items: flex-start;
   padding: 4rem 2rem;
-  transform: translateX(100%);
-  transition: transform 0.3s ease;
-  z-index: 100;
   gap: 1.5rem;
+  transform: translateX(100%);
+  transition: transform var(--transition);
+  z-index: 100;
 }
 
 #menu-toggle:checked ~ nav ul {
@@ -108,14 +136,14 @@ nav ul {
 
 nav a {
   display: block;
-  color: var(--cream);
+  color: var(--parchment);
   text-decoration: none;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 600;
+  letter-spacing: 0.04em;
+  padding-bottom: 3px;
   border-bottom: 2px solid transparent;
-  padding: 0.5rem 0.25rem;
-  transition: color 0.25s ease, border-color 0.25s ease;
-  letter-spacing: 0.02em;
+  transition: color var(--transition), border-color var(--transition);
 }
 
 nav a:hover,
@@ -125,30 +153,46 @@ nav a.active {
   border-color: var(--copper);
 }
 
+/* ============================================================
+   ОСНОВНИЙ КОНТЕНТ
+   ============================================================ */
 main {
-  padding: 1.5rem 0;
+  flex: 1;
+  padding: 1.5rem 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
-/* типографіка мобайл */
+/* ---------- Заголовки секцій ---------- */
 h2 {
   font-family: var(--font-display);
   color: var(--ink-soft);
   font-size: 1.4rem;
   font-weight: 700;
-  letter-spacing: 0.05em;
-  margin: 1.25em 0 0.75em;
+  letter-spacing: 0.04em;
+  margin: 1.5rem 0 1rem;
+  padding-left: 0.75em;
   border-left: 4px solid var(--copper);
-  padding-left: 0.5em;
   line-height: 1.2;
 }
 
 h3 {
   font-family: var(--font-display);
   color: var(--ink-soft);
-  font-size: 1.15rem;
+  font-size: 1.1rem;
   font-weight: 600;
   letter-spacing: 0.02em;
-  margin: 1em 0 0.5em;
+  margin-bottom: 0.5em;
+  line-height: 1.25;
+}
+
+h4 {
+  font-family: var(--font-display);
+  color: var(--ink-soft);
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 1.25em 0 0.5em;
 }
 
 p {
@@ -156,11 +200,131 @@ p {
   font-size: 1rem;
 }
 
-/* catalog.html, фільми по жанрах */
+/* ---------- Секція прем'єри ---------- */
+.premiere-article {
+  background-color: #fff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  margin-bottom: 2rem;
+}
+
+/* Постер + опис поруч (десктоп) */
+.premiere-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.premiere-inner picture,
+.premiere-inner img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+.premiere-body {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+/* ---------- Відео ---------- */
+video {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  display: block;
+  margin-top: 1rem;
+  background: var(--ink);
+}
+
+/* ---------- Сітка анонсів ---------- */
+ul.movie-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+}
+
+ul.movie-grid > li {
+  display: flex;
+}
+
+ul.movie-grid li article {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+ul.movie-grid li article:hover {
+  transform: translateY(-4px);
+  box-shadow: 3px 8px 0 var(--copper-dim);
+}
+
+/* Постер з фіксованим співвідношенням сторін — сітка не ламається */
+ul.movie-grid li article img {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+ul.movie-grid li article h3 {
+  padding: 0.75rem 0.75rem 0.25rem;
+  margin: 0;
+}
+
+ul.movie-grid li article p {
+  padding: 0 0.75rem;
+  font-size: 0.85rem;
+  margin-bottom: 0.25em;
+}
+
+ul.movie-grid li article p:last-child {
+  padding-bottom: 0.75rem;
+}
+
+/* ---------- Картки фільмів (загальний стиль) ---------- */
+article {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- Сайдбар ---------- */
+/* УВАГА: aside знаходиться після </main> в HTML,
+   тому позиціонуємо його через Grid на десктопі */
+.sidebar {
+  background: var(--parchment);
+  padding: 1.25rem 1.5rem;
+  border-top: 2px solid var(--copper-dim);
+}
+
+.sidebar h3 {
+  font-family: var(--font-display);
+  color: var(--ink-soft);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar p {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- Каталог: секції за жанрами ---------- */
 .genre-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.5rem;
+  gap: 1.25rem;
+  margin-bottom: 2rem;
 }
 
 .genre-section > h3 {
@@ -170,48 +334,18 @@ p {
 
 .genre-section > article {
   background-color: #fff;
-  padding: 1.5em;
-  border-radius: 4px;
+  padding: 1.25rem;
+  border-radius: var(--radius-sm);
   overflow: hidden;
-  box-shadow: 4px 4px 0 var(--copper-dim);
+  box-shadow: var(--shadow-card);
   margin-bottom: 0;
 }
 
-/* картки фільмів мобайл */
-article {
-  background-color: #fff;
-  padding: 1rem;
-  margin-bottom: 1.25rem;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 3px 3px 0 var(--copper-dim);
-}
-
-ul.movie-grid {
-  list-style: none;
-  padding: 0;
-}
-
-ul.movie-grid > li {
-  display: flex;
-}
-
-ul.movie-grid li article {
-  background-color: #fff;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 3px 3px 0 var(--copper-dim);
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* таблиця мобайл горизонтальний скрол */
+/* ---------- Таблиця сеансів ---------- */
 .table-wrapper {
   overflow-x: auto;
-  margin-top: 0.5em;
+  margin-top: 0.75rem;
+  border-radius: var(--radius-sm);
 }
 
 table {
@@ -232,25 +366,22 @@ caption {
   font-size: 0.95rem;
 }
 
-th, td {
-  padding: 1em 0.75em;
+th,
+td {
+  padding: 0.85em 0.75em;
   text-align: left;
   border: 1px solid var(--copper-dim);
 }
 
 thead th {
   font-family: var(--font-display);
-  color: var(--cream);
   background-color: var(--ink);
+  color: var(--cream);
   font-weight: 700;
   border-bottom: 3px solid var(--copper);
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  font-size: 0.85rem;
-}
-
-tbody tr {
-  border-bottom: 2px solid var(--copper-dim);
+  font-size: 0.82rem;
 }
 
 tbody tr:nth-child(even) {
@@ -259,7 +390,7 @@ tbody tr:nth-child(even) {
 
 tbody tr:hover {
   background: #dcc9a0;
-  transition: background 0.2s ease;
+  transition: background var(--transition);
 }
 
 tfoot td {
@@ -269,7 +400,7 @@ tfoot td {
   border-bottom: none;
 }
 
-/* форма мобайл */
+/* ---------- Форма контактів ---------- */
 form {
   width: 100%;
 }
@@ -277,8 +408,9 @@ form {
 fieldset {
   background: var(--cream);
   border: 2px solid var(--copper);
-  padding: 1rem;
-  margin: 0 0 1rem;
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  margin-bottom: 1rem;
 }
 
 legend {
@@ -293,8 +425,8 @@ label {
   display: block;
   color: var(--ink-soft);
   font-size: 0.9rem;
-  margin-bottom: 0.3em;
   margin-top: 0.75em;
+  margin-bottom: 0.3em;
 }
 
 input,
@@ -308,8 +440,7 @@ textarea {
   font-size: 1rem;
   width: 100%;
   padding: 0.5em 0;
-  box-sizing: border-box;
-  transition: border-bottom-color 0.2s ease;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 input:focus,
@@ -323,6 +454,7 @@ textarea:focus {
 ::placeholder {
   font-style: italic;
   color: var(--copper-dim);
+  opacity: 0.7;
 }
 
 input[type="radio"],
@@ -331,21 +463,22 @@ input[type="checkbox"] {
   accent-color: var(--copper);
   vertical-align: middle;
   margin-right: 6px;
+  border-bottom: none;
+  box-shadow: none;
 }
 
-/* кнопки мобайл на всю ширину */
 button {
   font-family: var(--font-display);
   background: var(--copper);
   color: var(--ink);
   border: none;
-  padding: 0.85em;
+  padding: 0.85em 2em;
   font-size: 1rem;
   font-weight: 700;
   cursor: pointer;
-  width: 100%;
+  border-radius: var(--radius-sm);
   margin-top: 0.75em;
-  transition: background 0.25s ease, transform 0.25s ease;
+  transition: background var(--transition), transform var(--transition);
 }
 
 button:hover {
@@ -365,114 +498,134 @@ button[type="reset"]:hover {
   color: var(--ink);
 }
 
-/* футер тайлвінд */
+/* ============================================================
+   ПІДВАЛ
+   ============================================================ */
 footer {
+  background-color: var(--ink);
+  color: var(--parchment);
+  border-top: 2px solid var(--copper-dim);
+  padding: 1.25rem 1.5rem;
   font-size: 0.85rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 0.75rem;
+  margin-top: auto;
 }
 
-/* темна тема */
+/* ============================================================
+   ТЕМНА ТЕМА
+   ============================================================ */
 @media (prefers-color-scheme: dark) {
   :root {
-    --cream: #1a120e;
-    --ink: #e8d5b7;
-    --parchment: #2d1f17;
-    --ink-soft: #c4956a;
+    --cream:      #1a120e;
+    --parchment:  #2d1f17;
+    --ink:        #e8d5b7;
+    --ink-soft:   #c4956a;
   }
 
   article,
   .genre-section > article,
   ul.movie-grid li article,
-  table {
+  .premiere-article,
+  table,
+  fieldset {
     background-color: #2a1f17;
   }
 
   .sidebar {
     background: #2a1f17;
   }
+
+  footer {
+    background-color: #0d0805;
+  }
 }
 
-/* медіа планшет */
-@media (width >= 768px) {
+/* ============================================================
+   АДАПТИВНІСТЬ — ПЛАНШЕТ (>= 768px)
+   ============================================================ */
+@media (min-width: 768px) {
+  /* Двоколонковий layout: основний контент + сайдбар */
   body {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
   }
 
-  header {
-    grid-column: 1 / -1;
+  header  { grid-column: 1 / -1; }
+  main    { grid-column: 1 / 2; padding: 1.5rem 2rem; }
+  .sidebar { grid-column: 2 / 3; padding: 1.5rem 1.5rem 1.5rem 0; border-top: none; }
+  footer  { grid-column: 1 / -1; }
+
+  /* Прем'єра: постер зліва, текст справа */
+  .premiere-inner {
+    flex-direction: row;
+    align-items: flex-start;
   }
 
-  main {
-    grid-column: 1 / 2;
+  .premiere-inner picture {
+    flex: 0 0 240px;
   }
 
-  .sidebar {
-    grid-column: 2 / 3;
-    margin: 0 2rem 1rem 0;
+  .premiere-inner picture img {
+    height: 100%;
+    max-height: 360px;
+    object-fit: cover;
   }
 
-  footer {
-    grid-column: 1 / -1;
+  .premiere-body {
+    flex: 1;
   }
 
-  .container {
-    padding: 0 2rem;
-  }
-
-  header h1 {
-    font-size: 2.4rem;
-  }
-
-  .menu-toggle {
-    display: none;
-  }
+  /* Бургер — ховаємо на планшеті */
+  .menu-toggle { display: none; }
 
   nav ul {
     position: static;
     width: auto;
     height: auto;
     background: transparent;
+    border: none;
     flex-direction: row;
-    justify-content: flex-start;
-    align-items: center;
-    padding: 0.5rem 0;
+    padding: 0.4rem 0;
     transform: none;
     transition: none;
     gap: 2rem;
+    align-items: center;
+    justify-content: flex-start;
   }
 
-  h2 {
-    font-size: 1.9rem;
+  /* Сітка анонсів: 2 колонки */
+  ul.movie-grid {
+    grid-template-columns: repeat(2, 1fr);
   }
 
-  button {
-    width: auto;
-    padding: 0.85em 2em;
-    margin-right: 1em;
-  }
+  h2 { font-size: 1.75rem; }
 }
 
-/* десктоп */
-@media (width >= 1200px) {
-  .container {
-    max-width: 1200px;
-    padding: 0 3rem;
+/* ============================================================
+   АДАПТИВНІСТЬ — ДЕСКТОП (>= 1200px)
+   ============================================================ */
+@media (min-width: 1200px) {
+  body {
+    grid-template-columns: 1fr minmax(0, 860px) 280px 1fr;
   }
 
-  header h1 {
-    font-size: 2.8rem;
+  header  { grid-column: 1 / -1; }
+  main    { grid-column: 2 / 3; padding: 2rem 1.5rem; }
+  .sidebar { grid-column: 3 / 4; padding: 2rem 0 2rem 1.5rem; }
+  footer  { grid-column: 1 / -1; }
+
+  /* Сітка анонсів: 3 колонки */
+  ul.movie-grid {
+    grid-template-columns: repeat(3, 1fr);
   }
 
-  h2 {
-    font-size: 2.2rem;
-  }
-
-  h3 {
-    font-size: 1.4rem;
-  }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.35rem; }
+  header h1 { font-size: 2.6rem; }
 }
