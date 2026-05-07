@@ -70,3 +70,17 @@ movieAfisha.forEach(function(movie) {
 
 // демонстрація отримання ціни
 console.log("ціна квитка на проєкт аве марія:", priceList.get("проєкт аве марія"));
+
+// реалізація доступу до полів з пробілами та вкладених обєктів
+const landmark = {
+  "landmark name": "оперний театр",
+  location: {
+    latitude: 46.485,
+    longitude: 30.741
+  },
+  status: "відкрито"
+};
+
+console.log("назва пам'ятки:", landmark["landmark name"]);
+console.log("широта:", landmark.location.latitude);
+console.log("статус:", landmark.status);
