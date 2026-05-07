@@ -80,3 +80,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// зупинка перезавантаження сторінки при відправці форми
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+  contactForm.addEventListener('submit', function(event) {
+    event.preventDefault();
+  });
+}
