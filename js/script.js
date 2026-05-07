@@ -53,3 +53,10 @@ const topTitles = topRated.map(function(movie) {
 });
 
 console.log("фільми з рейтингом вище 8.0:", topTitles);
+
+// отримання унікальних форматів перегляду через сет
+const formats = new Set(movieAfisha.map(function(movie) {
+  return movie["is 3d"];
+}));
+
+console.log("унікальні формати перегляду:", formats);
