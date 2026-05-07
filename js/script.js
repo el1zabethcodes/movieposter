@@ -33,3 +33,43 @@ const landmark = {
 };
 
 const name = landmark["landmark name"];
+
+// лр4 динамічний каталог
+document.addEventListener('DOMContentLoaded', function() {
+  const catalogBody = document.getElementById('catalog-body');
+  if (!catalogBody) return;
+
+  // створення фрагмента та наповнення його картками фільмів через createelement
+  const fragment = document.createDocumentFragment();
+
+  movieAfisha.forEach(function(movie) {
+    const card = document.createElement('article');
+    card.className = 'bg-white rounded-lg shadow-lg p-4 transition duration-300 hover:scale-105 hover:shadow-xl';
+    card.dataset.id = movie.id;
+
+    const title = document.createElement('h4');
+    title.className = 'font-bold text-lg mb-1 text-ink-soft';
+    title.textContent = movie['movie title'];
+    card.appendChild(title);
+
+    const director = document.createElement('p');
+    director.className = 'text-sm text-copper-dim mb-1';
+    director.textContent = 'Режисер: ' + movie.info.director;
+    card.appendChild(director);
+
+    const rating = document.createElement('p');
+    rating.className = 'text-sm text-ink';
+    rating.textContent = 'Рейтинг: ' + movie.rating;
+    card.appendChild(rating);
+
+    const btn = document.createElement('button');
+    btn.className = 'mt-2 px-3 py-1 bg-copper text-white rounded';
+    btn.textContent = 'Детальніше';
+    btn.dataset.id = movie.id;
+    card.appendChild(btn);
+
+    fragment.appendChild(card);
+  });
+
+  catalogBody.appendChild(fragment);
+});
