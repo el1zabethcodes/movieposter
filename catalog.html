@@ -44,7 +44,9 @@
     <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
         <h2 class="text-2xl font-bold mb-4 text-ink">Каталог фільмів та розклад сеансів</h2>
 
+        <input type="text" id="search-input" placeholder="пошук фільму" class="mb-4 p-2 border border-copper-dim rounded w-full">
         <select id="genre-filter" class="mb-4 p-2 border border-copper-dim rounded bg-white"></select>
+        <div id="cart" class="bg-parchment p-4 rounded mb-8 min-h-[100px]"></div>
 
         <!-- динамічний каталог -->
         <div id="catalog-body" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>

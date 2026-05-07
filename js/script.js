@@ -68,6 +68,12 @@ document.addEventListener('DOMContentLoaded', function() {
     btn.dataset.id = movie.id;
     card.appendChild(btn);
 
+    const buyBtn = document.createElement('button');
+    buyBtn.className = 'mt-2 px-3 py-1 bg-ink text-parchment rounded ml-2';
+    buyBtn.textContent = 'Купити';
+    buyBtn.dataset.id = movie.id;
+    card.appendChild(buyBtn);
+
     fragment.appendChild(card);
   });
 
@@ -79,6 +85,31 @@ document.addEventListener('DOMContentLoaded', function() {
       event.target.closest('article').classList.toggle('active');
     }
   });
+
+  // пошук ціни у map та клонування елемента до кошика з анімацією
+  const searchInput = document.getElementById('search-input');
+  const cart = document.getElementById('cart');
+
+  if (searchInput) {
+    searchInput.addEventListener('input', function(event) {
+      const query = event.target.value;
+      const price = priceList.get(query);
+      if (price) {
+        console.log('ціна для', query, ':', price);
+      }
+    });
+  }
+
+  if (cart) {
+    catalogBody.addEventListener('click', function(event) {
+      if (event.target.textContent === 'Купити') {
+        const card = event.target.closest('article');
+        const clone = card.cloneNode(true);
+        clone.classList.add('fade-in');
+        cart.appendChild(clone);
+      }
+    });
+  }
 });
 
 // зупинка перезавантаження сторінки при відправці форми
