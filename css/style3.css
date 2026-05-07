@@ -249,12 +249,16 @@ thead th {
   font-size: 0.85rem;
 }
 
+tbody tr {
+  border-bottom: 2px solid var(--copper-dim);
+}
+
 tbody tr:nth-child(even) {
-  background: rgba(196, 149, 106, 0.12);
+  background: #ede0c8;
 }
 
 tbody tr:hover {
-  background: rgba(196, 149, 106, 0.25);
+  background: #dcc9a0;
   transition: background 0.2s ease;
 }
 

@@ -130,4 +130,18 @@ if (genreFilter) {
     option.textContent = value ? '3D' : '2D';
     genreFilter.appendChild(option);
   });
+
+  // фільтрація карток за форматом
+  genreFilter.addEventListener('change', function(event) {
+    const is3D = event.target.value === 'true';
+    const cards = catalogBody.querySelectorAll('article');
+    cards.forEach(function(card, index) {
+      const movie = movieAfisha[index];
+      if (movie && movie['is 3D'] === is3D) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
 }
