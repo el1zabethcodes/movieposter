@@ -368,15 +368,40 @@ button[type="reset"]:hover {
   color: var(--ink);
 }
 
-/* футер */
+/* футер флексбокс */
 footer {
   background-color: var(--ink);
   border-top: 1px solid var(--copper-dim);
-  padding: 2rem 0;
+  padding: 2rem 1rem;
   color: var(--parchment);
   font-size: 0.85rem;
   margin-top: 2rem;
-  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+/* темна тема */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --cream: #1a120e;
+    --ink: #e8d5b7;
+    --parchment: #2d1f17;
+    --ink-soft: #c4956a;
+  }
+
+  article,
+  .genre-section > article,
+  ul.movie-grid li article,
+  table {
+    background-color: #2a1f17;
+  }
+
+  .sidebar {
+    background: #2a1f17;
+  }
 }
 
 /* медіа планшет */
