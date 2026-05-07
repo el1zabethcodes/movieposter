@@ -88,3 +88,15 @@ if (contactForm) {
     event.preventDefault();
   });
 }
+
+// генерація списку фільтрів на основі унікальних значень set
+const genreFilter = document.getElementById('genre-filter');
+if (genreFilter) {
+  const genreSet = new Set(movieAfisha.map(m => m['is 3D']));
+  genreSet.forEach(function(value) {
+    const option = document.createElement('option');
+    option.value = value;
+    option.textContent = value ? '3D' : '2D';
+    genreFilter.appendChild(option);
+  });
+}
