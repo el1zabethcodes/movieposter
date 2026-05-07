@@ -146,6 +146,27 @@ p {
   font-size: 1rem;
 }
 
+/* catalog.html, фільми по жанрах */
+.genre-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+}
+
+.genre-section > h3 {
+  grid-column: 1 / -1;
+  margin-bottom: 0;
+}
+
+.genre-section > article {
+  background-color: #fff;
+  padding: 1.5em;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 4px 4px 0 var(--copper-dim);
+  margin-bottom: 0;
+}
+
 /* картки фільмів мобайл */
 article {
   background-color: #fff;
