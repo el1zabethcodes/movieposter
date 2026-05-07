@@ -1,0 +1,299 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+:root {
+  --ink:           #1a0f0a;
+  --ink-soft:      #2d1f17;
+  --copper:        #c4956a;
+  --copper-dim:    #8a6347;
+  --parchment:     #e8d5b7;
+  --cream:         #f2e8d5;
+
+  --font-display: 'Playfair Display', serif;
+  --font-body:    'Lora', serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--cream);
+  color: var(--ink);
+  line-height: 1.65;
+  min-width: 320px;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* мобайл ферст контейнер */
+.container {
+  width: 100%;
+  padding: 0 1rem;
+  margin: 0 auto;
+}
+
+/* шапка мобайл */
+header {
+  background-color: var(--ink);
+  border-bottom: 1px solid var(--copper-dim);
+  padding: 1.25rem 0 1rem;
+}
+
+header h1 {
+  color: var(--copper);
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  margin-bottom: 0.5em;
+}
+
+/* навігація мобайл */
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+nav a {
+  color: var(--parchment);
+  text-decoration: none;
+  font-size: 0.95rem;
+  border-bottom: 2px solid transparent;
+  padding-bottom: 2px;
+  transition: color 0.25s ease, border-color 0.25s ease;
+}
+
+nav a:hover,
+nav a[aria-current="page"],
+nav a.active {
+  color: var(--copper);
+  border-color: var(--copper);
+}
+
+main {
+  padding: 1.5rem 0;
+}
+
+/* типографіка мобайл */
+h2 {
+  font-family: var(--font-display);
+  color: var(--ink-soft);
+  font-size: 1.4rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin: 1.25em 0 0.75em;
+  border-left: 4px solid var(--copper);
+  padding-left: 0.5em;
+  line-height: 1.2;
+}
+
+h3 {
+  font-family: var(--font-display);
+  color: var(--ink-soft);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 1em 0 0.5em;
+}
+
+p {
+  margin-bottom: 0.75em;
+  font-size: 1rem;
+}
+
+/* картки фільмів мобайл */
+article {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 3px 3px 0 var(--copper-dim);
+}
+
+ul.movie-grid {
+  list-style: none;
+  padding: 0;
+}
+
+ul.movie-grid li article {
+  background-color: #fff;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 3px 3px 0 var(--copper-dim);
+}
+
+/* таблиця мобайл горизонтальний скрол */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: 0.5em;
+}
+
+table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background-color: #fff;
+  border: 1px solid var(--parchment);
+}
+
+caption {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--ink-soft);
+  text-align: left;
+  margin-bottom: 0.5em;
+  font-size: 0.95rem;
+}
+
+th, td {
+  padding: 0.75em 0.5em;
+  text-align: left;
+  border: 1px solid var(--parchment);
+}
+
+thead th {
+  font-family: var(--font-display);
+  color: var(--cream);
+  background-color: var(--ink-soft);
+  font-weight: 700;
+  border-bottom: 2px solid var(--copper-dim);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.8rem;
+}
+
+tbody tr:nth-child(even) {
+  background: rgba(196, 149, 106, 0.08);
+}
+
+tfoot td {
+  color: var(--copper-dim);
+  font-style: italic;
+  border-top: 2px solid var(--copper-dim);
+  border-bottom: none;
+}
+
+/* форма мобайл */
+form {
+  width: 100%;
+}
+
+fieldset {
+  background: var(--cream);
+  border: 2px solid var(--copper);
+  padding: 1rem;
+  margin: 0 0 1rem;
+}
+
+legend {
+  font-family: var(--font-display);
+  color: var(--copper-dim);
+  font-weight: 700;
+  padding: 0 0.75em;
+  font-size: 1rem;
+}
+
+label {
+  display: block;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+  margin-bottom: 0.3em;
+  margin-top: 0.75em;
+}
+
+input,
+select,
+textarea {
+  background: transparent;
+  color: var(--ink);
+  border: none;
+  border-bottom: 2px solid var(--copper-dim);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  width: 100%;
+  padding: 0.5em 0;
+  box-sizing: border-box;
+  transition: border-bottom-color 0.2s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-bottom-color: var(--copper);
+  box-shadow: 0 2px 0 0 var(--copper);
+}
+
+::placeholder {
+  font-style: italic;
+  color: var(--copper-dim);
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  accent-color: var(--copper);
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+/* кнопки мобайл на всю ширину */
+button {
+  font-family: var(--font-display);
+  background: var(--copper);
+  color: var(--ink);
+  border: none;
+  padding: 0.85em;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.75em;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+button:hover {
+  background: var(--ink-soft);
+  color: var(--cream);
+  transform: translateY(-2px);
+}
+
+button[type="reset"] {
+  background: transparent;
+  border: 2px solid var(--copper);
+  color: var(--copper-dim);
+}
+
+button[type="reset"]:hover {
+  background: var(--parchment);
+  color: var(--ink);
+}
+
+/* футер */
+footer {
+  background-color: var(--ink);
+  border-top: 1px solid var(--copper-dim);
+  padding: 2rem 0;
+  color: var(--parchment);
+  font-size: 0.85rem;
+  margin-top: 2rem;
+  text-align: center;
+}
