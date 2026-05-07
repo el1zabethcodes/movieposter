@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const card = document.createElement('article');
     card.className = 'bg-white rounded-lg shadow-lg p-4 transition duration-300 hover:scale-105 hover:shadow-xl';
     card.dataset.id = movie.id;
+    card.dataset.is3d = movie['is 3D'];
 
     const title = document.createElement('h4');
     title.className = 'font-bold text-lg mb-1 text-ink-soft';
@@ -110,6 +111,31 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // генерація списку фільтрів на основі унікальних значень set
+  const genreFilter = document.getElementById('genre-filter');
+  if (genreFilter) {
+    const genreSet = new Set(movieAfisha.map(m => m['is 3D']));
+    genreSet.forEach(function(value) {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value ? '3D' : '2D';
+      genreFilter.appendChild(option);
+    });
+
+    // фільтрація карток за форматом через dataset
+    genreFilter.addEventListener('change', function(event) {
+      const is3D = event.target.value === 'true';
+      const cards = catalogBody.querySelectorAll('article');
+      cards.forEach(function(card) {
+        if (card.dataset.is3d === String(is3D)) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  }
 });
 
 // зупинка перезавантаження сторінки при відправці форми
@@ -117,31 +143,5 @@ const contactForm = document.getElementById('contact-form');
 if (contactForm) {
   contactForm.addEventListener('submit', function(event) {
     event.preventDefault();
-  });
-}
-
-// генерація списку фільтрів на основі унікальних значень set
-const genreFilter = document.getElementById('genre-filter');
-if (genreFilter) {
-  const genreSet = new Set(movieAfisha.map(m => m['is 3D']));
-  genreSet.forEach(function(value) {
-    const option = document.createElement('option');
-    option.value = value;
-    option.textContent = value ? '3D' : '2D';
-    genreFilter.appendChild(option);
-  });
-
-  // фільтрація карток за форматом
-  genreFilter.addEventListener('change', function(event) {
-    const is3D = event.target.value === 'true';
-    const cards = catalogBody.querySelectorAll('article');
-    cards.forEach(function(card, index) {
-      const movie = movieAfisha[index];
-      if (movie && movie['is 3D'] === is3D) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
-    });
   });
 }
