@@ -60,3 +60,13 @@ const formats = new Set(movieAfisha.map(function(movie) {
 }));
 
 console.log("унікальні формати перегляду:", formats);
+
+// створення словника цін через мап для швидкого пошуку
+const priceList = new Map();
+
+movieAfisha.forEach(function(movie) {
+  priceList.set(movie["movie title"], 180);
+});
+
+// демонстрація отримання ціни
+console.log("ціна квитка на проєкт аве марія:", priceList.get("проєкт аве марія"));
