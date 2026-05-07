@@ -41,12 +41,12 @@
         <div class="max-w-7xl mx-auto px-4 py-4">
             <h1>КіноАфіша</h1>
             <input type="checkbox" id="menu-toggle" hidden>
-            <label for="menu-toggle" class="menu-toggle" aria-label="відкрити меню">☰</label>
-            <nav aria-label="Основна навігація">
-                <ul>
-                    <li><a href="index.html" aria-current="page">Головна</a></li>
-                    <li><a href="catalog.html">Каталог фільмів</a></li>
-                    <li><a href="contacts.html">Контакти</a></li>
+            <label for="menu-toggle" class="menu-toggle block md:hidden cursor-pointer text-copper text-2xl" aria-label="відкрити меню">☰</label>
+            <nav aria-label="Основна навігація" class="hidden md:flex md:flex-row md:gap-6 md:static md:w-auto md:h-auto md:bg-transparent">
+                <ul class="flex flex-col md:flex-row gap-4 md:gap-6 list-none p-0 m-0">
+                    <li><a href="index.html" aria-current="page" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Головна</a></li>
+                    <li><a href="catalog.html" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Каталог фільмів</a></li>
+                    <li><a href="contacts.html" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Контакти</a></li>
                 </ul>
             </nav>
         </div>
