@@ -407,7 +407,7 @@ tbody td {
   color: var(--ink-soft);
 }
 
-tbody tr:nth-child(even) {
+tbody tr {
   background: #ede0c8;
 }
 
