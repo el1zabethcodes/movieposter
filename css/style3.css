@@ -384,6 +384,10 @@ thead th {
   font-size: 0.82rem;
 }
 
+tbody td {
+  color: var(--ink-soft);
+}
+
 tbody tr:nth-child(even) {
   background: #ede0c8;
 }
