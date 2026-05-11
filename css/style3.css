@@ -338,41 +338,6 @@ article {
   transform: translateX(4px);
 }
 
-/* ---------- Лента нових надходжень ---------- */
-.marquee-section {
-  margin: 2rem 0;
-}
-
-.marquee-wrapper {
-  overflow: hidden;
-  width: 100%;
-  border-radius: var(--radius-sm);
-}
-
-.marquee-track {
-  display: flex;
-  gap: 1.25rem;
-  width: max-content;
-  animation: marquee 25s linear infinite;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-.marquee-track img {
-  height: 200px;
-  width: auto;
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-card);
-  flex-shrink: 0;
-}
-
-@keyframes marquee {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
 /* ---------- Каталог: секції за жанрами ---------- */
 .genre-section {
   display: grid;
