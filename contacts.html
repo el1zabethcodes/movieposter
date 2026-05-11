@@ -1,130 +1,192 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Зв'яжіться з нами для бронювання квитків або пропозицій.">
-    <title>КіноАфіша — Контакти</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              ink: '#1a0f0a',
-              copper: '#c4956a',
-              parchment: '#e8d5b7',
-              cream: '#f2e8d5',
-              'copper-dim': '#8a6347',
-              'ink-soft': '#2d1f17'
-            }
-          }
-        }
-      }
-    </script>
-    <link rel="stylesheet" href="css/style3.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Контакти кінотеатру КіноАфіша: адреса, телефон, форма зворотного зв'язку.">
+  <title>КіноАфіша — Контакти</title>
+  <link rel="stylesheet" href="css/style3.css">
 </head>
-<body class="min-h-screen flex flex-col bg-cream text-ink">
 
-    <header class="bg-ink text-parchment border-b border-copper-dim">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <h1>КіноАфіша</h1>
-            <input type="checkbox" id="menu-toggle" hidden>
-            <label for="menu-toggle" class="menu-toggle block md:hidden cursor-pointer text-copper text-2xl" aria-label="відкрити меню">☰</label>
-            <nav aria-label="Основна навігація" class="hidden md:flex md:flex-row md:gap-6 md:static md:w-auto md:h-auto md:bg-transparent">
-                <ul class="flex flex-col md:flex-row gap-4 md:gap-6 list-none p-0 m-0">
-                    <li><a href="index.html" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Головна</a></li>
-                    <li><a href="catalog.html" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Каталог фільмів</a></li>
-                    <li><a href="contacts.html" aria-current="page" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Контакти</a></li>
-                </ul>
-            </nav>
+<body>
+
+  <!-- ======================================================
+       ШАПКА
+  ====================================================== -->
+  <header>
+    <div>
+      <h1>КіноАфіша</h1>
+      <input type="checkbox" id="menu-toggle" hidden>
+      <label for="menu-toggle" class="menu-toggle" aria-label="відкрити меню">&#9776;</label>
+      <nav aria-label="Основна навігація">
+        <ul>
+          <li><a href="index.html">Головна</a></li>
+          <li><a href="catalog.html">Каталог фільмів</a></li>
+          <li><a href="contacts.html" aria-current="page">Контакти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ======================================================
+       ОСНОВНИЙ КОНТЕНТ
+  ====================================================== -->
+  <main>
+
+    <!-- ── КОНТАКТНА ІНФОРМАЦІЯ ── -->
+    <section aria-labelledby="info-heading">
+      <h2 id="info-heading">Як нас знайти</h2>
+
+      <article>
+        <h3>КіноАфіша — Головний кінотеатр</h3>
+        <p>📍 <strong>Адреса:</strong> вул. Сумська, 14, Харків, 61002</p>
+        <p>📞 <strong>Телефон каси:</strong> <a href="tel:+380577001234">+38 (057) 700-12-34</a></p>
+        <p>📧 <strong>Email:</strong> <a href="mailto:info@kino-afisha.ua">info@kino-afisha.ua</a></p>
+        <p>🕐 <strong>Режим роботи:</strong> щодня з 10:00 до 23:00</p>
+      </article>
+    </section>
+
+    <!-- ── ФОРМА ЗВОРОТНОГО ЗВ'ЯЗКУ ── -->
+    <section aria-labelledby="form-heading">
+      <h2 id="form-heading">Зворотній зв'язок</h2>
+
+      <form id="contact-form" action="#" method="post" novalidate>
+
+        <!-- Персональні дані -->
+        <fieldset>
+          <legend>Ваші дані</legend>
+
+          <label for="name">Ім'я та прізвище <span aria-hidden="true">*</span></label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Наприклад: Олена Іваненко"
+            autocomplete="name"
+            required
+          >
+
+          <label for="email">Електронна пошта <span aria-hidden="true">*</span></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your@email.com"
+            autocomplete="email"
+            required
+          >
+
+          <label for="phone">Номер телефону</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+38 (0__) ___-__-__"
+            autocomplete="tel"
+          >
+        </fieldset>
+
+        <!-- Тема звернення -->
+        <fieldset>
+          <legend>Тема звернення</legend>
+
+          <label for="subject">Оберіть тему</label>
+          <select id="subject" name="subject">
+            <option value="" disabled selected>— оберіть тему —</option>
+            <option value="ticket">Придбання квитків</option>
+            <option value="schedule">Розклад та зміни сеансів</option>
+            <option value="promo">Акції та знижки</option>
+            <option value="tech">Технічні питання</option>
+            <option value="other">Інше</option>
+          </select>
+
+          <!-- Тип відвідувача -->
+          <label style="margin-top:1rem;">Ви відвідуєте кінотеатр як:</label>
+          <div style="display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:0.4rem;">
+            <label>
+              <input type="radio" name="visitor_type" value="individual" checked>
+              Фізична особа
+            </label>
+            <label>
+              <input type="radio" name="visitor_type" value="group">
+              Групове замовлення
+            </label>
+            <label>
+              <input type="radio" name="visitor_type" value="corporate">
+              Корпоративний захід
+            </label>
+          </div>
+
+          <!-- Додаткові побажання -->
+          <label style="margin-top:1rem;">Додаткові послуги (можна обрати кілька):</label>
+          <div style="display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:0.4rem;">
+            <label>
+              <input type="checkbox" name="extras" value="popcorn">
+              Попкорн-пакет
+            </label>
+            <label>
+              <input type="checkbox" name="extras" value="vip">
+              VIP-зала
+            </label>
+            <label>
+              <input type="checkbox" name="extras" value="birthday">
+              День народження
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- Повідомлення -->
+        <fieldset>
+          <legend>Ваше повідомлення</legend>
+
+          <label for="message">Текст звернення <span aria-hidden="true">*</span></label>
+          <textarea
+            id="message"
+            name="message"
+            rows="5"
+            placeholder="Опишіть ваше питання або побажання..."
+            required
+          ></textarea>
+
+          <label for="rating">Як ви оцінюєте наш кінотеатр?</label>
+          <select id="rating" name="rating">
+            <option value="" disabled selected>— оберіть оцінку —</option>
+            <option value="5">⭐⭐⭐⭐⭐ — Чудово</option>
+            <option value="4">⭐⭐⭐⭐ — Добре</option>
+            <option value="3">⭐⭐⭐ — Нормально</option>
+            <option value="2">⭐⭐ — Є зауваження</option>
+            <option value="1">⭐ — Погано</option>
+          </select>
+        </fieldset>
+
+        <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+          <button type="submit">Надіслати</button>
+          <button type="reset">Скинути</button>
         </div>
-    </header>
 
-    <main class="max-w-2xl mx-auto px-4 py-6 flex-grow w-full">
-        <h2 class="text-2xl font-bold mb-2 text-ink">Зворотний зв'язок</h2>
-        <p class="text-copper-dim mb-6">Маєте запитання? Напишіть нам!</p>
+      </form>
+    </section>
 
-        <form id="contact-form" action="#" method="post" class="space-y-6">
-            <!-- особисті дані -->
-            <fieldset class="border border-copper-dim rounded-lg p-4">
-                <legend class="font-bold text-lg text-ink-soft px-2">Особисті дані</legend>
-                
-                <p class="mb-4">
-                    <label for="user-name" class="block text-sm font-medium text-ink-soft mb-1">Ім'я:</label>
-                    <input type="text" id="user-name" name="user-name" required placeholder="Марія Іванова" class="w-full border-b-2 border-copper-dim bg-transparent py-2 px-1 focus:outline-none focus:border-copper focus:ring-2 focus:ring-copper/20 rounded transition">
-                </p>
-                
-                <p class="mb-4">
-                    <label for="user-email" class="block text-sm font-medium text-ink-soft mb-1">Email:</label>
-                    <input type="email" id="user-email" name="user-email" required placeholder="maria@example.com" class="w-full border-b-2 border-copper-dim bg-transparent py-2 px-1 focus:outline-none focus:border-copper focus:ring-2 focus:ring-copper/20 rounded transition">
-                </p>
-                
-                <p class="mb-4">
-                    <label for="user-tel" class="block text-sm font-medium text-ink-soft mb-1">Телефон (у форматі +380...):</label>
-                    <input type="tel" id="user-tel" name="user-tel" pattern="^\+380\d{9}$" required placeholder="+380123456789" class="w-full border-b-2 border-copper-dim bg-transparent py-2 px-1 focus:outline-none focus:border-copper focus:ring-2 focus:ring-copper/20 rounded transition">
-                </p>
-            </fieldset>
+  </main>
 
-            <!-- повідомлення -->
-            <fieldset class="border border-copper-dim rounded-lg p-4">
-                <legend class="font-bold text-lg text-ink-soft px-2">Повідомлення та запит</legend>
-                
-                <p class="mb-4">
-                    <label for="message-subject" class="block text-sm font-medium text-ink-soft mb-1">Тема звернення:</label>
-                    <select id="message-subject" name="message-subject" class="w-full border-b-2 border-copper-dim bg-transparent py-2 px-1 focus:outline-none focus:border-copper focus:ring-2 focus:ring-copper/20 rounded transition">
-                        <optgroup label="Квитки та бронювання">
-                            <option value="booking">Проблема з бронюванням</option>
-                            <option value="refund">Повернення квитків</option>
-                        </optgroup>
-                        <optgroup label="Загальні питання">
-                            <option value="schedule">Уточнити розклад</option>
-                            <option value="cooperation">Співпраця</option>
-                        </optgroup>
-                    </select>
-                </p>
+  <!-- ======================================================
+       САЙДБАР
+  ====================================================== -->
+  <aside class="sidebar">
+    <h3>Часті питання</h3>
+    <p><strong>Чи можна повернути квиток?</strong><br>Так, не пізніше ніж за 2 години до сеансу.</p>
+    <p><strong>Чи є знижки?</strong><br>Студентам та пенсіонерам — 15% за посвідченням.</p>
+    <p><strong>Паркування?</strong><br>Безкоштовна парковка поруч із будівлею.</p>
+  </aside>
 
-                <p class="mb-2 font-medium text-ink-soft">Бажаний спосіб зв'язку:</p>
-                <p class="mb-4 flex items-center gap-4">
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="radio" id="contact-email" name="contact-method" value="email" checked class="accent-copper w-5 h-5 mr-2">
-                        <span class="text-ink">Email</span>
-                    </label>
-                    <label class="inline-flex items-center cursor-pointer">
-                        <input type="radio" id="contact-phone" name="contact-method" value="phone" class="accent-copper w-5 h-5 mr-2">
-                        <span class="text-ink">Телефон</span>
-                    </label>
-                </p>
+  <!-- ======================================================
+       ПІДВАЛ
+  ====================================================== -->
+  <footer>
+    <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосунків.</p>
+    <p>Студентська група П&#8209;31, Павлова Єлизавета</p>
+  </footer>
 
-                <p class="mb-4">
-                    <label for="user-message" class="block text-sm font-medium text-ink-soft mb-1">Ваше повідомлення:</label>
-                    <textarea id="user-message" name="user-message" rows="5" placeholder="Напишіть ваші побажання..." class="w-full border-2 border-copper-dim rounded p-3 focus:outline-none focus:border-copper focus:ring-2 focus:ring-copper/20 transition"></textarea>
-                </p>
-
-                <p class="mb-4 flex items-start">
-                    <input type="checkbox" id="data-consent" name="data-consent" required class="accent-copper w-5 h-5 mt-1 mr-3 shrink-0">
-                    <label for="data-consent" class="text-sm text-ink">Я погоджуюся на обробку персональних даних</label>
-                </p>
-
-                <p class="flex flex-col sm:flex-row gap-3">
-                    <button type="submit" class="bg-copper text-ink font-bold py-3 px-6 rounded hover:bg-ink-soft hover:text-cream transition duration-200">Надіслати повідомлення</button>
-                    <button type="reset" class="border-2 border-copper text-copper-dim py-3 px-6 rounded hover:bg-parchment hover:text-ink transition duration-200">Очистити форму</button>
-                </p>
-            </fieldset>
-        </form>
-    </main>
-
-    <aside class="sidebar bg-parchment p-4 rounded m-4 md:m-0">
-        <h3>Контакти кінотеатру</h3>
-        <p>Адреса: вул. Кіно, 15</p>
-        <p>Тел: +380 44 123 45 67</p>
-    </aside>
-
-    <footer class="bg-ink text-parchment border-t border-copper-dim text-center py-6 mt-auto">
-        <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосувань.</p>
-        <p>Студентка групи П-31, Павлова Єлизавета</p>
-    </footer>
-
-    <script src="js/script.js"></script>
+  <script src="js/script.js"></script>
 </body>
 </html>

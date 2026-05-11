@@ -1,123 +1,248 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Повний каталог фільмів та розклад сеансів у нашому кінотеатрі.">
-    <title>КіноАфіша — Каталог та Розклад</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              ink: '#1a0f0a',
-              copper: '#c4956a',
-              parchment: '#e8d5b7',
-              cream: '#f2e8d5',
-              'copper-dim': '#8a6347',
-              'ink-soft': '#2d1f17'
-            }
-          }
-        }
-      }
-    </script>
-    <link rel="stylesheet" href="css/style3.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Каталог фільмів кінотеатру КіноАфіша: новинки, анонси, розклад сеансів.">
+  <title>КіноАфіша — Каталог фільмів</title>
+  <link rel="stylesheet" href="css/style3.css">
 </head>
-<body class="min-h-screen flex flex-col bg-cream text-ink">
 
-    <header class="bg-ink text-parchment border-b border-copper-dim">
-        <div class="max-w-7xl mx-auto px-4 py-4">
-            <h1>КіноАфіша</h1>
-            <input type="checkbox" id="menu-toggle" hidden>
-            <label for="menu-toggle" class="menu-toggle block md:hidden cursor-pointer text-copper text-2xl" aria-label="відкрити меню">☰</label>
-            <nav aria-label="Основна навігація" class="hidden md:flex md:flex-row md:gap-6 md:static md:w-auto md:h-auto md:bg-transparent">
-                <ul class="flex flex-col md:flex-row gap-4 md:gap-6 list-none p-0 m-0">
-                    <li><a href="index.html" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Головна</a></li>
-                    <li><a href="catalog.html" aria-current="page" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Каталог фільмів</a></li>
-                    <li><a href="contacts.html" class="text-parchment hover:text-copper transition-colors border-b-2 border-transparent hover:border-copper pb-1">Контакти</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<body>
 
-    <main class="max-w-7xl mx-auto px-4 py-6 flex-grow w-full">
-        <h2 class="text-2xl font-bold mb-4 text-ink">Каталог фільмів та розклад сеансів</h2>
+  <!-- ======================================================
+       ШАПКА
+  ====================================================== -->
+  <header>
+    <div>
+      <h1>КіноАфіша</h1>
+      <input type="checkbox" id="menu-toggle" hidden>
+      <label for="menu-toggle" class="menu-toggle" aria-label="відкрити меню">&#9776;</label>
+      <nav aria-label="Основна навігація">
+        <ul>
+          <li><a href="index.html">Головна</a></li>
+          <li><a href="catalog.html" aria-current="page">Каталог фільмів</a></li>
+          <li><a href="contacts.html">Контакти</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-        <input type="text" id="search-input" placeholder="пошук фільму" class="mb-4 p-2 border border-copper-dim rounded w-full">
-        <select id="genre-filter" class="mb-4 p-2 border border-copper-dim rounded bg-white"></select>
-        <div id="cart" class="bg-parchment p-4 rounded mb-8 min-h-[100px]"></div>
+  <!-- ======================================================
+       ОСНОВНИЙ КОНТЕНТ
+  ====================================================== -->
+  <main>
 
-        <!-- динамічний каталог -->
-        <div id="catalog-body" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-8"></div>
+    <!-- ── ЖАНР: ФАНТАСТИКА ── -->
+    <section aria-labelledby="sci-fi-heading">
+      <h2 id="sci-fi-heading">Фантастика</h2>
 
-        <!-- таблиця розкладу -->
-        <section class="overflow-x-auto mb-8">
-            <h3 class="text-xl font-semibold text-ink-soft mb-4">Розклад сеансів на сьогодні</h3>
-            <table class="w-full border-collapse min-w-[600px]">
-                <caption class="text-left text-sm text-copper-dim mb-2 italic">Актуальні сеанси у кінозалах</caption>
-                <thead class="bg-ink text-parchment">
-                    <tr>
-                        <th rowspan="2" class="px-4 py-3 text-left font-semibold uppercase text-sm tracking-wider">Фільм</th>
-                        <th colspan="3" class="px-4 py-3 text-left font-semibold uppercase text-sm tracking-wider">Кінотеатр "Планета Кіно"</th>
-                    </tr>
-                    <tr>
-                        <th class="px-4 py-2 text-left font-semibold uppercase text-sm tracking-wider">Зал</th>
-                        <th class="px-4 py-2 text-left font-semibold uppercase text-sm tracking-wider">Час</th>
-                        <th class="px-4 py-2 text-left font-semibold uppercase text-sm tracking-wider">Ціна (грн)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="border-b border-copper-dim hover:bg-parchment/20 transition">
-                        <td rowspan="2" class="px-4 py-3">Проєкт «Аве Марія»</td>
-                        <td class="px-4 py-3">IMAX</td>
-                        <td class="px-4 py-3">11:00</td>
-                        <td class="px-4 py-3">300</td>
-                    </tr>
-                    <tr class="border-b border-copper-dim hover:bg-parchment/20 transition">
-                        <td class="px-4 py-3">Space Hall</td>
-                        <td class="px-4 py-3">17:30</td>
-                        <td class="px-4 py-3">200</td>
-                    </tr>
-                    <tr class="border-b border-copper-dim hover:bg-parchment/20 transition">
-                        <td class="px-4 py-3">Голос океану</td>
-                        <td class="px-4 py-3">Kids Hall</td>
-                        <td class="px-4 py-3">10:00</td>
-                        <td class="px-4 py-3">150</td>
-                    </tr>
-                    <tr class="border-b border-copper-dim hover:bg-parchment/20 transition">
-                        <td class="px-4 py-3">Кутюр</td>
-                        <td class="px-4 py-3">VIP</td>
-                        <td class="px-4 py-3">19:00</td>
-                        <td class="px-4 py-3">450</td>
-                    </tr>
-                    <tr class="border-b border-copper-dim hover:bg-parchment/20 transition">
-                        <td class="px-4 py-3">Асистент патологоанатома</td>
-                        <td class="px-4 py-3">Red Hall</td>
-                        <td class="px-4 py-3">21:30</td>
-                        <td class="px-4 py-3">180</td>
-                    </tr>
-                </tbody>
-                <tfoot class="bg-parchment/50">
-                    <tr>
-                        <td colspan="2" class="px-4 py-3 font-semibold">Всього сеансів:</td>
-                        <td colspan="2" class="px-4 py-3 font-semibold">5 сеансів</td>
-                    </tr>
-                </tfoot>
-            </table>
-        </section>
-    </main>
+      <div class="genre-section">
+        <article>
+          <img
+            src="img/hail-mary.jpg"
+            alt="Постер «Проєкт Аве Марія»"
+            loading="lazy"
+            width="225" height="300"
+          >
+          <h3>Проєкт «Аве Марія»</h3>
+          <p>Режисер: Філ Лорд, Крістофер Міллер</p>
+          <p>Тривалість: 135 хв &nbsp;·&nbsp; Вік: 12+</p>
+          <p>
+            Шкільний учитель прокидається в космосі — без пам'яті та без екіпажу.
+            Від нього залежить доля всього людства.
+          </p>
+        </article>
 
-    <aside class="sidebar bg-parchment p-4 rounded m-4 md:m-0">
-        <h3>Фільтри</h3>
-        <p>Сортування за жанром та рейтингом.</p>
-    </aside>
+        <article>
+          <img
+            src="img/interstellar.jpg"
+            alt="Постер «Інтерстеллар»"
+            loading="lazy"
+            width="225" height="300"
+          >
+          <h3>Інтерстеллар</h3>
+          <p>Режисер: Крістофер Нолан</p>
+          <p>Тривалість: 169 хв &nbsp;·&nbsp; Вік: 12+</p>
+          <p>
+            Пілот вирушає крізь черв'яну нору в пошуках нової домівки для людства.
+          </p>
+        </article>
 
-    <footer class="bg-ink text-parchment border-t border-copper-dim text-center py-6 mt-auto">
-        <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосувань.</p>
-        <p>Студентка групи П-31, Павлова Єлизавета</p>
-    </footer>
+        <article>
+          <img
+            src="img/dune.jpg"
+            alt="Постер «Дюна»"
+            loading="lazy"
+            width="225" height="300"
+          >
+          <h3>Дюна</h3>
+          <p>Режисер: Дені Вільньов</p>
+          <p>Тривалість: 155 хв &nbsp;·&nbsp; Вік: 12+</p>
+          <p>
+            Пол Атрейдес прибуває на небезпечну планету, щоб урятувати свій народ
+            і повернути собі майбутнє.
+          </p>
+        </article>
+      </div>
+    </section>
 
-    <script src="js/script.js"></script>
+    <!-- ── ЖАНР: БОЙОВИК ── -->
+    <section aria-labelledby="action-heading">
+      <h2 id="action-heading">Бойовик</h2>
+
+      <div class="genre-section">
+        <article>
+          <img
+            src="img/chasse-gardee-2.jpg"
+            alt="Постер «Сезон полювання 2»"
+            loading="lazy"
+            width="225" height="300"
+          >
+          <h3>Сезон полювання 2</h3>
+          <p>Режисер: Фредерік Форестьє</p>
+          <p>Тривалість: 98 хв &nbsp;·&nbsp; Вік: 14+</p>
+          <p>
+            Пригоди міських туристів у лісі продовжуються — тепер з подвоєним хаосом
+            і більшою кількістю ведмедів.
+          </p>
+        </article>
+
+        <article>
+          <img
+            src="img/na-draivi.jpg"
+            alt="Постер «На Драйві»"
+            loading="lazy"
+            width="225" height="300"
+          >
+          <h3>На Драйві</h3>
+          <p>Режисер: Dream Film</p>
+          <p>Тривалість: 112 хв &nbsp;·&nbsp; Вік: 16+</p>
+          <p>
+            Безмовний водій вдень розвозить клієнтів, а вночі стає частиною підпільного
+            злочинного світу.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── ЖАНР: АНІМАЦІЯ ── -->
+    <section aria-labelledby="anim-heading">
+      <h2 id="anim-heading">Анімація</h2>
+
+      <div class="genre-section">
+        <article>
+          <img
+            src="img/hollie-hedgehog.jpg"
+            alt="Постер «Колючка Голлі»"
+            loading="lazy"
+            width="225" height="300"
+          >
+          <h3>Колючка Голлі</h3>
+          <p>Режисер: Аnons</p>
+          <p>Тривалість: 88 хв &nbsp;·&nbsp; Вік: 0+</p>
+          <p>
+            Маленький їжачок Голлі вперше виходить у великий світ і знаходить
+            справжніх друзів.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ── РОЗКЛАД СЕАНСІВ ── -->
+    <section aria-labelledby="schedule-heading">
+      <h2 id="schedule-heading">Розклад сеансів на цей тиждень</h2>
+
+      <div class="table-wrapper">
+        <table>
+          <caption>Кінотеатр КіноАфіша — зала 1 і зала 2</caption>
+          <thead>
+            <tr>
+              <th scope="col">Фільм</th>
+              <th scope="col">Дата</th>
+              <th scope="col">Час</th>
+              <th scope="col">Зала</th>
+              <th scope="col">Вік</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Проєкт «Аве Марія»</td>
+              <td>08.05.2026</td>
+              <td>12:00 · 16:00 · 20:00</td>
+              <td>Зала 1</td>
+              <td>12+</td>
+            </tr>
+            <tr>
+              <td>Сезон полювання 2</td>
+              <td>08.05.2026</td>
+              <td>13:30 · 18:00</td>
+              <td>Зала 2</td>
+              <td>14+</td>
+            </tr>
+            <tr>
+              <td>На Драйві</td>
+              <td>09.05.2026</td>
+              <td>15:00 · 19:30</td>
+              <td>Зала 1</td>
+              <td>16+</td>
+            </tr>
+            <tr>
+              <td>Колючка Голлі</td>
+              <td>09.05.2026</td>
+              <td>11:00 · 14:00</td>
+              <td>Зала 2</td>
+              <td>0+</td>
+            </tr>
+            <tr>
+              <td>Інтерстеллар</td>
+              <td>10.05.2026</td>
+              <td>17:00 · 21:00</td>
+              <td>Зала 1</td>
+              <td>12+</td>
+            </tr>
+            <tr>
+              <td>Дюна</td>
+              <td>10.05.2026</td>
+              <td>14:30 · 19:00</td>
+              <td>Зала 2</td>
+              <td>12+</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="5">* Розклад може змінюватись. Актуальний час уточнюйте на касі або онлайн.</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ======================================================
+       САЙДБАР
+  ====================================================== -->
+  <aside class="sidebar">
+    <h3>Фільтр за жанром</h3>
+    <p>
+      <a href="#sci-fi-heading">🚀 Фантастика</a><br>
+      <a href="#action-heading">🔥 Бойовик</a><br>
+      <a href="#anim-heading">🎨 Анімація</a><br>
+      <a href="#schedule-heading">🗓 Розклад</a>
+    </p>
+    <h3 style="margin-top:1.25rem;">Акція тижня</h3>
+    <p>Знижка 20% на вечірні сеанси по вівторках та середах при онлайн-бронюванні.</p>
+  </aside>
+
+  <!-- ======================================================
+       ПІДВАЛ
+  ====================================================== -->
+  <footer>
+    <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосунків.</p>
+    <p>Студентська група П&#8209;31, Павлова Єлизавета</p>
+  </footer>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
