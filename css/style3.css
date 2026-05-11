@@ -319,6 +319,25 @@ article {
   color: var(--ink-soft);
 }
 
+.sidebar-nav a {
+  display: inline-block;
+  color: var(--cream);
+  background: var(--ink-soft);
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 0.35em 0.75em;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  margin-bottom: 0.4em;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.sidebar-nav a:hover {
+  background: var(--copper);
+  color: var(--ink);
+  transform: translateX(4px);
+}
+
 /* ---------- Каталог: секції за жанрами ---------- */
 .genre-section {
   display: grid;
