@@ -61,7 +61,7 @@
     <section aria-labelledby="form-heading">
       <h2 id="form-heading">Зворотній зв'язок</h2>
 
-      <form id="contact-form" action="#" method="post" novalidate>
+      <form id="contact-form" action="#" method="post">
 
         <!-- Персональні дані -->
         <fieldset>
@@ -92,8 +92,10 @@
             type="tel"
             id="phone"
             name="phone"
-            placeholder="+38 (0__) ___-__-__"
+            placeholder="+380XXXXXXXXX"
             autocomplete="tel"
+            pattern="^\+380\d{9}$"
+            title="Введіть номер у форматі +380XXXXXXXXX"
           >
         </fieldset>
 
@@ -157,6 +159,7 @@
             rows="5"
             placeholder="Опишіть ваше питання або побажання..."
             required
+            minlength="10"
           ></textarea>
 
           <label for="rating">Як ви оцінюєте наш кінотеатр?</label>
