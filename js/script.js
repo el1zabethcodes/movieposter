@@ -15,9 +15,9 @@ const movies = [
   { id: 6, title: 'Кутюр', director: 'Аліс Винокур', rating: '6.8', format: '2D', age: '16+', price: 160, img: 'img/couture.jpg', trailer: 'video/couture.mp4' },
   { id: 7, title: 'Асистент патологоанатома', director: 'Джеремі Кіпп', rating: '4.1', format: '3D', age: '18+', price: 170, img: 'img/mortuary-assistant.jpg', trailer: 'video/mortuary-assistant.mp4' },
   { id: 8, title: 'На Драйві', director: 'Dream Film, A17', rating: '5.5', format: '3D', age: '12+', price: 110, img: 'img/na-draivi.jpg', trailer: 'video/na-draivi.mp4' },
-  { id: 9, title: 'Володарі Всесвіту', director: 'Тревіс Найт', rating: '8.0', format: '3D', age: '12+', price: 160, img: 'img/masters-universe.jpg', trailer: 'video/masters-universe.mp4' },
+  { id: 9, title: 'Володарі Всесвіту', director: 'Тревіс Найт', rating: '8.0', format: '3D', age: '12+', price: 160, img: 'img/masters-universe.jpeg', trailer: 'video/masters-universe.mp4' },
   { id: 10, title: 'BACKROOMS: Залаштунки', director: 'Кейн Парсонс', rating: '7.5', format: '2D', age: '16+', price: 130, img: 'img/backrooms.jpg', trailer: 'video/backrooms.mp4' },
-  { id: 11, title: 'Історія іграшок 5', director: 'Ендрю Стентон, Кенна Гарріс', rating: '9.0', format: '2D', age: '0+', price: 140, img: 'img/toy-story-5.png', trailer: 'video/toy-story-5.mp4' },
+  { id: 11, title: 'Історія іграшок 5', director: 'Ендрю Стентон, Кенна Гарріс', rating: '9.0', format: '2D', age: '0+', price: 140, img: 'img/toy-story-5.jpg', trailer: 'video/toy-story-5.mp4' },
   { id: 12, title: 'Посіпаки і Монстряки', director: 'П\'єр Коффін', rating: '8.2', format: '3D', age: '0+', price: 150, img: 'img/minions-monsters.jpg', trailer: 'video/minions-monsters.mp4' }
 ];
 
