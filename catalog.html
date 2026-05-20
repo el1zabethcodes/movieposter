@@ -5,6 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Каталог фільмів кінотеатру КіноАфіша: новинки, анонси, розклад сеансів.">
   <title>КіноАфіша — Каталог фільмів</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="img/og-preview.jpg" type="image/jpeg">
+
+  <!-- Open Graph -->
+  <meta property="og:title"       content="КіноАфіша — Каталог фільмів">
+  <meta property="og:description" content="Усі фільми в прокаті: новинки, анонси, розклад сеансів та онлайн-бронювання.">
+  <meta property="og:image"       content="img/og-preview.jpg">
+  <meta property="og:type"        content="website">
+  <meta property="og:url"         content="https://kino-afisha.ua/catalog.html">
+
   <link rel="stylesheet" href="css/style3.css">
 </head>
 
@@ -36,7 +47,25 @@
     <!-- ── КАТАЛОГ ФІЛЬМІВ (динамічне наповнення через JS) ── -->
     <section aria-labelledby="catalog-heading">
       <h2 id="catalog-heading">Усі фільми</h2>
+
+      <div class="catalog-controls">
+        <label for="format-filter">Фільтр за форматом:</label>
+        <select id="format-filter">
+          <option value="all">Усі формати</option>
+        </select>
+      </div>
+
       <div id="catalog-body" class="genre-section"></div>
+    </section>
+
+    <!-- ── КОШИК ── -->
+    <section aria-labelledby="cart-heading">
+      <h2 id="cart-heading">
+        Кошик
+        <span id="cart-count" class="cart-badge">0</span>
+      </h2>
+      <div id="cart-container"></div>
+      <p class="cart-total-line">Разом: <strong id="cart-total">0 грн</strong></p>
     </section>
 
     <!-- ── РОЗКЛАД СЕАНСІВ ── -->
@@ -58,31 +87,45 @@
           <tbody>
             <tr>
               <td>Проєкт «Аве Марія»</td>
-              <td>08.05.2026</td>
+              <td>21.05.2026</td>
               <td>12:00 · 16:00 · 20:00</td>
               <td>Зала 1</td>
               <td>12+</td>
             </tr>
             <tr>
               <td>Сезон полювання 2</td>
-              <td>08.05.2026</td>
+              <td>21.05.2026</td>
               <td>13:30 · 18:00</td>
               <td>Зала 2</td>
-              <td>14+</td>
+              <td>12+</td>
             </tr>
             <tr>
-              <td>На Драйві</td>
-              <td>09.05.2026</td>
-              <td>15:00 · 19:30</td>
+              <td>Історія іграшок 5</td>
+              <td>22.05.2026</td>
+              <td>11:00 · 15:00 · 19:00</td>
               <td>Зала 1</td>
+              <td>0+</td>
+            </tr>
+            <tr>
+              <td>BACKROOMS: Залаштунки</td>
+              <td>22.05.2026</td>
+              <td>14:30 · 20:30</td>
+              <td>Зала 2</td>
               <td>16+</td>
             </tr>
             <tr>
-              <td>Колючка Голлі</td>
-              <td>09.05.2026</td>
-              <td>11:00 · 14:00</td>
-              <td>Зала 2</td>
+              <td>Посіпаки і Монстряки</td>
+              <td>23.05.2026</td>
+              <td>12:00 · 16:00</td>
+              <td>Зала 1</td>
               <td>0+</td>
+            </tr>
+            <tr>
+              <td>Володарі Всесвіту</td>
+              <td>23.05.2026</td>
+              <td>15:00 · 19:30</td>
+              <td>Зала 2</td>
+              <td>12+</td>
             </tr>
           </tbody>
           <tfoot>
@@ -100,9 +143,10 @@
        САЙДБАР
   ====================================================== -->
   <aside class="sidebar">
-    <h3>Фільтр</h3>
+    <h3>Навігація</h3>
     <p class="sidebar-nav">
       <a href="#catalog-heading">Усі фільми</a><br>
+      <a href="#cart-heading">Кошик</a><br>
       <a href="#schedule-heading">Розклад</a>
     </p>
     <h3 style="margin-top:1.25rem;">Акція тижня</h3>
@@ -113,8 +157,8 @@
        ПІДВАЛ
   ====================================================== -->
   <footer>
-    <p>&copy; 2026 КіноАфіша. Лабораторна робота №1 з розробки веб-застосунків.</p>
-    <p>Студентська група П&#8209;31, Павлова Єлизавета</p>
+    <p>&copy; 2026 КіноАфіша. Проект з розробки веб-застосунків.</p>
+    <p>Виконала Єлизавета Павлова</p>
   </footer>
 
   <script src="js/script.js"></script>

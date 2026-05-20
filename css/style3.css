@@ -652,3 +652,331 @@ footer {
   h3 { font-size: 1.35rem; }
   header h1 { font-size: 2.6rem; }
 }
+
+/* ============================================================
+   МОДАЛЬНЕ ВІКНО
+   ============================================================ */
+#modal-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 8, 5, 0.85);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+#modal-overlay.open {
+  display: flex;
+}
+
+body.modal-open {
+  overflow: hidden;
+}
+
+#modal-box {
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  max-width: 720px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  animation: modal-in 0.2s ease;
+}
+
+@keyframes modal-in {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+#modal-close {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  background: var(--ink);
+  color: var(--copper);
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background var(--transition);
+  margin: 0;
+}
+
+#modal-close:hover {
+  background: var(--copper);
+  color: var(--ink);
+  transform: none;
+}
+
+#modal-img {
+  width: 100%;
+  max-height: 320px;
+  object-fit: cover;
+}
+
+#modal-info {
+  padding: 1.25rem 1.5rem 1.5rem;
+}
+
+#modal-info h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+#modal-info p {
+  font-size: 0.9rem;
+  color: var(--copper-dim);
+  margin-bottom: 0.4em;
+}
+
+#modal-trailer-wrap video {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  margin: 0.75rem 0;
+}
+
+#modal-buy-btn {
+  margin-top: 0.75rem;
+  width: 100%;
+}
+
+@media (min-width: 600px) {
+  #modal-box {
+    flex-direction: row;
+  }
+
+  #modal-img {
+    width: 220px;
+    max-height: none;
+    flex-shrink: 0;
+    object-fit: cover;
+  }
+
+  #modal-info {
+    flex: 1;
+    overflow-y: auto;
+    max-height: 80vh;
+  }
+}
+
+/* ============================================================
+   ТОСТ-ПОВІДОМЛЕННЯ
+   ============================================================ */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 2000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.toast {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 0.75em 1.25em;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  border-left: 4px solid var(--copper);
+  pointer-events: auto;
+}
+
+.toast-error {
+  border-left-color: #c0392b;
+}
+
+.toast-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   КОШИК
+   ============================================================ */
+.cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--copper);
+  color: var(--ink);
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 999px;
+  min-width: 1.4em;
+  height: 1.4em;
+  padding: 0 0.3em;
+  margin-left: 0.5em;
+  vertical-align: middle;
+  font-family: var(--font-body);
+}
+
+#cart-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.cart-empty {
+  color: var(--copper-dim);
+  font-style: italic;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.75rem;
+  box-shadow: var(--shadow-card);
+}
+
+.cart-item-title {
+  flex: 1;
+  font-size: 0.9rem;
+}
+
+.cart-item-price {
+  font-weight: 700;
+  color: var(--copper-dim);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.cart-remove-btn {
+  background: transparent;
+  border: none;
+  color: var(--copper-dim);
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0 0.25em;
+  margin: 0;
+  line-height: 1;
+  transition: color var(--transition);
+}
+
+.cart-remove-btn:hover {
+  color: #c0392b;
+  background: transparent;
+  transform: none;
+}
+
+.cart-total-line {
+  font-size: 1rem;
+  color: var(--ink-soft);
+  text-align: right;
+  padding-right: 0.25rem;
+}
+
+/* ============================================================
+   КАРТКИ КАТАЛОГУ (динамічні)
+   ============================================================ */
+.movie-card {
+  background: #fff;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+
+.movie-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 3px 8px 0 var(--copper-dim);
+}
+
+.movie-card.active {
+  outline: 3px solid var(--copper);
+  outline-offset: 2px;
+}
+
+.movie-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.movie-card h3 {
+  padding: 0.75rem 0.75rem 0.15rem;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.movie-director {
+  padding: 0 0.75rem;
+  font-size: 0.8rem;
+  color: var(--copper-dim);
+  margin-bottom: 0.15em;
+}
+
+.movie-card p {
+  padding: 0 0.75rem;
+  font-size: 0.82rem;
+  margin-bottom: 0.25em;
+}
+
+.movie-card .details-btn,
+.movie-card .buy-btn {
+  margin: 0.5rem 0.75rem 0.25rem;
+  padding: 0.55em 1em;
+  font-size: 0.85rem;
+}
+
+.movie-card .buy-btn {
+  background: var(--ink-soft);
+  color: var(--cream);
+  margin-bottom: 0.75rem;
+}
+
+.movie-card .buy-btn:hover {
+  background: var(--copper);
+  color: var(--ink);
+}
+
+/* ============================================================
+   КОНТРОЛИ КАТАЛОГУ (фільтр)
+   ============================================================ */
+.catalog-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.catalog-controls label {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+}
+
+.catalog-controls select {
+  width: auto;
+  border: 2px solid var(--copper-dim);
+  border-radius: var(--radius-sm);
+  padding: 0.35em 0.75em;
+  font-size: 0.9rem;
+  background: var(--cream);
+}
