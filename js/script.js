@@ -152,6 +152,16 @@ function renderCart() {
       const row = document.createElement('div');
       row.className = 'cart-item';
 
+      // використання клонованого вузла картки якщо він є
+      if (item.clonedCard) {
+        const thumb = item.clonedCard.querySelector('img');
+        if (thumb) {
+          const miniImg = thumb.cloneNode(true);
+          miniImg.className = 'cart-item-thumb';
+          row.append(miniImg);
+        }
+      }
+
       const name = document.createElement('span');
       name.className = 'cart-item-title';
       name.textContent = item.title;
@@ -181,7 +191,23 @@ function renderCart() {
 function addToCart(movieId) {
   const movie = movies.find(m => m.id == movieId);
   if (!movie) return;
-  cart.push({ id: movie.id, title: movie.title, price: movie.price });
+
+  // знаходимо картку фільму в каталозі для клонування вузла
+  const sourceCard = catalogBody
+    ? catalogBody.querySelector(`.movie-card[data-id="${movie.id}"]`)
+    : null;
+
+  // глибоке клонування вузла картки якщо вона є на сторінці
+  let clonedCard = null;
+  if (sourceCard) {
+    clonedCard = sourceCard.cloneNode(true);
+    // видалення кнопок з клонованої картки щоб не дублювати обробники
+    clonedCard.querySelectorAll('button').forEach(btn => btn.remove());
+    clonedCard.classList.remove('active');
+  }
+
+  // додавання обєкта до масиву стану кошика разом з клоном
+  cart.push({ id: movie.id, title: movie.title, price: movie.price, clonedCard });
   renderCart();
   showToast(`${movie.title} додано до кошика`);
 }
@@ -314,7 +340,7 @@ if (filterSelect && catalogBody) {
 }
 
 // ============================================================
-// ФОРМА ЗВОРОТНОГО ЗВ'ЯЗКУ — підтримка обох id
+// ФОРМА ЗВОРОТНОГО ЗВ'ЯЗКУ — FormData + Object.fromEntries
 // ============================================================
 
 const feedbackForm = document.querySelector('#feedback-form, #contact-form');
@@ -323,8 +349,27 @@ if (feedbackForm) {
   feedbackForm.addEventListener('submit', (event) => {
     // зупинка стандартної поведінки браузера щодо перезавантаження
     event.preventDefault();
-    // показ тост-повідомлення замість alert
+
+    // перевірка валідності форми перед збором даних
+    if (!feedbackForm.checkValidity()) {
+      feedbackForm.reportValidity();
+      showToast('будь ласка заповніть усі обовязкові поля коректно', 'error');
+      return;
+    }
+
+    // збір усіх полів форми через formdata без ручного зчитування значень
+    const formData = new FormData(feedbackForm);
+
+    // перетворення на чистий обєкт через object.fromentries для відправки
+    const formObject = Object.fromEntries(formData.entries());
+
+    // виведення зібраних даних у консоль для перевірки структури
+    console.log('дані форми готові до відправки:', formObject);
+
+    // показ тост-повідомлення замість alert після успішної валідації
     showToast('дякуємо ваше повідомлення успішно надіслано');
+
+    // очищення форми тільки після успішної валідації та збору даних
     feedbackForm.reset();
   });
 }
