@@ -33,120 +33,10 @@
   ====================================================== -->
   <main>
 
-    <!-- ── ЖАНР: ФАНТАСТИКА ── -->
-    <section aria-labelledby="sci-fi-heading">
-      <h2 id="sci-fi-heading">Фантастика</h2>
-
-      <div class="genre-section">
-        <article>
-          <img
-            src="img/hail-mary.jpg"
-            alt="Постер «Проєкт Аве Марія»"
-            loading="lazy"
-            width="225" height="300"
-          >
-          <h3>Проєкт «Аве Марія»</h3>
-          <p>Режисер: Філ Лорд, Крістофер Міллер</p>
-          <p>Тривалість: 135 хв &nbsp;·&nbsp; Вік: 12+</p>
-          <p>
-            Шкільний учитель прокидається в космосі — без пам'яті та без екіпажу.
-            Від нього залежить доля всього людства.
-          </p>
-        </article>
-
-        <article>
-          <img
-            src="img/interstellar.jpg"
-            alt="Постер «Інтерстеллар»"
-            loading="lazy"
-            width="225" height="300"
-          >
-          <h3>Інтерстеллар</h3>
-          <p>Режисер: Крістофер Нолан</p>
-          <p>Тривалість: 169 хв &nbsp;·&nbsp; Вік: 12+</p>
-          <p>
-            Пілот вирушає крізь черв'яну нору в пошуках нової домівки для людства.
-          </p>
-        </article>
-
-        <article>
-          <img
-            src="img/dune.jpg"
-            alt="Постер «Дюна»"
-            loading="lazy"
-            width="225" height="300"
-          >
-          <h3>Дюна</h3>
-          <p>Режисер: Дені Вільньов</p>
-          <p>Тривалість: 155 хв &nbsp;·&nbsp; Вік: 12+</p>
-          <p>
-            Пол Атрейдес прибуває на небезпечну планету, щоб урятувати свій народ
-            і повернути собі майбутнє.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ── ЖАНР: БОЙОВИК ── -->
-    <section aria-labelledby="action-heading">
-      <h2 id="action-heading">Бойовик</h2>
-
-      <div class="genre-section">
-        <article>
-          <img
-            src="img/chasse-gardee-2.jpg"
-            alt="Постер «Сезон полювання 2»"
-            loading="lazy"
-            width="225" height="300"
-          >
-          <h3>Сезон полювання 2</h3>
-          <p>Режисер: Фредерік Форестьє</p>
-          <p>Тривалість: 98 хв &nbsp;·&nbsp; Вік: 14+</p>
-          <p>
-            Пригоди міських туристів у лісі продовжуються — тепер з подвоєним хаосом
-            і більшою кількістю ведмедів.
-          </p>
-        </article>
-
-        <article>
-          <img
-            src="img/na-draivi.jpg"
-            alt="Постер «На Драйві»"
-            loading="lazy"
-            width="225" height="300"
-          >
-          <h3>На Драйві</h3>
-          <p>Режисер: Dream Film</p>
-          <p>Тривалість: 112 хв &nbsp;·&nbsp; Вік: 16+</p>
-          <p>
-            Безмовний водій вдень розвозить клієнтів, а вночі стає частиною підпільного
-            злочинного світу.
-          </p>
-        </article>
-      </div>
-    </section>
-
-    <!-- ── ЖАНР: АНІМАЦІЯ ── -->
-    <section aria-labelledby="anim-heading">
-      <h2 id="anim-heading">Анімація</h2>
-
-      <div class="genre-section">
-        <article>
-          <img
-            src="img/hollie-hedgehog.jpg"
-            alt="Постер «Колючка Голлі»"
-            loading="lazy"
-            width="225" height="300"
-          >
-          <h3>Колючка Голлі</h3>
-          <p>Режисер: Аnons</p>
-          <p>Тривалість: 88 хв &nbsp;·&nbsp; Вік: 0+</p>
-          <p>
-            Маленький їжачок Голлі вперше виходить у великий світ і знаходить
-            справжніх друзів.
-          </p>
-        </article>
-      </div>
+    <!-- ── КАТАЛОГ ФІЛЬМІВ (динамічне наповнення через JS) ── -->
+    <section aria-labelledby="catalog-heading">
+      <h2 id="catalog-heading">Усі фільми</h2>
+      <div id="catalog-body" class="genre-section"></div>
     </section>
 
     <!-- ── РОЗКЛАД СЕАНСІВ ── -->
@@ -194,20 +84,6 @@
               <td>Зала 2</td>
               <td>0+</td>
             </tr>
-            <tr>
-              <td>Інтерстеллар</td>
-              <td>10.05.2026</td>
-              <td>17:00 · 21:00</td>
-              <td>Зала 1</td>
-              <td>12+</td>
-            </tr>
-            <tr>
-              <td>Дюна</td>
-              <td>10.05.2026</td>
-              <td>14:30 · 19:00</td>
-              <td>Зала 2</td>
-              <td>12+</td>
-            </tr>
           </tbody>
           <tfoot>
             <tr>
@@ -224,11 +100,9 @@
        САЙДБАР
   ====================================================== -->
   <aside class="sidebar">
-    <h3>Фільтр за жанром</h3>
+    <h3>Фільтр</h3>
     <p class="sidebar-nav">
-      <a href="#sci-fi-heading">Фантастика</a><br>
-      <a href="#action-heading">Бойовик</a><br>
-      <a href="#anim-heading">Анімація</a><br>
+      <a href="#catalog-heading">Усі фільми</a><br>
       <a href="#schedule-heading">Розклад</a>
     </p>
     <h3 style="margin-top:1.25rem;">Акція тижня</h3>
