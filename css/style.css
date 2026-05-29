@@ -1,0 +1,727 @@
+/* ============================================================
+   КіноАфіша — Темний Кінематограф
+   Редизайн: об'ємні картки, преміум-темна тема
+   // додавання об'єму тіней та округлення для карток у стилі темного кінематографа
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ── Дизайн-токени ── */
+:root {
+  --bg:            #070503;
+  --bg-2:          #0e0907;
+  --surface:       #19110a;
+  --surface-2:     #231709; /* трохи тепліший */
+  --surface-3:     #2e200f;
+  --copper:        #d4a05a;
+  --copper-hi:     #e8b870;
+  --copper-lo:     #8a6040;
+  --copper-ghost:  rgba(212,160,90,.10);
+  --copper-border: rgba(212,160,90,.22);
+  --text-1:  #f4ebd8;
+  --text-2:  #b49468;
+  --text-3:  #68503a;
+  --font-disp: 'Playfair Display', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+  --r-sm:  6px;
+  --r-md:  10px;
+  --r-lg:  14px;
+  --r-xl:  18px;
+  --r-max: 28px;
+  /* ── Об'ємна тінь ──
+     принцип: тонкий ліхтарний блик зверху + глибока тінь знизу */
+  --elev-1:
+    0 0 0 1px rgba(212,160,90,.08),
+    0 1px 0 rgba(255,215,130,.07) inset,
+    0 2px 5px rgba(0,0,0,.55),
+    0 8px 22px rgba(0,0,0,.38),
+    0 22px 44px rgba(0,0,0,.18);
+  --elev-2:
+    0 0 0 1px rgba(212,160,90,.22),
+    0 1px 0 rgba(255,215,130,.12) inset,
+    0 6px 14px rgba(0,0,0,.65),
+    0 18px 40px rgba(0,0,0,.50),
+    0 40px 70px rgba(0,0,0,.28);
+  --t: .28s ease;
+}
+
+/* ── Скидання ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  font-family: var(--font-body);
+  background: var(--bg);
+  color: var(--text-1);
+  line-height: 1.65;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+img { max-width: 100%; height: auto; display: block; }
+
+/* ============================================================
+   ШАПКА
+   ============================================================ */
+header {
+  background: var(--bg-2);
+  border-bottom: 1px solid var(--copper-border);
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+header > div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+header h1 {
+  font-family: var(--font-disp);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--copper);
+  letter-spacing: .06em;
+  line-height: 1;
+}
+
+/* ── Бургер ── */
+.menu-toggle {
+  display: block;
+  color: var(--copper);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: .4rem;
+  line-height: 1;
+  z-index: 200;
+  position: relative;
+}
+#menu-toggle { display: none; }
+
+/* ── Навігація ── */
+nav ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; right: 0;
+  width: 72%;
+  height: 100vh;
+  background: var(--bg-2);
+  border-left: 1px solid var(--copper-border);
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 5rem 2.5rem;
+  gap: 2rem;
+  transform: translateX(100%);
+  transition: transform var(--t);
+  z-index: 100;
+}
+#menu-toggle:checked ~ nav ul { transform: translateX(0); }
+nav a {
+  display: block;
+  color: var(--text-2);
+  text-decoration: none;
+  font-size: .9rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: color var(--t), border-color var(--t);
+}
+nav a:hover,
+nav a[aria-current="page"],
+nav a.active {
+  color: var(--copper);
+  border-color: var(--copper);
+}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+main {
+  flex: 1;
+  padding: 2rem 1rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ── Типографіка ── */
+h2 {
+  font-family: var(--font-disp);
+  color: var(--text-1);
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  margin: 1.5rem 0 1.25rem;
+  padding-left: .7em;
+  border-left: 3px solid var(--copper);
+  line-height: 1.2;
+}
+h3 {
+  font-family: var(--font-disp);
+  color: var(--text-1);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: .35em;
+}
+h4 {
+  font-family: var(--font-disp);
+  color: var(--text-1);
+  font-size: .95rem;
+  font-weight: 600;
+  margin: 1em 0 .5em;
+}
+p { margin-bottom: .65em; font-size: 1rem; }
+
+/* ============================================================
+   ПРЕМ'ЄРА ТИЖНЯ
+   ============================================================ */
+.premiere-article {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--elev-1);
+  border: 1px solid var(--copper-ghost);
+  border-top: 1px solid rgba(255,210,130,.12);
+  margin-bottom: 2.5rem;
+  transition: box-shadow var(--t), transform var(--t);
+}
+.premiere-article:hover {
+  box-shadow: var(--elev-2);
+  transform: translateY(-4px);
+}
+.premiere-inner { display: flex; flex-direction: column; }
+.premiere-inner picture,
+.premiere-inner img { width: 100%; max-height: 440px; object-fit: cover; }
+.premiere-body { padding: 1.5rem 1.75rem 2rem; }
+.premiere-body h3 {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: var(--copper-hi);
+  margin-bottom: .5em;
+}
+.premiere-body p { color: var(--text-2); font-size: .95rem; }
+video {
+  width: 100%;
+  height: auto;
+  border-radius: var(--r-md);
+  display: block;
+  margin-top: 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--copper-ghost);
+}
+
+/* ============================================================
+   СІТКА АНОНСІВ (ul.movie-grid)
+   ============================================================ */
+ul.movie-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+ul.movie-grid > li { display: flex; }
+ul.movie-grid li article {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--elev-1);
+  border: 1px solid var(--copper-ghost);
+  border-top: 1px solid rgba(255,210,130,.10);
+  transition: transform var(--t), box-shadow var(--t);
+}
+ul.movie-grid li article:hover {
+  transform: translateY(-9px);
+  box-shadow: var(--elev-2);
+}
+ul.movie-grid li article img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; }
+ul.movie-grid li article h3 { padding: .85rem .9rem .2rem; margin: 0; font-size: 1rem; color: var(--text-1); }
+ul.movie-grid li article p { padding: 0 .9rem; font-size: .82rem; color: var(--text-2); margin-bottom: .2em; }
+ul.movie-grid li article p:last-child { padding-bottom: .9rem; color: var(--copper); font-weight: 700; }
+
+/* ============================================================
+   JS-КАРТКИ КАТАЛОГУ (.movie-card)
+   ============================================================ */
+.genre-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+.genre-section > h3 { grid-column: 1 / -1; }
+
+/* ── Об'ємна картка фільму ── */
+.movie-card {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--elev-1);
+  border: 1px solid var(--copper-ghost);
+  border-top: 1px solid rgba(255,215,130,.12);
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  cursor: pointer;
+}
+.movie-card:hover,
+.movie-card.active {
+  transform: translateY(-9px) scale(1.013);
+  box-shadow: var(--elev-2);
+  border-color: var(--copper-border);
+}
+
+/* Постер */
+.card-poster-wrap { position: relative; overflow: hidden; }
+.movie-poster {
+  width: 100%;
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+  display: block;
+  transition: transform .5s ease;
+}
+.movie-card:hover .movie-poster { transform: scale(1.05); }
+
+/* Бейджі поверх постера */
+.card-badges {
+  position: absolute;
+  top: 9px; left: 9px;
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.tag-format {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .06em;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: rgba(212,160,90,.90);
+  color: #070503;
+}
+.tag-age {
+  font-family: var(--font-body);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .05em;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: rgba(14,9,5,.82);
+  color: var(--text-1);
+  border: 1px solid rgba(212,160,90,.28);
+}
+
+/* Тіло картки */
+.card-body {
+  padding: .85rem 1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: .15rem;
+}
+.movie-card h3 { font-size: .93rem; font-weight: 700; color: var(--text-1); line-height: 1.35; margin: 0; }
+.card-director { font-size: .74rem; color: var(--text-3); font-style: italic; margin: 0; }
+.card-rating { font-size: .82rem; color: var(--copper); font-weight: 700; letter-spacing: .04em; margin-bottom: auto; padding-bottom: .7rem; }
+
+/* Підвал картки: ціна + кнопки */
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .5rem;
+  padding-top: .7rem;
+  border-top: 1px solid var(--copper-ghost);
+}
+.card-price {
+  font-family: var(--font-disp);
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: var(--copper-hi);
+  letter-spacing: .01em;
+  white-space: nowrap;
+  line-height: 1;
+}
+.card-actions { display: flex; gap: .35rem; align-items: center; }
+.btn-icon {
+  width: 30px; height: 30px;
+  background: var(--surface-2);
+  border: 1px solid var(--copper-ghost);
+  border-radius: var(--r-md);
+  color: var(--copper);
+  font-size: .78rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--t), border-color var(--t);
+  flex-shrink: 0;
+  padding: 0;
+}
+.btn-icon:hover {
+  background: var(--copper-ghost);
+  border-color: var(--copper-border);
+  transform: none;
+  box-shadow: none;
+}
+.buy-btn {
+  background: var(--copper);
+  color: #070503;
+  border: none;
+  border-radius: var(--r-md);
+  font-family: var(--font-disp);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  padding: .42rem .7rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background var(--t), transform var(--t);
+  white-space: nowrap;
+}
+.buy-btn:hover {
+  background: var(--copper-hi);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(212,160,90,.30);
+}
+
+/* ============================================================
+   ЗАГАЛЬНІ ARTICLE-КАРТКИ (contacts, каталог-секції)
+   ============================================================ */
+section > article {
+  background: var(--surface);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.25rem;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--elev-1);
+  border: 1px solid var(--copper-ghost);
+  border-top: 1px solid rgba(255,210,130,.10);
+}
+section > article p { color: var(--text-2); font-size: .95rem; }
+section > article a { color: var(--copper); text-decoration: none; }
+section > article a:hover { color: var(--copper-hi); }
+
+/* ============================================================
+   ТАБЛИЦЯ СЕАНСІВ
+   ============================================================ */
+.table-wrapper {
+  overflow-x: auto;
+  margin-top: .75rem;
+  border-radius: var(--r-xl);
+  box-shadow: var(--elev-1);
+  border: 1px solid var(--copper-ghost);
+}
+table {
+  width: 100%;
+  min-width: 480px;
+  border-collapse: collapse;
+  font-size: .9rem;
+  background: var(--surface);
+}
+caption {
+  font-family: var(--font-disp);
+  font-style: italic;
+  color: var(--text-2);
+  text-align: left;
+  margin-bottom: .5em;
+  font-size: .9rem;
+}
+th, td { padding: .85em .75em; text-align: left; border-bottom: 1px solid rgba(212,160,90,.07); }
+thead th {
+  font-family: var(--font-disp);
+  background: var(--surface-2);
+  color: var(--copper);
+  font-weight: 700;
+  border-bottom: 2px solid var(--copper-border);
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  font-size: .8rem;
+}
+tbody td { color: var(--text-1); }
+tbody tr:hover { background: var(--surface-2); transition: background var(--t); }
+tfoot td {
+  color: var(--text-3);
+  font-style: italic;
+  border-top: 1px solid var(--copper-border);
+  border-bottom: none;
+  font-size: .85rem;
+}
+
+/* ============================================================
+   САЙДБАР
+   ============================================================ */
+.sidebar {
+  background: var(--bg-2);
+  padding: 1.5rem;
+  border-top: 1px solid var(--copper-ghost);
+}
+.sidebar h3 { font-family: var(--font-disp); color: var(--copper); font-size: 1rem; margin-bottom: .6rem; letter-spacing: .04em; }
+.sidebar p { font-size: .88rem; color: var(--text-2); line-height: 1.55; }
+.sidebar-nav a {
+  display: inline-block;
+  color: var(--copper);
+  background: var(--surface);
+  font-weight: 700;
+  font-size: .88rem;
+  padding: .4em 1em;
+  border-radius: var(--r-max);
+  text-decoration: none;
+  margin-bottom: .4em;
+  border: 1px solid var(--copper-ghost);
+  transition: background var(--t), color var(--t), transform var(--t);
+}
+.sidebar-nav a:hover { background: var(--copper); color: #070503; transform: translateX(4px); }
+
+/* ============================================================
+   ФОРМА КОНТАКТІВ
+   ============================================================ */
+form { width: 100%; }
+fieldset {
+  background: var(--surface);
+  border: 1px solid var(--copper-border);
+  border-radius: var(--r-xl);
+  box-shadow: var(--elev-1);
+  padding: 1.5rem;
+  margin-bottom: 1.25rem;
+}
+legend { font-family: var(--font-disp); color: var(--copper); font-weight: 700; padding: 0 .75em; font-size: 1rem; }
+label { display: block; color: var(--text-2); font-size: .88rem; margin-top: .85em; margin-bottom: .3em; letter-spacing: .02em; }
+input, select, textarea {
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid rgba(212,160,90,.18);
+  border-radius: var(--r-md);
+  font-family: var(--font-body);
+  font-size: .95rem;
+  width: 100%;
+  padding: .6em .9em;
+  transition: border-color var(--t), box-shadow var(--t);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--copper);
+  box-shadow: 0 0 0 3px rgba(212,160,90,.14);
+}
+select option { background: var(--surface-2); color: var(--text-1); }
+::placeholder { font-style: italic; color: var(--text-3); opacity: .85; }
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  accent-color: var(--copper);
+  vertical-align: middle;
+  margin-right: 6px;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  background: transparent;
+}
+
+/* ── Кнопки форми ── */
+button {
+  font-family: var(--font-disp);
+  background: var(--copper);
+  color: #070503;
+  border: none;
+  padding: .9em 2.2em;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: var(--r-md);
+  margin-top: .85em;
+  margin-right: .75em;
+  letter-spacing: .05em;
+  transition: background var(--t), transform var(--t), box-shadow var(--t);
+}
+button:hover { background: var(--copper-hi); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(212,160,90,.26); }
+button[type="reset"] { background: transparent; border: 1px solid var(--copper-border); color: var(--text-2); }
+button[type="reset"]:hover { background: var(--surface-2); color: var(--text-1); box-shadow: none; }
+
+/* ============================================================
+   МОДАЛЬНЕ ВІКНО
+   ============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(7,5,3,.88);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  padding: 1rem;
+  opacity: 0;
+  transition: opacity var(--t);
+}
+.modal-overlay.show { opacity: 1; }
+.modal-card {
+  background: var(--surface);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--copper-border);
+  border-top: 1px solid rgba(255,215,130,.15);
+  box-shadow: var(--elev-2);
+  max-width: 560px;
+  width: 100%;
+  position: relative;
+  transform: translateY(20px);
+  transition: transform var(--t);
+  overflow: hidden;
+}
+.modal-overlay.show .modal-card { transform: translateY(0); }
+.modal-close {
+  position: absolute;
+  top: 12px; right: 12px;
+  background: rgba(14,9,5,.75);
+  border: 1px solid var(--copper-ghost);
+  color: var(--text-2);
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  padding: 0; margin: 0;
+  transition: background var(--t), color var(--t);
+}
+.modal-close:hover { background: var(--copper-ghost); color: var(--copper); transform: none; box-shadow: none; }
+.modal-inner { display: flex; flex-direction: column; }
+.modal-poster { width: 100%; max-height: 300px; object-fit: cover; display: block; }
+.modal-info { padding: 1.25rem 1.5rem 1.75rem; }
+.modal-info h2 {
+  font-family: var(--font-disp);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--copper-hi);
+  margin: 0 0 .3em;
+  padding: 0;
+  border: none;
+  letter-spacing: .02em;
+}
+.modal-dir { font-size: .85rem; color: var(--text-3); font-style: italic; margin-bottom: .85em; }
+.modal-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+.tag-rating {
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--copper);
+  background: var(--surface-2);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid var(--copper-ghost);
+}
+.modal-price { font-family: var(--font-disp); font-size: 2.2rem; font-weight: 900; color: var(--copper-hi); line-height: 1; margin-bottom: 1.25rem; }
+.modal-price span { font-size: 1rem; color: var(--text-3); font-family: var(--font-body); font-weight: 400; margin-left: .35em; }
+.btn-buy-modal { width: 100%; text-align: center; font-size: 1rem; padding: 1em; margin: 0; border-radius: var(--r-lg); letter-spacing: .08em; }
+
+/* ============================================================
+   TOAST-ПОВІДОМЛЕННЯ
+   ============================================================ */
+#toast-container {
+  position: fixed;
+  bottom: 1.5rem; right: 1.5rem;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  pointer-events: none;
+}
+.toast {
+  background: var(--surface-2);
+  color: var(--text-1);
+  border: 1px solid var(--copper-border);
+  border-radius: var(--r-lg);
+  padding: .8rem 1.25rem;
+  font-size: .9rem;
+  font-family: var(--font-body);
+  box-shadow: var(--elev-1);
+  transform: translateX(110%);
+  transition: transform var(--t);
+  max-width: 300px;
+}
+.toast.show { transform: translateX(0); }
+.toast-success { border-left: 3px solid #5ab878; }
+.toast-info    { border-left: 3px solid var(--copper); }
+
+/* ============================================================
+   ПІДВАЛ
+   ============================================================ */
+footer {
+  background: var(--bg-2);
+  color: var(--text-3);
+  border-top: 1px solid var(--copper-ghost);
+  padding: 1.5rem;
+  font-size: .82rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .75rem;
+  margin-top: auto;
+}
+footer p { margin: 0; }
+
+/* ============================================================
+   ПЛАНШЕТ (>= 768px)
+   ============================================================ */
+@media (min-width: 768px) {
+  body {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: auto 1fr auto;
+    align-items: start;
+  }
+  header   { grid-column: 1 / -1; }
+  main     { grid-column: 1 / 2; padding: 2rem; }
+  .sidebar { grid-column: 2 / 3; padding: 2rem 1.5rem 2rem 0; border-top: none; background: transparent; }
+  footer   { grid-column: 1 / -1; }
+  .premiere-inner { flex-direction: row; align-items: flex-start; }
+  .premiere-inner picture { flex: 0 0 220px; }
+  .premiere-inner picture img { height: 100%; max-height: 360px; object-fit: cover; }
+  .premiere-body { flex: 1; }
+  .menu-toggle { display: none; }
+  nav ul {
+    position: static;
+    width: auto; height: auto;
+    background: transparent;
+    border: none;
+    flex-direction: row;
+    padding: 0;
+    transform: none;
+    transition: none;
+    gap: 2rem;
+    align-items: center;
+    justify-content: flex-start;
+  }
+  ul.movie-grid { grid-template-columns: repeat(2, 1fr); }
+  h2 { font-size: 1.75rem; }
+}
+
+/* ============================================================
+   ДЕСКТОП (>= 1200px)
+   ============================================================ */
+@media (min-width: 1200px) {
+  body { grid-template-columns: 1fr minmax(0, 860px) 280px 1fr; }
+  header   { grid-column: 1 / -1; }
+  main     { grid-column: 2 / 3; padding: 2.5rem 1.5rem; }
+  .sidebar { grid-column: 3 / 4; padding: 2.5rem 0 2.5rem 1.5rem; }
+  footer   { grid-column: 1 / -1; }
+  ul.movie-grid          { grid-template-columns: repeat(3, 1fr); }
+  h2                     { font-size: 2rem; }
+  h3                     { font-size: 1.2rem; }
+  header h1              { font-size: 2.4rem; }
+  .premiere-inner picture { flex: 0 0 270px; }
+  .premiere-body         { padding: 2rem 2rem 2.5rem; }
+  .modal-inner           { flex-direction: row; }
+  .modal-poster          { width: 200px; max-height: 100%; flex-shrink: 0; }
+}
