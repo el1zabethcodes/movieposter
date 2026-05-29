@@ -725,3 +725,26 @@ footer p { margin: 0; }
   .modal-inner           { flex-direction: row; }
   .modal-poster          { width: 200px; max-height: 100%; flex-shrink: 0; }
 }
+
+/* ============================================================
+   ЛІЧИЛЬНИК ОБРАНОГО (#fav-counter)
+   ============================================================ */
+#fav-counter {
+  font-family: var(--font-disp);
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--copper);
+  letter-spacing: .06em;
+  padding: .3em .85em;
+  border: 1px solid var(--copper-border);
+  border-radius: var(--r-max);
+  background: var(--surface);
+  white-space: nowrap;
+  transition: background var(--t), color var(--t);
+}
+
+/* ── Активна кнопка обраного ── */
+.fav-btn.is-favorite {
+  background: rgba(212,160,90,.18);
+  border-color: var(--copper-border);
+}
