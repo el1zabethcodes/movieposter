@@ -59,21 +59,121 @@ if (!catalogBody) {
   console.warn('контейнер каталогу не знайдено на сторінці');
 }
 
-// повний масив обєктів з дванадцяти фільмів кіноафіші
-const movies = [
-  { id: 1,  title: 'Проєкт Аве Марія',       director: 'Філ Лорд, Крістофер Міллер',    rating: '8.5', format: '3D', age: '12+', price: 150, img: 'img/hail-mary.jpg',          trailer: 'video/hail-mary-trailer.mp4' },
-  { id: 2,  title: 'Хранителі лісу 2',        director: 'Sven Unterwaldt jr.',            rating: '6.5', format: '2D', age: '6+',  price: 120, img: 'img/woodwalkers-2.jpg',       trailer: '' },
-  { id: 3,  title: 'Колючка Голлі',           director: 'Анонс',                          rating: '7.2', format: '2D', age: '0+',  price: 100, img: 'img/hollie-hedgehog.jpg',     trailer: '' },
-  { id: 4,  title: 'Голос океану',            director: 'Реза Мемарі',                   rating: '7.0', format: '3D', age: '0+',  price: 140, img: 'img/voice-ocean.jpg',         trailer: '' },
-  { id: 5,  title: 'Сезон полювання 2',       director: 'Фредерік Форестьє, Антонін Фурлон', rating: '6.9', format: '2D', age: '12+', price: 130, img: 'img/chasse-gardee-2.jpg', trailer: '' },
-  { id: 6,  title: 'Кутюр',                   director: 'Аліс Винокур',                  rating: '6.8', format: '2D', age: '16+', price: 160, img: 'img/couture.jpg',             trailer: '' },
-  { id: 7,  title: 'Асистент патологоанатома',director: 'Джеремі Кіпп',                  rating: '4.1', format: '3D', age: '18+', price: 170, img: 'img/mortuary-assistant.jpg',  trailer: '' },
-  { id: 8,  title: 'На Драйві',               director: 'Dream Film, A17',               rating: '5.5', format: '3D', age: '12+', price: 110, img: 'img/na-draivi.jpg',           trailer: '' },
-  { id: 9,  title: 'Володарі Всесвіту',       director: 'Тревіс Найт',                   rating: '8.0', format: '3D', age: '12+', price: 160, img: 'img/masters-universe.jpeg',   trailer: 'video/masters-universe.mp4' },
-  { id: 10, title: 'BACKROOMS: Залаштунки',   director: 'Кейн Парсонс',                  rating: '7.5', format: '2D', age: '16+', price: 130, img: 'img/backrooms.jpg',           trailer: 'video/backrooms.mp4' },
-  { id: 11, title: 'Історія іграшок 5',       director: 'Ендрю Стентон, Кенна Гарріс',   rating: '9.0', format: '2D', age: '0+',  price: 140, img: 'img/toy-story-5.jpg',         trailer: 'video/toy-story-5.mp4' },
-  { id: 12, title: 'Посіпаки і Монстряки',    director: 'П\'єр Коффін',                  rating: '8.2', format: '3D', age: '0+',  price: 150, img: 'img/minions-monsters.jpg',    trailer: 'video/minions-monsters.mp4' }
-];
+// глобальний масив фільмів — заповнюється після отримання даних з апі
+let movies = [];
+
+// ============================================================
+// FETCH API — АСИНХРОННЕ ЗАВАНТАЖЕННЯ ДАНИХ
+// ============================================================
+
+// асинхронна функція для завантаження даних фільмів через зовнішнє апі
+async function loadMovies() {
+  // адреса рекомендованого безкоштовного сервера кіноафіші
+  const apiUrl = 'https://api.tvmaze.com/search/shows?q=movie';
+  try {
+    // виконання асинхронного запиту до сервера
+    const response = await fetch(apiUrl);
+    // перевірка успішності отримання відповіді від сервера
+    if (!response.ok) {
+      throw new Error('помилка при отриманні даних від сервера');
+    }
+    // розпаршування отриманого результату у формат json
+    const data = await response.json();
+    // трансформація отриманої структури даних під формат нашого проєкту
+    const mappedMovies = data.map((item, index) => {
+      const show = item.show;
+      return {
+        // створення унікального ідентифікатора на основі даних апі
+        id: show.id || (index + 1),
+        title: show.name || 'без назви',
+        director: show.network ? show.network.name : 'кіностудія',
+        rating: show.rating && show.rating.average ? String(show.rating.average) : '7.0',
+        format: index % 2 === 0 ? '3D' : '2D',
+        age: show.runtime && show.runtime > 100 ? '16+' : '12+',
+        // підстановка дефолтної ціни для комерційного використання
+        price: 140 + (index * 10),
+        // використання серверної картинки або заглушки
+        img: show.image ? show.image.medium : 'img/og-preview.jpg',
+        trailer: 'video/masters-universe.mp4'
+      };
+    });
+    // оновлення глобального масиву фільмів отриманими даними
+    movies = mappedMovies;
+    // виклик функції рендерингу каталогу з передачею адаптованого масиву
+    renderCatalog(mappedMovies);
+  } catch (error) {
+    // перехоплення мережевих помилок та виклик кастомного повідомлення
+    if (typeof showToast === 'function') {
+      showToast('не вдалося завантажити актуальну кіноафішу спробуйте пізніше', 'error');
+    } else {
+      console.error('помилка завантаження афіші:', error);
+    }
+  }
+}
+
+// допоміжна функція для динамічного рендерингу карток у домі
+function renderCatalog(moviesList) {
+  if (!catalogBody) return;
+  // очищення контейнера від статичного або старого контенту
+  catalogBody.innerHTML = '';
+  // створення оптимізованого фрагмента в памяті
+  const fragment = document.createDocumentFragment();
+  moviesList.forEach(movie => {
+    const card = document.createElement('div');
+    card.classList.add('movie-card');
+    card.dataset.id = movie.id;
+    card.dataset.format = movie.format;
+
+    const image = document.createElement('img');
+    image.src = movie.img;
+    image.alt = movie.title;
+    image.classList.add('movie-poster');
+    image.loading = 'lazy';
+
+    const title = document.createElement('h3');
+    title.textContent = movie.title;
+
+    const info = document.createElement('p');
+    info.textContent = `режисер: ${movie.director} | рейтинг: ${movie.rating}`;
+
+    const priceTag = document.createElement('span');
+    priceTag.classList.add('movie-price');
+    priceTag.textContent = `${movie.price} грн`;
+
+    const detailsBtn = document.createElement('button');
+    detailsBtn.textContent = 'Детальніше';
+    detailsBtn.classList.add('details-btn');
+    detailsBtn.dataset.id = movie.id;
+
+    const buyBtn = document.createElement('button');
+    buyBtn.textContent = 'Купити';
+    buyBtn.classList.add('buy-btn');
+    buyBtn.dataset.id = movie.id;
+    buyBtn.dataset.title = movie.title;
+
+    card.append(image, title, info, priceTag, detailsBtn, buyBtn);
+    fragment.append(card);
+  });
+  // вставка всіх сформованих карток за один крок
+  catalogBody.append(fragment);
+
+  // наповнення фільтра унікальними форматами після отримання даних
+  const formatFilter = document.querySelector('#format-filter');
+  if (formatFilter) {
+    // збереження поточного вибору та очищення динамічних опцій
+    const allOption = formatFilter.querySelector('option[value="all"]');
+    formatFilter.innerHTML = '';
+    if (allOption) formatFilter.append(allOption);
+    // створення колекції сет для отримання унікальних форматів фільмів
+    const uniqueFormats = new Set(moviesList.map(movie => movie.format));
+    uniqueFormats.forEach(format => {
+      const option = document.createElement('option');
+      option.value = format;
+      option.textContent = format;
+      formatFilter.append(option);
+    });
+  }
+}
 
 // ============================================================
 // МОДАЛЬНЕ ВІКНО
@@ -179,10 +279,6 @@ function showToast(message, type = 'success') {
 // КОШИК
 // ============================================================
 
-// ініціалізація структури мап для швидкого пошуку цін за назвою
-const moviePrices = new Map();
-movies.forEach(movie => moviePrices.set(movie.title, movie.price));
-
 // стан кошика зберігається в масиві обєктів
 let cart = [];
 
@@ -285,57 +381,11 @@ document.getElementById('modal-buy-btn').addEventListener('click', (e) => {
 });
 
 // ============================================================
-// КАТАЛОГ — РЕНДЕРИНГ КАРТОК
+// КАТАЛОГ — АСИНХРОННИЙ ЗАПУСК ЗАВАНТАЖЕННЯ ДАНИХ
 // ============================================================
 
-if (catalogBody) {
-  // створення легкого фрагмента для оптимізації рендерингу сторінки
-  const fragment = document.createDocumentFragment();
-  movies.forEach(movie => {
-    // створення картки для кожного окремого фільму
-    const card = document.createElement('div');
-    card.classList.add('movie-card');
-    card.dataset.id = movie.id;
-    card.dataset.format = movie.format;
-
-    // створення та безпечне додавання обкладинки фільму
-    const image = document.createElement('img');
-    image.src = movie.img;
-    image.alt = movie.title;
-    image.classList.add('movie-poster');
-    image.loading = 'lazy';
-
-    // безпечне наповнення текстовим вмістом для захисту від атак
-    const title = document.createElement('h3');
-    title.textContent = movie.title;
-
-    const info = document.createElement('p');
-    info.textContent = `${movie.format} · ${movie.age} · ★ ${movie.rating}`;
-
-    const director = document.createElement('p');
-    director.className = 'movie-director';
-    director.textContent = movie.director;
-
-    // створення кнопки детальніше з дата атрибутом ідентифікатора
-    const detailsBtn = document.createElement('button');
-    detailsBtn.textContent = 'Детальніше';
-    detailsBtn.classList.add('details-btn');
-    detailsBtn.dataset.id = movie.id;
-
-    // створення кнопки купити для кошика
-    const buyBtn = document.createElement('button');
-    buyBtn.textContent = `Купити — ${movie.price} грн`;
-    buyBtn.classList.add('buy-btn');
-    buyBtn.dataset.id = movie.id;
-    buyBtn.dataset.title = movie.title;
-
-    card.append(image, title, director, info, detailsBtn, buyBtn);
-    // додавання створеної картки до віртуального фрагменту в памяті
-    fragment.append(card);
-  });
-  // вставка всіх елементів до реального дом дерева за один крок
-  catalogBody.append(fragment);
-}
+// запуск асинхронного завантаження та рендерингу каталогу з апі
+loadMovies();
 
 // ============================================================
 // ДЕЛЕГУВАННЯ ПОДІЙ НА КАТАЛОГ
@@ -374,16 +424,6 @@ if (catalogBody) {
 
 const filterSelect = document.querySelector('#format-filter');
 if (filterSelect && catalogBody) {
-  // створення колекції сет для отримання унікальних форматів фільмів
-  const uniqueFormats = new Set(movies.map(movie => movie.format));
-  uniqueFormats.forEach(format => {
-    // створення та наповнення опцій для випадаючого списку фільтрації
-    const option = document.createElement('option');
-    option.value = format;
-    option.textContent = format;
-    filterSelect.append(option);
-  });
-
   // фільтрація карток при зміні вибраного формату
   filterSelect.addEventListener('change', () => {
     const selected = filterSelect.value;
