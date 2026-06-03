@@ -151,7 +151,19 @@ function renderCatalog(moviesList) {
     buyBtn.dataset.id = movie.id;
     buyBtn.dataset.title = movie.title;
 
-    card.append(image, title, info, priceTag, detailsBtn, buyBtn);
+    // створення кнопки обраного з початковим станом зі сховища
+    const favBtn = document.createElement('button');
+    favBtn.classList.add('favorite-btn');
+    favBtn.dataset.id = movie.id;
+    const isFav = watchlist.getFavorites().includes(String(movie.id));
+    if (isFav) {
+      favBtn.classList.add('is-favorite');
+      favBtn.textContent = '❤️ В обраному';
+    } else {
+      favBtn.textContent = '🤍 В обране';
+    }
+
+    card.append(image, title, info, priceTag, detailsBtn, buyBtn, favBtn);
     fragment.append(card);
   });
   // вставка всіх сформованих карток за один крок
@@ -384,8 +396,28 @@ document.getElementById('modal-buy-btn').addEventListener('click', (e) => {
 // КАТАЛОГ — АСИНХРОННИЙ ЗАПУСК ЗАВАНТАЖЕННЯ ДАНИХ
 // ============================================================
 
-// запуск асинхронного завантаження та рендерингу каталогу з апі
-loadMovies();
+// запуск після повного завантаження дом дерева сторінки
+document.addEventListener('DOMContentLoaded', () => {
+  // ініціалізація початкового стану лічильника обраного з локалсторейджу
+  updateFavoritesCounter();
+  // асинхронний запит та рендеринг каталогу з апі
+  loadMovies();
+  // початкове відображення кошика
+  renderCart();
+});
+
+// ============================================================
+// ОБРАНЕ — ЛІЧИЛЬНИК ТА ДЕЛЕГУВАННЯ ПОДІЙ
+// ============================================================
+
+// функція для оновлення текстового лічильника обраного в шапці сайту
+function updateFavoritesCounter() {
+  const counterElement = document.querySelector('#favorites-counter');
+  if (!counterElement) return;
+  const currentFavorites = watchlist.getFavorites();
+  // динамічне відображення кількості елементів у круглій дужці
+  counterElement.textContent = `Обране (${currentFavorites.length})`;
+}
 
 // ============================================================
 // ДЕЛЕГУВАННЯ ПОДІЙ НА КАТАЛОГ
@@ -406,6 +438,26 @@ if (catalogBody) {
     // перевірка кліку на кнопку купівлі квитка
     if (target.classList.contains('buy-btn')) {
       addToCart(target.dataset.id);
+      return;
+    }
+
+    // перевірка кліку на кнопку додавання до обраного через делегування
+    const favBtn = target.classList.contains('favorite-btn')
+      ? target
+      : target.closest('.favorite-btn');
+    if (favBtn) {
+      const movieId = favBtn.dataset.id;
+      // перемикання стану фільму в екземплярі класу локалсторейджу
+      const isAdded = watchlist.toggleFavorite(movieId);
+      if (isAdded) {
+        favBtn.classList.add('is-favorite');
+        favBtn.textContent = '❤️ В обраному';
+      } else {
+        favBtn.classList.remove('is-favorite');
+        favBtn.textContent = '🤍 В обране';
+      }
+      // миттєве оновлення індикатора кількості у шапці сайту
+      updateFavoritesCounter();
       return;
     }
 
@@ -485,5 +537,4 @@ if (menuToggle) {
   });
 }
 
-// початкове відображення кошика
-renderCart();
+// початкове відображення кошика — перенесено у DOMContentLoaded вище
