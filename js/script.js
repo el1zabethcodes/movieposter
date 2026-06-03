@@ -1,3 +1,57 @@
+// клас для управління списком обраних фільмів у локальному сховищі
+class WatchlistManager {
+  constructor() {
+    // ключ для збереження даних у локалсторейджі
+    this.storageKey = 'movie_watchlist';
+    // ініціалізація масиву обраного зі зчитуванням наявних даних
+    this.favorites = this.loadFavorites();
+  }
+
+  // приватний метод для безпечного зчитування та парсингу даних
+  loadFavorites() {
+    try {
+      const storedData = localStorage.getItem(this.storageKey);
+      // повернення розпарсеного масиву або порожнього масиву
+      return storedData ? JSON.parse(storedData) : [];
+    } catch (error) {
+      // повернення дефолтного значення у разі пошкодження структури json
+      return [];
+    }
+  }
+
+  // метод отримання актуального списку ідентифікаторів обраного
+  getFavorites() {
+    return this.favorites;
+  }
+
+  // метод перемикання стану фільму в обраному — додати або видалити
+  toggleFavorite(movieId) {
+    // приведення ідентифікатора до єдиного строкового формату
+    const id = String(movieId);
+    const index = this.favorites.indexOf(id);
+    if (index === -1) {
+      // додавання фільму до масиву якщо його там не було
+      this.favorites.push(id);
+    } else {
+      // видалення фільму з масиву за його індексом якщо він там є
+      this.favorites.splice(index, 1);
+    }
+    // збереження оновленого стану масиву у локалсторейджі
+    this.save();
+    return this.favorites.includes(id);
+  }
+
+  // метод збереження поточного стану масиву у вигляді рядка
+  save() {
+    localStorage.setItem(this.storageKey, JSON.stringify(this.favorites));
+  }
+}
+
+// створення єдиного екземпляра класу для управління закладками
+const watchlist = new WatchlistManager();
+
+// ============================================================
+
 // пошук контейнера каталогу та перевірка його наявності в дом дереві
 const catalogBody = document.querySelector('#catalog-body');
 if (!catalogBody) {
