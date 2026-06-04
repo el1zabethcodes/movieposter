@@ -5,25 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Каталог фільмів кінотеатру КіноАфіша: новинки, анонси, розклад сеансів.">
   <title>КіноАфіша — Каталог фільмів</title>
-
-  <!-- Favicon -->
   <link rel="icon" href="img/og-preview.jpg" type="image/jpeg">
-
-  <!-- Open Graph -->
   <meta property="og:title"       content="КіноАфіша — Каталог фільмів">
   <meta property="og:description" content="Усі фільми в прокаті: новинки, анонси, розклад сеансів та онлайн-бронювання.">
   <meta property="og:image"       content="img/og-preview.jpg">
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://kino-afisha.ua/catalog.html">
-
   <link rel="stylesheet" href="css/style3.css">
 </head>
-
 <body>
-
-  <!-- ======================================================
-       ШАПКА
-  ====================================================== -->
   <header>
     <div>
       <h1>КіноАфіша</h1>
@@ -34,31 +24,22 @@
           <li><a href="index.html">Головна</a></li>
           <li><a href="catalog.html" aria-current="page">Каталог фільмів</a></li>
           <li><a href="contacts.html">Контакти</a></li>
+          <li><a href="#" id="favorites-counter">Обране (0)</a></li>
         </ul>
       </nav>
     </div>
   </header>
-
-  <!-- ======================================================
-       ОСНОВНИЙ КОНТЕНТ
-  ====================================================== -->
   <main>
-
-    <!-- ── КАТАЛОГ ФІЛЬМІВ (динамічне наповнення через JS) ── -->
     <section aria-labelledby="catalog-heading">
       <h2 id="catalog-heading">Усі фільми</h2>
-
       <div class="catalog-controls">
         <label for="format-filter">Фільтр за форматом:</label>
         <select id="format-filter">
           <option value="all">Усі формати</option>
         </select>
       </div>
-
       <div id="catalog-body" class="genre-section"></div>
     </section>
-
-    <!-- ── КОШИК ── -->
     <section aria-labelledby="cart-heading">
       <h2 id="cart-heading">
         Кошик
@@ -67,11 +48,8 @@
       <div id="cart-container"></div>
       <p class="cart-total-line">Разом: <strong id="cart-total">0 грн</strong></p>
     </section>
-
-    <!-- ── РОЗКЛАД СЕАНСІВ ── -->
     <section aria-labelledby="schedule-heading">
       <h2 id="schedule-heading">Розклад сеансів на цей тиждень</h2>
-
       <div class="table-wrapper">
         <table>
           <caption>Кінотеатр КіноАфіша — зала 1 і зала 2</caption>
@@ -136,12 +114,7 @@
         </table>
       </div>
     </section>
-
   </main>
-
-  <!-- ======================================================
-       САЙДБАР
-  ====================================================== -->
   <aside class="sidebar">
     <h3>Навігація</h3>
     <p class="sidebar-nav">
@@ -152,15 +125,10 @@
     <h3 style="margin-top:1.25rem;">Акція тижня</h3>
     <p>Знижка 20% на вечірні сеанси по вівторках та середах при онлайн-бронюванні.</p>
   </aside>
-
-  <!-- ======================================================
-       ПІДВАЛ
-  ====================================================== -->
   <footer>
     <p>&copy; 2026 КіноАфіша. Проект з розробки веб-застосунків.</p>
     <p>Виконала Єлизавета Павлова</p>
   </footer>
-
   <script src="js/script.js"></script>
 </body>
 </html>
