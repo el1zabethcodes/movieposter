@@ -1,32 +1,33 @@
 // клас для управління списком обраних фільмів у локальному сховищі
 class WatchlistManager {
   constructor() {
-    // ключ для збереження даних у локалсторейджі
+    // ключ для збереження даних у локальному сховищі
     this.storageKey = 'movie_watchlist';
     // ініціалізація масиву обраного зі зчитуванням наявних даних
     this.favorites = this.loadFavorites();
   }
 
-  // приватний метод для безпечного зчитування та парсингу даних
+  // метод для безпечного зчитування та розпаршування даних
   loadFavorites() {
     try {
       const storedData = localStorage.getItem(this.storageKey);
       // повернення розпарсеного масиву або порожнього масиву
       return storedData ? JSON.parse(storedData) : [];
     } catch (error) {
-      // повернення дефолтного значення у разі пошкодження структури json
+      // повернення порожнього масиву у разі помилки
       return [];
     }
   }
 
   // метод отримання актуального списку ідентифікаторів обраного
   getFavorites() {
+    this.favorites = this.loadFavorites();
     return this.favorites;
   }
 
-  // метод перемикання стану фільму в обраному — додати або видалити
+  // метод перемикання стану фільму в обраному додавання або видалення
   toggleFavorite(movieId) {
-    // приведення ідентифікатора до єдиного строкового формату
+    this.favorites = this.loadFavorites();
     const id = String(movieId);
     const index = this.favorites.indexOf(id);
     if (index === -1) {
@@ -36,7 +37,7 @@ class WatchlistManager {
       // видалення фільму з масиву за його індексом якщо він там є
       this.favorites.splice(index, 1);
     }
-    // збереження оновленого стану масиву у локалсторейджі
+    // збереження оновленого стану масиву у локальному сховищі
     this.save();
     return this.favorites.includes(id);
   }
@@ -50,25 +51,33 @@ class WatchlistManager {
 // створення єдиного екземпляра класу для управління закладками
 const watchlist = new WatchlistManager();
 
-// ============================================================
-
-// пошук контейнера каталогу та перевірка його наявності в дом дереві
+// пошук контейнера каталогу та перевірка його наявності в дереві сторінки
 const catalogBody = document.querySelector('#catalog-body');
 if (!catalogBody) {
   // зупинка виконання скрипту якщо контейнер не знайдено
   console.warn('контейнер каталогу не знайдено на сторінці');
 }
+// початковий масив локальних фільмів
+const localMovies = [
+  { id: 'local1',  title: 'Проєкт Аве Марія',       director: 'Філ Лорд, Крістофер Міллер',    rating: '8.5', format: '3D', age: '12+', price: 150, img: 'img/hail-mary.jpg',          trailer: 'video/hail-mary-trailer.mp4' },
+  { id: 'local2',  title: 'Хранителі лісу 2',        director: 'Sven Unterwaldt jr.',            rating: '6.5', format: '2D', age: '6+',  price: 120, img: 'img/woodwalkers-2.jpg',       trailer: '' },
+  { id: 'local3',  title: 'Колючка Голлі',           director: 'Анонс',                          rating: '7.2', format: '2D', age: '0+',  price: 100, img: 'img/hollie-hedgehog.jpg',     trailer: '' },
+  { id: 'local4',  title: 'Голос океану',            director: 'Реза Мемарі',                   rating: '7.0', format: '3D', age: '0+',  price: 140, img: 'img/voice-ocean.jpg',         trailer: '' },
+  { id: 'local5',  title: 'Сезон полювання 2',       director: 'Фредерік Форестьє, Антонін Фурлон', rating: '6.9', format: '2D', age: '12+', price: 130, img: 'img/chasse-gardee-2.jpg', trailer: '' },
+  { id: 'local6',  title: 'Кутюр',                   director: 'Аліс Винокур',                  rating: '6.8', format: '2D', age: '16+', price: 160, img: 'img/couture.jpg',             trailer: '' },
+  { id: 'local7',  title: 'Асистент патологоанатома',director: 'Джеремі Кіпп',                  rating: '4.1', format: '3D', age: '18+', price: 170, img: 'img/mortuary-assistant.jpg',  trailer: '' },
+  { id: 'local8',  title: 'На Драйві',               director: 'Dream Film, A17',               rating: '5.5', format: '3D', age: '12+', price: 110, img: 'img/na-draivi.jpg',           trailer: '' },
+  { id: 'local9',  title: 'Володарі Всесвіту',       director: 'Тревіс Найт',                   rating: '8.0', format: '3D', age: '12+', price: 160, img: 'img/masters-universe.jpeg',   trailer: 'video/masters-universe.mp4' },
+  { id: 'local10', title: 'BACKROOMS: Залаштунки',   director: 'Кейн Парсонс',                  rating: '7.5', format: '2D', age: '16+', price: 130, img: 'img/backrooms.jpg',           trailer: 'video/backrooms.mp4' },
+  { id: 'local11', title: 'Історія іграшок 5',       director: 'Ендрю Стентон, Кенна Гарріс',   rating: '9.0', format: '2D', age: '0+',  price: 140, img: 'img/toy-story-5.jpg',         trailer: 'video/toy-story-5.mp4' },
+  { id: 'local12', title: 'Посіпаки і Монстряки',    director: 'П\'єр Коффін',                  rating: '8.2', format: '3D', age: '0+',  price: 150, img: 'img/minions-monsters.jpg',    trailer: 'video/minions-monsters.mp4' }
+];
 
-// глобальний масив фільмів — заповнюється після отримання даних з апі
+// глобальний масив фільмів який заповнюється після отримання даних
 let movies = [];
 
-// ============================================================
-// FETCH API — АСИНХРОННЕ ЗАВАНТАЖЕННЯ ДАНИХ
-// ============================================================
-
-// асинхронна функція для завантаження даних фільмів через зовнішнє апі
+// асинхронна функція для завантаження даних фільмів через зовнішнє джерело
 async function loadMovies() {
-  // адреса рекомендованого безкоштовного сервера кіноафіші
   const apiUrl = 'https://api.tvmaze.com/search/shows?q=movie';
   try {
     // виконання асинхронного запиту до сервера
@@ -77,46 +86,49 @@ async function loadMovies() {
     if (!response.ok) {
       throw new Error('помилка при отриманні даних від сервера');
     }
-    // розпаршування отриманого результату у формат json
+    // розпаршування отриманого результату
     const data = await response.json();
     // трансформація отриманої структури даних під формат нашого проєкту
     const mappedMovies = data.map((item, index) => {
       const show = item.show;
       return {
-        // створення унікального ідентифікатора на основі даних апі
+        // створення унікального ідентифікатора на основі даних
         id: show.id || (index + 1),
         title: show.name || 'без назви',
         director: show.network ? show.network.name : 'кіностудія',
         rating: show.rating && show.rating.average ? String(show.rating.average) : '7.0',
         format: index % 2 === 0 ? '3D' : '2D',
         age: show.runtime && show.runtime > 100 ? '16+' : '12+',
-        // підстановка дефолтної ціни для комерційного використання
+        // підстановка початкової ціни для комерційного використання
         price: 140 + (index * 10),
         // використання серверної картинки або заглушки
         img: show.image ? show.image.medium : 'img/og-preview.jpg',
         trailer: 'video/masters-universe.mp4'
       };
     });
-    // оновлення глобального масиву фільмів отриманими даними
-    movies = mappedMovies;
-    // виклик функції рендерингу каталогу з передачею адаптованого масиву
-    renderCatalog(mappedMovies);
+    // обєднання отриманих фільмів та локальних фільмів
+    movies = [...mappedMovies, ...localMovies];
+    // виклик функції рендерингу каталогу з передачею обєднаного масиву
+    renderCatalog(movies);
   } catch (error) {
-    // перехоплення мережевих помилок та виклик кастомного повідомлення
+    // перехоплення мережевих помилок та виклик повідомлення
     if (typeof showToast === 'function') {
       showToast('не вдалося завантажити актуальну кіноафішу спробуйте пізніше', 'error');
     } else {
       console.error('помилка завантаження афіші:', error);
     }
+    // показ локальних фільмів у разі збою
+    movies = localMovies;
+    renderCatalog(movies);
   }
 }
 
-// допоміжна функція для динамічного рендерингу карток у домі
+// допоміжна функція для динамічного відображення карток на сторінці
 function renderCatalog(moviesList) {
   if (!catalogBody) return;
   // очищення контейнера від статичного або старого контенту
   catalogBody.innerHTML = '';
-  // створення оптимізованого фрагмента в памяті
+  // створення фрагмента в памяті
   const fragment = document.createDocumentFragment();
   moviesList.forEach(movie => {
     const card = document.createElement('div');
@@ -176,7 +188,7 @@ function renderCatalog(moviesList) {
     const allOption = formatFilter.querySelector('option[value="all"]');
     formatFilter.innerHTML = '';
     if (allOption) formatFilter.append(allOption);
-    // створення колекції сет для отримання унікальних форматів фільмів
+    // створення колекції унікальних форматів фільмів
     const uniqueFormats = new Set(moviesList.map(movie => movie.format));
     uniqueFormats.forEach(format => {
       const option = document.createElement('option');
@@ -186,10 +198,6 @@ function renderCatalog(moviesList) {
     });
   }
 }
-
-// ============================================================
-// МОДАЛЬНЕ ВІКНО
-// ============================================================
 
 // створення розмітки модального вікна та додавання до сторінки
 const modalOverlay = document.createElement('div');
@@ -258,22 +266,18 @@ modalOverlay.addEventListener('click', (e) => {
   if (e.target === modalOverlay) closeModal();
 });
 
-// закриття по клавіші escape
+// закриття по клавіші виходу
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeModal();
 });
 
-// ============================================================
-// ТОСТ-ПОВІДОМЛЕННЯ замість alert
-// ============================================================
-
-// створення контейнера для тост-повідомлень
+// створення контейнера для повідомлень
 const toastContainer = document.createElement('div');
 toastContainer.id = 'toast-container';
 toastContainer.setAttribute('aria-live', 'polite');
 document.body.append(toastContainer);
 
-// функція показу тосту з текстом та типом success або error
+// функція показу повідомлення з текстом та типом успіху або помилки
 function showToast(message, type = 'success') {
   const toast = document.createElement('div');
   toast.className = `toast toast-${type}`;
@@ -287,14 +291,10 @@ function showToast(message, type = 'success') {
   }, 3000);
 }
 
-// ============================================================
-// КОШИК
-// ============================================================
-
 // стан кошика зберігається в масиві обєктів
 let cart = [];
 
-// пошук елементів кошика в дом дереві
+// пошук елементів кошика на сторінці
 const cartContainer = document.querySelector('#cart-container');
 const cartCount = document.querySelector('#cart-count');
 const cartTotal = document.querySelector('#cart-total');
@@ -354,21 +354,17 @@ function addToCart(movieId) {
   const movie = movies.find(m => m.id == movieId);
   if (!movie) return;
 
-  // знаходимо картку фільму в каталозі для клонування вузла
   const sourceCard = catalogBody
     ? catalogBody.querySelector(`.movie-card[data-id="${movie.id}"]`)
     : null;
 
-  // глибоке клонування вузла картки якщо вона є на сторінці
   let clonedCard = null;
   if (sourceCard) {
     clonedCard = sourceCard.cloneNode(true);
-    // видалення кнопок з клонованої картки щоб не дублювати обробники
     clonedCard.querySelectorAll('button').forEach(btn => btn.remove());
     clonedCard.classList.remove('active');
   }
 
-  // додавання обєкта до масиву стану кошика разом з клоном
   cart.push({ id: movie.id, title: movie.title, price: movie.price, clonedCard });
   renderCart();
   showToast(`${movie.title} додано до кошика`);
@@ -392,23 +388,15 @@ document.getElementById('modal-buy-btn').addEventListener('click', (e) => {
   closeModal();
 });
 
-// ============================================================
-// КАТАЛОГ — АСИНХРОННИЙ ЗАПУСК ЗАВАНТАЖЕННЯ ДАНИХ
-// ============================================================
-
-// запуск після повного завантаження дом дерева сторінки
+// запуск після повного завантаження сторінки
 document.addEventListener('DOMContentLoaded', () => {
-  // ініціалізація початкового стану лічильника обраного з локалсторейджу
+  // ініціалізація початкового стану лічильника обраного зі сховища
   updateFavoritesCounter();
-  // асинхронний запит та рендеринг каталогу з апі
+  // асинхронний запит та відображення каталогу
   loadMovies();
   // початкове відображення кошика
   renderCart();
 });
-
-// ============================================================
-// ОБРАНЕ — ЛІЧИЛЬНИК ТА ДЕЛЕГУВАННЯ ПОДІЙ
-// ============================================================
 
 // функція для оновлення текстового лічильника обраного в шапці сайту
 function updateFavoritesCounter() {
@@ -418,10 +406,6 @@ function updateFavoritesCounter() {
   // динамічне відображення кількості елементів у круглій дужці
   counterElement.textContent = `Обране (${currentFavorites.length})`;
 }
-
-// ============================================================
-// ДЕЛЕГУВАННЯ ПОДІЙ НА КАТАЛОГ
-// ============================================================
 
 if (catalogBody) {
   // встановлення єдиного обробника подій на батьківський контейнер
@@ -447,7 +431,7 @@ if (catalogBody) {
       : target.closest('.favorite-btn');
     if (favBtn) {
       const movieId = favBtn.dataset.id;
-      // перемикання стану фільму в екземплярі класу локалсторейджу
+      // перемикання стану фільму в екземплярі класу сховища
       const isAdded = watchlist.toggleFavorite(movieId);
       if (isAdded) {
         favBtn.classList.add('is-favorite');
@@ -461,7 +445,6 @@ if (catalogBody) {
       return;
     }
 
-    // логіка маніпуляції класами для виділення активної картки
     const closestCard = target.closest('.movie-card');
     if (closestCard) {
       // перемикання класу активності при кліку на картку
@@ -469,10 +452,6 @@ if (catalogBody) {
     }
   });
 }
-
-// ============================================================
-// ФІЛЬТР ЗА ФОРМАТОМ
-// ============================================================
 
 const filterSelect = document.querySelector('#format-filter');
 if (filterSelect && catalogBody) {
@@ -484,10 +463,6 @@ if (filterSelect && catalogBody) {
     });
   });
 }
-
-// ============================================================
-// ФОРМА ЗВОРОТНОГО ЗВ'ЯЗКУ — FormData + Object.fromEntries
-// ============================================================
 
 const feedbackForm = document.querySelector('#feedback-form, #contact-form');
 if (feedbackForm) {
@@ -503,26 +478,18 @@ if (feedbackForm) {
       return;
     }
 
-    // збір усіх полів форми через formdata без ручного зчитування значень
     const formData = new FormData(feedbackForm);
-
-    // перетворення на чистий обєкт через object.fromentries для відправки
     const formObject = Object.fromEntries(formData.entries());
 
-    // виведення зібраних даних у консоль для перевірки структури
     console.log('дані форми готові до відправки:', formObject);
 
-    // показ тост-повідомлення замість alert після успішної валідації
+    // показ сповіщення після успішної валідації
     showToast('дякуємо ваше повідомлення успішно надіслано');
 
-    // очищення форми тільки після успішної валідації та збору даних
+    // очищення форми тільки після успішної валідації
     feedbackForm.reset();
   });
 }
-
-// ============================================================
-// ЗАКРИТТЯ МОБІЛЬНОГО МЕНЮ ПРИ КЛІКУ НА ОВЕРЛЕЙ
-// ============================================================
 
 const menuToggle = document.getElementById('menu-toggle');
 if (menuToggle) {
@@ -536,5 +503,3 @@ if (menuToggle) {
     }
   });
 }
-
-// початкове відображення кошика — перенесено у DOMContentLoaded вище
