@@ -1,16 +1,5 @@
-/* ============================================================
-   КіноАфіша — style3.css
-   Автор: Павлова Єлизавета, П-31
-   ============================================================
-   ВАЖЛИВО: Цей файл — єдине джерело стилів.
-   Tailwind CDN підключено лише для утилітарних класів адаптивності
-   (md:, lg:). Власні стилі визначені тут і мають вищий пріоритет.
-   ============================================================ */
-
-/* ---------- Google Fonts ---------- */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 
-/* ---------- Дизайн-токени ---------- */
 :root {
   --ink:          #0d0805;
   --ink-soft:     #3d2a1f;
@@ -28,7 +17,6 @@
   --transition:   0.25s ease;
 }
 
-/* ---------- Скидання ---------- */
 *,
 *::before,
 *::after {
@@ -49,7 +37,6 @@ body {
   line-height: 1.65;
   min-width: 320px;
 
-  /* Загальний layout: шапка + контент + підвал */
   display: flex;
   flex-direction: column;
   min-height: 100vh;
@@ -61,16 +48,12 @@ img {
   display: block;
 }
 
-/* ============================================================
-   ШАПКА
-   ============================================================ */
 header {
   background-color: var(--ink);
   border-bottom: 2px solid var(--copper-dim);
   padding: 1rem 1.5rem;
 }
 
-/* Внутрішній контейнер шапки — логотип зліва, nav справа */
 header > div {
   display: flex;
   align-items: center;
@@ -91,7 +74,6 @@ header h1 {
   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
 }
 
-/* ---------- Бургер ---------- */
 .menu-toggle {
   display: block;
   color: var(--copper);
@@ -107,13 +89,11 @@ header h1 {
   display: none;
 }
 
-/* ---------- Навігація ---------- */
 nav ul {
   list-style: none;
   display: flex;
   flex-direction: column;
 
-  /* Мобільне меню — виїжджає справа */
   position: fixed;
   top: 0;
   right: 0;
@@ -153,9 +133,6 @@ nav a.active {
   border-color: var(--copper);
 }
 
-/* ============================================================
-   ОСНОВНИЙ КОНТЕНТ
-   ============================================================ */
 main {
   flex: 1;
   padding: 1.5rem 1rem;
@@ -164,7 +141,6 @@ main {
   margin: 0 auto;
 }
 
-/* ---------- Заголовки секцій ---------- */
 h2 {
   font-family: var(--font-display);
   color: var(--ink-soft);
@@ -200,7 +176,6 @@ p {
   font-size: 1rem;
 }
 
-/* ---------- Секція прем'єри ---------- */
 .premiere-article {
   background-color: #fff;
   border-radius: var(--radius-md);
@@ -209,7 +184,6 @@ p {
   margin-bottom: 2rem;
 }
 
-/* Постер + опис поруч (десктоп) */
 .premiere-inner {
   display: flex;
   flex-direction: column;
@@ -227,7 +201,6 @@ p {
   padding: 1.25rem 1.5rem 1.5rem;
 }
 
-/* ---------- Відео ---------- */
 video {
   width: 100%;
   height: auto;
@@ -237,7 +210,6 @@ video {
   background: var(--ink);
 }
 
-/* ---------- Сітка анонсів ---------- */
 ul.movie-grid {
   list-style: none;
   padding: 0;
@@ -266,7 +238,6 @@ ul.movie-grid li article:hover {
   box-shadow: 3px 8px 0 var(--copper-dim);
 }
 
-/* Постер з фіксованим співвідношенням сторін — сітка не ламається */
 ul.movie-grid li article img {
   width: 100%;
   aspect-ratio: 2 / 3;
@@ -288,7 +259,6 @@ ul.movie-grid li article p:last-child {
   padding-bottom: 0.75rem;
 }
 
-/* ---------- Картки фільмів (загальний стиль) ---------- */
 article {
   background-color: #fff;
   padding: 1rem;
@@ -298,9 +268,6 @@ article {
   box-shadow: var(--shadow-card);
 }
 
-/* ---------- Сайдбар ---------- */
-/* УВАГА: aside знаходиться після </main> в HTML,
-   тому позиціонуємо його через Grid на десктопі */
 .sidebar {
   background: var(--parchment);
   padding: 1.25rem 1.5rem;
@@ -338,7 +305,6 @@ article {
   transform: translateX(4px);
 }
 
-/* ---------- Каталог: секції за жанрами ---------- */
 .genre-section {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -360,7 +326,6 @@ article {
   margin-bottom: 0;
 }
 
-/* ---------- Таблиця сеансів ---------- */
 .table-wrapper {
   overflow-x: auto;
   margin-top: 0.75rem;
@@ -423,7 +388,6 @@ tfoot td {
   border-bottom: none;
 }
 
-/* ---------- Форма контактів ---------- */
 form {
   width: 100%;
 }
@@ -521,9 +485,6 @@ button[type="reset"]:hover {
   color: var(--ink);
 }
 
-/* ============================================================
-   ПІДВАЛ
-   ============================================================ */
 footer {
   background-color: var(--ink);
   color: var(--parchment);
@@ -538,9 +499,6 @@ footer {
   margin-top: auto;
 }
 
-/* ============================================================
-   ТЕМНА ТЕМА
-   ============================================================ */
 @media (prefers-color-scheme: dark) {
   :root {
     --cream:      #1a120e;
@@ -567,11 +525,8 @@ footer {
   }
 }
 
-/* ============================================================
-   АДАПТИВНІСТЬ — ПЛАНШЕТ (>= 768px)
-   ============================================================ */
 @media (min-width: 768px) {
-  /* Двоколонковий layout: основний контент + сайдбар */
+
   body {
     display: grid;
     grid-template-columns: 2fr 1fr;
@@ -584,7 +539,6 @@ footer {
   .sidebar { grid-column: 2 / 3; padding: 1.5rem 1.5rem 1.5rem 0; border-top: none; }
   footer  { grid-column: 1 / -1; }
 
-  /* Прем'єра: постер зліва, текст справа */
   .premiere-inner {
     flex-direction: row;
     align-items: flex-start;
@@ -604,7 +558,6 @@ footer {
     flex: 1;
   }
 
-  /* Бургер — ховаємо на планшеті */
   .menu-toggle { display: none; }
 
   nav ul {
@@ -622,7 +575,6 @@ footer {
     justify-content: flex-start;
   }
 
-  /* Сітка анонсів: 2 колонки */
   ul.movie-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -630,9 +582,6 @@ footer {
   h2 { font-size: 1.75rem; }
 }
 
-/* ============================================================
-   АДАПТИВНІСТЬ — ДЕСКТОП (>= 1200px)
-   ============================================================ */
 @media (min-width: 1200px) {
   body {
     grid-template-columns: 1fr minmax(0, 860px) 280px 1fr;
@@ -643,7 +592,6 @@ footer {
   .sidebar { grid-column: 3 / 4; padding: 2rem 0 2rem 1.5rem; }
   footer  { grid-column: 1 / -1; }
 
-  /* Сітка анонсів: 3 колонки */
   ul.movie-grid {
     grid-template-columns: repeat(3, 1fr);
   }
@@ -653,9 +601,6 @@ footer {
   header h1 { font-size: 2.6rem; }
 }
 
-/* ============================================================
-   МОДАЛЬНЕ ВІКНО
-   ============================================================ */
 #modal-overlay {
   display: none;
   position: fixed;
@@ -773,9 +718,6 @@ body.modal-open {
   }
 }
 
-/* ============================================================
-   ТОСТ-ПОВІДОМЛЕННЯ
-   ============================================================ */
 #toast-container {
   position: fixed;
   bottom: 1.5rem;
@@ -810,9 +752,6 @@ body.modal-open {
   transform: translateY(0);
 }
 
-/* ============================================================
-   КОШИК
-   ============================================================ */
 .cart-badge {
   display: inline-flex;
   align-items: center;
@@ -897,9 +836,6 @@ body.modal-open {
   padding-right: 0.25rem;
 }
 
-/* ============================================================
-   КАРТКИ КАТАЛОГУ (динамічні)
-   ============================================================ */
 .movie-card {
   background: #fff;
   border-radius: var(--radius-md);
@@ -952,20 +888,13 @@ body.modal-open {
   font-size: 0.85rem;
 }
 
-.movie-card .buy-btn {
-  background: var(--ink-soft);
-  color: var(--cream);
-  margin-bottom: 0.75rem;
-}
+.movie-card .buy-btn { background: var(--ink-soft); color: var(--cream); margin-bottom: 0.25rem; }
 
 .movie-card .buy-btn:hover {
   background: var(--copper);
   color: var(--ink);
 }
 
-/* ============================================================
-   КОНТРОЛИ КАТАЛОГУ (фільтр)
-   ============================================================ */
 .catalog-controls {
   display: flex;
   align-items: center;
@@ -989,25 +918,18 @@ body.modal-open {
   background: var(--cream);
 }
 
-/* ============================================================
-   ВАЛІДАЦІЯ ФОРМИ — :valid / :invalid / :user-invalid
-   ============================================================ */
-
-/* зелена підсвітка тільки після взаємодії з полем */
 input:not([type="radio"]):not([type="checkbox"]):user-valid,
 textarea:user-valid {
   border-bottom-color: #4caf50;
   box-shadow: 0 2px 0 0 #4caf50;
 }
 
-/* червона підсвітка тільки після взаємодії, не на порожньому */
 input:not([type="radio"]):not([type="checkbox"]):user-invalid,
 textarea:user-invalid {
   border-bottom-color: #e53935;
   box-shadow: 0 2px 0 0 #e53935;
 }
 
-/* fallback для браузерів без :user-invalid — не показуємо помилку на порожньому */
 input:not([type="radio"]):not([type="checkbox"]):not(:placeholder-shown):invalid,
 textarea:not(:placeholder-shown):invalid {
   border-bottom-color: #e53935;
@@ -1018,4 +940,30 @@ input:not([type="radio"]):not([type="checkbox"]):not(:placeholder-shown):valid,
 textarea:not(:placeholder-shown):valid {
   border-bottom-color: #4caf50;
   box-shadow: 0 2px 0 0 #4caf50;
+}
+.movie-card .favorite-btn {
+  margin: 0.25rem 0.75rem 0.75rem;
+  padding: 0.55em 1em;
+  font-size: 0.85rem;
+  background: transparent;
+  border: 2px solid var(--copper);
+  color: var(--ink-soft);
+}
+
+.movie-card .favorite-btn:hover {
+  background: var(--parchment);
+  color: var(--ink);
+  transform: translateY(-2px);
+}
+
+.movie-card .favorite-btn.is-favorite {
+  background: var(--copper);
+  color: var(--ink);
+  border-color: var(--copper);
+}
+
+.movie-card .favorite-btn.is-favorite:hover {
+  background: var(--ink-soft);
+  color: var(--cream);
+  border-color: var(--ink-soft);
 }

@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
 
 :root {
-  /* палітра з завдання 1 */
   --ink:           #1a0f0a;
   --ink-soft:      #2d1f17;
   --copper:        #c4956a;
@@ -25,14 +24,12 @@ body {
   margin: 0;
 }
 
-/* шапка */
 header {
   background-color: var(--ink);
   border-bottom: 1px solid var(--copper-dim);
-  padding: 28px 0 20px; /* 28 зверху бо логотип має повітря */
+  padding: 28px 0 20px;
 }
 
-/* контейнер max-width 1200px, центрування, бокові відступи */
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -53,12 +50,12 @@ nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
-  font-size: 0; /* прибираємо пробіли між inline-block */
+  font-size: 0;
 }
 
 nav li {
   display: inline-block;
-  font-size: 1rem; /* повертаємо розмір тексту */
+  font-size: 1rem;
   margin-right: 28px;
 }
 
@@ -95,7 +92,6 @@ h2 {
   line-height: 1.2;
 }
 
-/* відступи між секціями на catalog.html головніше */
 main > section {
   margin-bottom: 56px;
 }
@@ -131,7 +127,6 @@ article img {
   border: 1px solid var(--copper-dim);
 }
 
-/* головна, прем'єра тижня, асиметрична сітка */
 main > section:first-child article {
   display: grid;
   grid-template-columns: 1fr 1.15fr;
@@ -141,13 +136,13 @@ main > section:first-child article {
 }
 
 main > section:first-child picture {
-  order: 2; /* постер справа, злам звичного порядку */
+  order: 2;
 }
 
 main > section:first-child picture img {
   max-width: 100%;
   border: 1px solid var(--copper-dim);
-  box-shadow: 6px 6px 0 var(--ink-soft); /* різке тіня, не розмиття */
+  box-shadow: 6px 6px 0 var(--ink-soft);
 }
 
 video {
@@ -159,7 +154,6 @@ video {
   margin-top: 1em;
 }
 
-/* скоро в кіно, ламана рівномірність через :first-child */
 ul.movie-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -188,17 +182,15 @@ ul.movie-grid li img {
   margin-bottom: 12px;
 }
 
-/* catalog.html, фільми по жанрах */
 section > article {
   background-color: #fff;
   padding: 1.5em;
   margin-bottom: 1.5em;
   border-radius: 4px;
   overflow: hidden;
-  box-shadow: 4px 4px 0 var(--copper-dim); /* тепла тінь, ефект свічки */
+  box-shadow: 4px 4px 0 var(--copper-dim);
 }
 
-/* таблиця розкладу */
 table {
   width: 100%;
   border-collapse: collapse;
@@ -235,7 +227,7 @@ thead th {
 }
 
 tbody tr:nth-child(even) {
-  background: rgba(196, 149, 106, 0.08); /* ледь ледь мідний відтінок */
+  background: rgba(196, 149, 106, 0.08);
 }
 
 tfoot td {
@@ -245,7 +237,6 @@ tfoot td {
   border-bottom: none;
 }
 
-/* контакти, форма */
 form {
   max-width: 720px;
 }
@@ -273,7 +264,6 @@ label {
   margin-top: 0.9em;
 }
 
-/* інпути, в HTML є inline стилі, не чіпаю padding/min-height щоб не конфліктувати */
 input,
 select,
 textarea {
@@ -296,7 +286,6 @@ textarea:focus {
   box-shadow: 0 2px 0 0 var(--copper);
 }
 
-/* плейсхолдер курсивом, як у журналі */
 ::placeholder {
   font-style: italic;
   color: var(--copper-dim);
@@ -342,11 +331,10 @@ button[type="reset"]:hover {
   transform: translateY(-2px);
 }
 
-/* футер */
 footer {
   background-color: var(--ink);
   border-top: 1px solid var(--copper-dim);
-  padding: 3em 0; /* 52 внизу бо не люблю коли прилипає */
+  padding: 3em 0;
   color: var(--parchment);
   font-size: 0.85rem;
   margin-top: 4em;
@@ -356,7 +344,6 @@ footer p {
   margin: 6px 0;
 }
 
-/* мобілка, все в кінці файлу як і має бути */
 @media (max-width: 768px) {
   h1 { font-size: 2.2rem; }
   h2 { font-size: 1.6rem; }
