@@ -3,27 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Контакти кінотеатру КіноАфіша: адреса, телефон, форма зворотного зв'язку.">
+  <meta name="description" content="Контакти кінотеатру КіноАфіша: адреса, телефон, forma зворотного зв'язку.">
   <title>КіноАфіша — Контакти</title>
-
-  <!-- Favicon -->
   <link rel="icon" href="img/og-preview.jpg" type="image/jpeg">
-
-  <!-- Open Graph -->
   <meta property="og:title"       content="КіноАфіша — Контакти">
   <meta property="og:description" content="Адреса, телефон та форма зворотного зв'язку кінотеатру КіноАфіша.">
   <meta property="og:image"       content="img/og-preview.jpg">
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://kino-afisha.ua/contacts.html">
-
   <link rel="stylesheet" href="css/style3.css">
 </head>
-
 <body>
-
-  <!-- ======================================================
-       ШАПКА
-  ====================================================== -->
   <header>
     <div>
       <h1>КіноАфіша</h1>
@@ -34,20 +24,14 @@
           <li><a href="index.html">Головна</a></li>
           <li><a href="catalog.html">Каталог фільмів</a></li>
           <li><a href="contacts.html" aria-current="page">Контакти</a></li>
+          <li><a href="#" id="favorites-counter">Обране (0)</a></li>
         </ul>
       </nav>
     </div>
   </header>
-
-  <!-- ======================================================
-       ОСНОВНИЙ КОНТЕНТ
-  ====================================================== -->
   <main>
-
-    <!-- ── КОНТАКТНА ІНФОРМАЦІЯ ── -->
     <section aria-labelledby="info-heading">
       <h2 id="info-heading">Як нас знайти</h2>
-
       <article>
         <h3>КіноАфіша — Головний кінотеатр</h3>
         <p>📍 <strong>Адреса:</strong> вул. Сумська, 14, Харків, 61002</p>
@@ -56,17 +40,11 @@
         <p>🕐 <strong>Режим роботи:</strong> щодня з 10:00 до 23:00</p>
       </article>
     </section>
-
-    <!-- ── ФОРМА ЗВОРОТНОГО ЗВ'ЯЗКУ ── -->
     <section aria-labelledby="form-heading">
       <h2 id="form-heading">Зворотній зв'язок</h2>
-
       <form id="contact-form" action="#" method="post">
-
-        <!-- Персональні дані -->
         <fieldset>
           <legend>Ваші дані</legend>
-
           <label for="name">Ім'я та прізвище <span aria-hidden="true">*</span></label>
           <input
             type="text"
@@ -76,7 +54,6 @@
             autocomplete="name"
             required
           >
-
           <label for="email">Електронна пошта <span aria-hidden="true">*</span></label>
           <input
             type="email"
@@ -86,7 +63,6 @@
             autocomplete="email"
             required
           >
-
           <label for="phone">Номер телефону</label>
           <input
             type="tel"
@@ -98,11 +74,8 @@
             title="Введіть номер у форматі +380XXXXXXXXX"
           >
         </fieldset>
-
-        <!-- Тема звернення -->
         <fieldset>
           <legend>Тема звернення</legend>
-
           <label for="subject">Оберіть тему</label>
           <select id="subject" name="subject">
             <option value="" disabled selected>— оберіть тему —</option>
@@ -112,8 +85,6 @@
             <option value="tech">Технічні питання</option>
             <option value="other">Інше</option>
           </select>
-
-          <!-- Тип відвідувача -->
           <label style="margin-top:1rem;">Ви відвідуєте кінотеатр як:</label>
           <div style="display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:0.4rem;">
             <label>
@@ -129,8 +100,6 @@
               Корпоративний захід
             </label>
           </div>
-
-          <!-- Додаткові побажання -->
           <label style="margin-top:1rem;">Додаткові послуги (можна обрати кілька):</label>
           <div style="display:flex; gap:1.5rem; flex-wrap:wrap; margin-top:0.4rem;">
             <label>
@@ -147,11 +116,8 @@
             </label>
           </div>
         </fieldset>
-
-        <!-- Повідомлення -->
         <fieldset>
           <legend>Ваше повідомлення</legend>
-
           <label for="message">Текст звернення <span aria-hidden="true">*</span></label>
           <textarea
             id="message"
@@ -161,7 +127,6 @@
             required
             minlength="10"
           ></textarea>
-
           <label for="rating">Як ви оцінюєте наш кінотеатр?</label>
           <select id="rating" name="rating">
             <option value="" disabled selected>— оберіть оцінку —</option>
@@ -172,35 +137,23 @@
             <option value="1">⭐ — Погано</option>
           </select>
         </fieldset>
-
         <div style="display:flex; gap:1rem; flex-wrap:wrap;">
           <button type="submit">Надіслати</button>
           <button type="reset">Скинути</button>
         </div>
-
       </form>
     </section>
-
   </main>
-
-  <!-- ======================================================
-       САЙДБАР
-  ====================================================== -->
   <aside class="sidebar">
     <h3>Часті питання</h3>
     <p><strong>Чи можна повернути квиток?</strong><br>Так, не пізніше ніж за 2 години до сеансу.</p>
     <p><strong>Чи є знижки?</strong><br>Студентам та пенсіонерам — 15% за посвідченням.</p>
     <p><strong>Паркування?</strong><br>Безкоштовна парковка поруч із будівлею.</p>
   </aside>
-
-  <!-- ======================================================
-       ПІДВАЛ
-  ====================================================== -->
   <footer>
     <p>&copy; 2026 КіноАфіша. Проект з розробки веб-застосунків.</p>
     <p>Виконала Єлизавета Павлова</p>
   </footer>
-
   <script src="js/script.js"></script>
 </body>
 </html>

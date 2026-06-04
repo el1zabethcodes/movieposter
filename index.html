@@ -5,60 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Афіша сучасного кінотеатру: розклад сеансів, новинки прокату та онлайн-бронювання квитків.">
   <title>КіноАфіша — Головна</title>
-
-  <!-- Пріоритетне завантаження LCP-зображення -->
   <link rel="preload" as="image" href="img/hail-mary.webp" fetchpriority="high">
-
-  <!-- Стилі проєкту (єдине джерело стилів, без Tailwind) -->
   <link rel="stylesheet" href="css/style3.css">
-
-  <!-- Open Graph -->
   <meta property="og:title"       content="КіноАфіша — Прем'єра «Аве Марія»">
   <meta property="og:description" content="Дивіться головну прем'єру сезону — науково-фантастичний епос за романом Енді Вейра.">
   <meta property="og:image"       content="img/og-preview.jpg">
   <meta property="og:type"        content="website">
   <meta property="og:url"         content="https://kino-afisha.ua">
-
-  <!-- Favicon -->
   <link rel="icon" href="img/og-preview.jpg" type="image/jpeg">
 </head>
-
 <body>
-
-  <!-- ======================================================
-       ШАПКА
-  ====================================================== -->
   <header>
     <div>
       <h1>КіноАфіша</h1>
-
-      <!-- Бургер-меню для мобільних -->
       <input type="checkbox" id="menu-toggle" hidden>
       <label for="menu-toggle" class="menu-toggle" aria-label="відкрити меню">&#9776;</label>
-
       <nav aria-label="Основна навігація">
         <ul>
-          <li><a href="index.html"    aria-current="page">Головна</a></li>
-          <li><a href="catalog.html"               >Каталог фільмів</a></li>
-          <li><a href="contacts.html"              >Контакти</a></li>
+          <li><a href="index.html" aria-current="page">Головна</a></li>
+          <li><a href="catalog.html">Каталог фільмів</a></li>
+          <li><a href="contacts.html">Контакти</a></li>
+          <li><a href="#" id="favorites-counter">Обране (0)</a></li>
         </ul>
       </nav>
     </div>
   </header>
-
-  <!-- ======================================================
-       ОСНОВНИЙ КОНТЕНТ
-  ====================================================== -->
   <main>
-
-    <!-- Прем'єра тижня -->
     <section aria-labelledby="premiere-heading">
       <h2 id="premiere-heading">Прем'єра тижня</h2>
-
       <article class="premiere-article">
         <div class="premiere-inner">
-
-          <!-- Постер прем'єри -->
           <picture>
             <source srcset="img/hail-mary.webp, img/hail-mary-2x.webp 2x" type="image/webp">
             <source srcset="img/hail-mary.jpg,  img/hail-mary-2x.jpg  2x" type="image/jpeg">
@@ -70,20 +46,15 @@
               fetchpriority="high"
             >
           </picture>
-
-          <!-- Інформація про фільм -->
           <div class="premiere-body">
             <h3>Проєкт «Аве Марія»</h3>
             <p><strong>Режисер:</strong> Філ Лорд, Крістофер Міллер</p>
-
             <p>
               Шкільний учитель Райланд Ґрейс прокидається на космічному кораблі без пам'яті та
               без екіпажу. Поступово він усвідомлює: від нього залежить порятунок всього людства.
               Пам'ятний союз із несподіваним другом за зоряними мандрівками.
             </p>
-
             <h4>Дивитись трейлер</h4>
-            <!-- width/height збережено для уникнення layout shift; CSS зробить його адаптивним -->
             <video controls width="1280" height="720">
               <source src="video/hail-mary-trailer.mp4" type="video/mp4">
               <track
@@ -96,17 +67,12 @@
               Ваш браузер не підтримує відтворення відео.
             </video>
           </div>
-
         </div>
       </article>
     </section>
-
-    <!-- Анонси -->
     <section aria-labelledby="coming-heading">
       <h2 id="coming-heading">Скоро в кіно</h2>
-
       <ul class="movie-grid">
-
         <li>
           <article>
             <img
@@ -121,7 +87,6 @@
             <p>Прем'єра: 2 квітня</p>
           </article>
         </li>
-
         <li>
           <article>
             <img
@@ -136,7 +101,6 @@
             <p>Прем'єра: 9 квітня</p>
           </article>
         </li>
-
         <li>
           <article>
             <img
@@ -151,28 +115,17 @@
             <p>Прем'єра: 23 квітня</p>
           </article>
         </li>
-
       </ul>
     </section>
-
   </main>
-
-  <!-- ======================================================
-       САЙДБАР (розміщується поруч із main через CSS Grid)
-  ====================================================== -->
   <aside class="sidebar">
     <h3>Акція тижня</h3>
     <p>Знижка 20% на вечірні сеанси по вівторках та середах при онлайн-бронюванні.</p>
   </aside>
-
-  <!-- ======================================================
-       ПІДВАЛ
-  ====================================================== -->
   <footer>
     <p>&copy; 2026 КіноАфіша. Проект з розробки веб-застосунків.</p>
     <p>Виконала Єлизавета Павлова</p>
   </footer>
-
   <script src="js/script.js"></script>
 </body>
 </html>
